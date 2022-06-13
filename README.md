@@ -10,5 +10,8 @@
 - Freeze all players who did not take that cabbage for 3 seconds
 - ...
 
+## Dependences
+- Maven
+
 ### Standard Directory Layout
 > https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html
