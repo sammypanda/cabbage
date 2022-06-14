@@ -10,7 +10,7 @@
 - Freeze all players who did not take that cabbage for 3 seconds
 - ...
 
-## Dependences
+## Dependencies
 - Maven
 
 ### Standard Directory Layout
