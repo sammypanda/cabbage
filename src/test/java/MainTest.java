@@ -1,6 +1,5 @@
 package test.java;
 
-import org.bukkit.plugin.java.PluginClassLoader; // err. said JavaPlugin requires
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MainTest extends JavaPlugin {
