@@ -1,3 +1,9 @@
+package main.java.command;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+
 public class MainCommand implements CommandExecutor {
 
     @Override
