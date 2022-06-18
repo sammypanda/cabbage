@@ -28,7 +28,7 @@ public class MainCommand implements CommandExecutor {
 
             else if (args[0].equalsIgnoreCase("team") || args[0].equalsIgnoreCase("join")) {
 
-                sender.sendMessage("Enter team you intend to join (Blue, Red, Green)")
+                sender.sendMessage("Enter team you intend to join (Blue, Red, Green)");
                 return false;
 
             }
