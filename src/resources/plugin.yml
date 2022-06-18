@@ -4,7 +4,7 @@ main: main.java.Main
 api-version: 1.13
 
 commands:
-  cabbageJoin:
+  'cabbage join':
     description: "Allows a player to join a team"
-    usage: /join
-    aliases: [team]
+    usage: /cabbage join
+    aliases: ['cabbage team']
