@@ -2,3 +2,9 @@ name: Cabbage
 version: ${project.version}
 main: main.java.Main
 api-version: 1.13
+
+commands:
+  cabbageJoin:
+    description: "Allows a player to join a team"
+    usage: /cabbage join
+    aliases: [c join, c team]
