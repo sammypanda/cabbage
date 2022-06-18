@@ -9,10 +9,31 @@ public class MainCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        sender.sendMessage("Test");
-        if (!(command.getName().equalsIgnoreCase(label))) {
-            sender.sendMessage("Ran test command with alias: \"" + label + "!\"");
+        
+        if (args.length == 0) {
+
+            sender.sendMessage("Test");
+            return true;
+
         }
-        return true;
+
+        else if (args.length == 1) {
+
+            if (args[0].equalsIgnoreCase("help")) {// if the first argument after the command i.e. /command *help*
+
+                sender.sendMessage("Test");
+                return true;
+                
+            }
+
+            else if (args[0].equalsIgnoreCase("team") || args[0].equalsIgnoreCase("join")) {
+
+                sender.sendMessage("Enter team you intend to join (Blue, Red, Green)")
+                return false;
+
+            }
+        }
+
+        return false; // if nothing handled say command failed
     }
 }
