@@ -16,7 +16,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new PlayerListener(), this); // register the PlayerListener event
 
 		// Registering Command Executors
-		getCommand("cabbage").setExecutor(new MainCommand(this));
+		this.getCommand("cabbage").setExecutor(new MainCommand(this));
 	}
 	
 	@Override
