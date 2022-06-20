@@ -1,4 +1,5 @@
 package main.java.command;
+import main.java.Main; // needed for getPlugin
 
 import java.util.ArrayList; // import ArrayList program
 
