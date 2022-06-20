@@ -19,11 +19,15 @@ public class Main extends JavaPlugin {
 		this.saveDefaultConfig();
 
 		// Registering Command Executors
-		this.getCommand("cabbage").setExecutor(new MainCommand(this));
+		this.getCommand("cabbage").setExecutor(new MainCommand());
 	}
 	
 	@Override
 	public void onDisable() {
 		// HandlerList.unregisterAll(Listener);
+	}
+
+	public static Plugin getPlugin() {
+		return plugin; // for accessing plugin via other classes
 	}
 }

@@ -9,11 +9,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class MainCommand implements CommandExecutor {
 
-    private Plugin plugin;
-
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args, Plugin plugin) {
-        this.plugin = plugin;
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (args.length == 0) {
 
@@ -47,12 +44,12 @@ public class MainCommand implements CommandExecutor {
 
                     case "blue":
                         sender.sendMessage("You joined the blue team");
-                        List<String> players = plugin.getConfig().getStringList("teams.blue.players");
+                        List<String> players = getPlugin.getConfig().getStringList("teams.blue.players");
                         players.add(sender);
-                        plugin.getConfig().set("teams.blue.players", players);
+                        getPlugin().getConfig().set("teams.blue.players", players);
 
                         //test
-                        sender.sendMessage(plugin.getConfig().getStringList("teams.blue.players"));
+                        sender.sendMessage(getPlugin.getConfig().getStringList("teams.blue.players"));
                         break;
 
                     case "red":
@@ -65,7 +62,7 @@ public class MainCommand implements CommandExecutor {
                         
                 }
 
-                plugin.saveConfig();
+                getPlugin.saveConfig();
 
             }
         }
