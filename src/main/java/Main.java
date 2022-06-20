@@ -28,6 +28,6 @@ public class Main extends JavaPlugin {
 	}
 
 	public static Plugin getPlugin() {
-		return plugin; // for accessing plugin via other classes
+		return Bukkit.getServer().getPlugin("Cabbage");; // for accessing plugin via other classes
 	}
 }
