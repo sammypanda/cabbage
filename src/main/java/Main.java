@@ -17,9 +17,9 @@ public class Main extends JavaPlugin {
 
 		// Initiating/Creating Config
 		this.saveDefaultConfig();
-		this.getConfig().set("teams.blue.players", new List<String>);
-		this.getConfig().set("teams.red.players", new List<String>);
-		this.getConfig().set("teams.green.players", new List<String>);
+		this.getConfig().set("teams.blue.players", new List<String>());
+		this.getConfig().set("teams.red.players", new List<String>());
+		this.getConfig().set("teams.green.players", new List<String>());
 
 		// Registering Command Executors
 		this.getCommand("cabbage").setExecutor(new MainCommand());
