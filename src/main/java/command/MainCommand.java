@@ -1,5 +1,7 @@
 package main.java.command;
 
+import java.util.ArrayList; // import ArrayList program
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -44,7 +46,7 @@ public class MainCommand implements CommandExecutor {
 
                     case "blue":
                         sender.sendMessage("You joined the blue team");
-                        players = new ArrayList<String>(getPlugin().getConfig().getStringList("teams.blue.players")); // prepare new list with existing list from config
+                        ArrayList<String> players = new ArrayList<String>(getPlugin().getConfig().getStringList("teams.blue.players")); // prepare new list with existing list from config
                         players.add(sender);
                         getPlugin().getConfig().set("teams.blue.players", players);
 
