@@ -15,11 +15,11 @@ public class Main extends JavaPlugin {
 		// Listeners
 		getServer().getPluginManager().registerEvents(new PlayerListener(), this); // register the PlayerListener event
 
+		// Initiating/Creating Config
+		this.saveDefaultConfig();
+
 		// Registering Command Executors
 		this.getCommand("cabbage").setExecutor(new MainCommand());
-
-		// Initiating/Creating Config
-		plugin.saveDefaultConfig();
 	}
 	
 	@Override

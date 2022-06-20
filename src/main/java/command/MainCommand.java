@@ -4,12 +4,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+
 
 public class MainCommand implements CommandExecutor {
 
+    private Plugin plugin;
+
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args, Plugin plugin) {
+
         if (args.length == 0) {
 
             sender.sendMessage("Test");
