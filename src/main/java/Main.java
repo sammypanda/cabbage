@@ -3,6 +3,7 @@ package main.java;
 import org.bukkit.plugin.java.JavaPlugin; // essential for functionality
 // import org.bukkit.event.HandlerList
 
+import java.util.*;
 import main.java.listeners.*; // import every listener
 import main.java.command.*; // import every command
 
