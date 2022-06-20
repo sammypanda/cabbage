@@ -33,7 +33,7 @@ public class Main extends JavaPlugin {
 		// HandlerList.unregisterAll(Listener);
 	}
 
-	public Plugin getPlugin() {
-		return this.getServer().getPlugin("Cabbage"); // for accessing plugin via other classes
+	public static Plugin getPlugin() {
+		return plugin; // for accessing plugin via other classes
 	}
 }
