@@ -47,12 +47,12 @@ public class MainCommand implements CommandExecutor {
 
                     case "blue":
                         sender.sendMessage("You joined the blue team");
-                        ArrayList<String> players = new ArrayList<String>(getPlugin().getConfig().getStringList("teams.blue.players")); // prepare new list with existing list from config
+                        ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList("teams.blue.players")); // prepare new list with existing list from config
                         players.add(sender);
-                        getPlugin().getConfig().set("teams.blue.players", players);
+                        Main.getPlugin().getConfig().set("teams.blue.players", players);
 
                         //test
-                        sender.sendMessage(getPlugin().getConfig().getStringList("teams.blue.players"));
+                        sender.sendMessage(Main.getPlugin().getConfig().getStringList("teams.blue.players"));
                         break;
 
                     case "red":
@@ -65,7 +65,7 @@ public class MainCommand implements CommandExecutor {
                         
                 }
 
-                getPlugin().saveConfig();
+                Main.getPlugin().saveConfig();
 
             }
         }
