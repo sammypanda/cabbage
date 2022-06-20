@@ -3,6 +3,7 @@ package main.java;
 import java.util.ArrayList; // import ArrayList program
 
 import org.bukkit.plugin.java.JavaPlugin; // essential for functionality
+import org.bukkit.plugin.Plugin; // plugin type
 // import org.bukkit.event.HandlerList
 
 import main.java.listeners.*; // import every listener
@@ -33,6 +34,6 @@ public class Main extends JavaPlugin {
 	}
 
 	public Plugin getPlugin() {
-		return this.getServer().getPlugin("Cabbage");; // for accessing plugin via other classes
+		return this.getServer().getPlugin("Cabbage"); // for accessing plugin via other classes
 	}
 }
