@@ -52,7 +52,7 @@ public class MainCommand implements CommandExecutor {
                         Main.getPlugin().getConfig().set("teams.blue.players", players);
 
                         //test
-                        sender.sendMessage(Main.getPlugin().getConfig().getStringList("teams.blue.players"));
+                        sender.sendMessage(Main.getPlugin().getConfig().getStringList("teams.blue.players")(0));
                         break;
 
                     case "red":
