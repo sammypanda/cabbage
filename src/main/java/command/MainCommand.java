@@ -42,6 +42,12 @@ public class MainCommand implements CommandExecutor {
 
                     case "blue":
                         sender.sendMessage("You joined the blue team");
+                        List<String> players = plugin.getConfig().getStringList("teams.blue.players");
+                        players.add(sender);
+                        plugin.getConfig().set("teams.blue.players", players);
+
+                        //test
+                        sender.sendMessage(plugin.getConfig().getStringList("teams.blue.players"));
                         break;
 
                     case "red":
