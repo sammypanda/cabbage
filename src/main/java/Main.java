@@ -3,7 +3,6 @@ package main.java;
 import org.bukkit.plugin.java.JavaPlugin; // essential for functionality
 // import org.bukkit.event.HandlerList
 
-import java.util.*;
 import main.java.listeners.*; // import every listener
 import main.java.command.*; // import every command
 
@@ -18,9 +17,9 @@ public class Main extends JavaPlugin {
 
 		// Initiating/Creating Config
 		this.saveDefaultConfig();
-		this.getConfig().set("teams.blue.players", new List<String>());
-		this.getConfig().set("teams.red.players", new List<String>());
-		this.getConfig().set("teams.green.players", new List<String>());
+		this.getConfig().set("teams.blue.players", new ArrayList<String>());
+		this.getConfig().set("teams.red.players", new ArrayList<String>());
+		this.getConfig().set("teams.green.players", new ArrayList<String>());
 
 		// Registering Command Executors
 		this.getCommand("cabbage").setExecutor(new MainCommand());
