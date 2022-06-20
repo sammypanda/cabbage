@@ -17,6 +17,9 @@ public class Main extends JavaPlugin {
 
 		// Registering Command Executors
 		this.getCommand("cabbage").setExecutor(new MainCommand());
+
+		// Initiating/Creating Config
+		plugin.saveDefaultConfig();
 	}
 	
 	@Override

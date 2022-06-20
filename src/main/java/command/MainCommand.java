@@ -38,12 +38,6 @@ public class MainCommand implements CommandExecutor {
             
             if (args[0].equalsIgnoreCase("team") || args[0].equalsIgnoreCase("join")) {
 
-                if !(plugin.getConfig().getStringList("teams")) {
-                    plugin.getConfig().set("teams.blue.players", List<String>);
-                    plugin.getConfig().set("teams.red.players", List<String>);
-                    plugin.getConfig().set("teams.green.players", List<String>);
-                }
-
                 switch(args[1].toLowerCase()) {
 
                     case "blue":
