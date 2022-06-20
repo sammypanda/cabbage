@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.ArrayList; // import ArrayList program
+
 import org.bukkit.plugin.java.JavaPlugin; // essential for functionality
 // import org.bukkit.event.HandlerList
 
