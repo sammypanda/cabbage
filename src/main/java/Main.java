@@ -11,9 +11,12 @@ import main.java.command.*; // import every command
 
 public class Main extends JavaPlugin {
 
+	private static Plugin plugin;
+
 	@Override
 	public void onEnable() {
 		// Plugin startup logic
+		plugin = this;
 
 		// Listeners
 		getServer().getPluginManager().registerEvents(new PlayerListener(), this); // register the PlayerListener event
