@@ -42,12 +42,12 @@ public class MainCommand implements CommandExecutor {
                 
                 ArrayList<String> all_players = new ArrayList<>();
 
-                ArrayList<String> blue_players = Main.getPlugin().getConfig().getStringList("teams.blue.players")
+                ArrayList<String> blue_players = Main.getPlugin().getConfig().getStringList("teams.blue.players");
 
-                all_players.addAll(blue_players)
+                all_players.addAll(blue_players);
 
                 for (String player : all_players) {
-                    sender.sendMessage()
+                    sender.sendMessage(player);
                 }
             }
         }
