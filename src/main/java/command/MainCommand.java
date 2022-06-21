@@ -37,6 +37,19 @@ public class MainCommand implements CommandExecutor {
                 return false;
 
             }
+
+            else if (args[0].equalsIgnoreCase("start")) {
+                
+                ArrayList<String> all_players = new ArrayList<>();
+
+                ArrayList<String> blue_players = Main.getPlugin().getConfig().getStringList("teams.blue.players")
+
+                all_players.addAll(blue_players)
+
+                for (String player : all_players) {
+                    sender.sendMessage()
+                }
+            }
         }
 
         else if (args.length == 2) {
