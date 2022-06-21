@@ -2,6 +2,7 @@ package main.java.command;
 import main.java.Main; // needed for getPlugin
 
 import java.util.ArrayList; // import ArrayList program
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
