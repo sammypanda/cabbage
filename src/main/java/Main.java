@@ -19,7 +19,7 @@ public class Main extends JavaPlugin {
 		plugin = this;
 
 		// Listeners
-		getServer().getPluginManager().registerEvents(new PlayerListener(), this); // register the PlayerListener event
+		getServer().getPluginManager().registerEvents(new PlayerListener(), this); // register the PlayerListener event // TODO: replace getServer() with Bukkit
 
 		// Initiating/Creating Config
 		this.saveDefaultConfig();
