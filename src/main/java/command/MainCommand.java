@@ -49,8 +49,7 @@ public class MainCommand implements CommandExecutor {
                 all_players.addAll(blue_players);
 
                 for (String player : all_players) {
-					Player playerObj = Bukkit.getPlayer( player ); 
-                    sender.sendMessage( Player.getUniqueId( playerObj ) );
+                    sender.sendMessage( player );
                 }
             }
         }
@@ -63,7 +62,9 @@ public class MainCommand implements CommandExecutor {
 
                     case "blue":
                         sender.sendMessage("You joined the blue team");
+
                         ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList("teams.blue.players")); // prepare new list with existing list from config
+
                         players.add(sender.getName());
                         Main.getPlugin().getConfig().set("teams.blue.players", players);
 
