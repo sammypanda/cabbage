@@ -59,8 +59,8 @@ public class MainCommand implements CommandExecutor {
 
                 // TEST:
 
-                for(String key : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
-                    Bukkit.getLogger().info(key);
+                for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
+                    Bukkit.getLogger().info(team); // logs out all teams
                 }
                 
             }
