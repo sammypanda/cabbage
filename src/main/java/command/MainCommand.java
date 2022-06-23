@@ -59,7 +59,7 @@ public class MainCommand implements CommandExecutor {
 
                 // TEST:
 
-                List<String> teams = (List<String>) Main.getPlugin().getConfig().getList("teams");
+                List<String> teams = (List<String>) Main.getPlugin().getConfig().getKeys("teams");
 
                 Bukkit.getLogger().info(teams.toString());
 
