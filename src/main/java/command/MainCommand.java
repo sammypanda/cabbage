@@ -65,7 +65,7 @@ public class MainCommand implements CommandExecutor {
 
                         ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList("teams.blue.players")); // prepare new list with existing list from config
 
-                        String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId();
+                        String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId().toString();
 
                         players.add(uuid);
                         Main.getPlugin().getConfig().set("teams.blue.players", players);
