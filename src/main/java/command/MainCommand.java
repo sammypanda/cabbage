@@ -53,12 +53,12 @@ public class MainCommand implements CommandExecutor {
 
                 Stream.of(blue_players, red_players, green_players).forEach(all_players::addAll); // loop through the lists and execute addAll into all_players
 
-                for (String player : all_players) {
-                    sender.sendMessage("- " + player );
-                }
-
                 if (all_players.isEmpty()) {
                     sender.sendMessage("no players joined");
+                } else {
+                    for (String player : all_players) {
+                        sender.sendMessage("- " + player );
+                    }
                 }
 
                 // TEST:
