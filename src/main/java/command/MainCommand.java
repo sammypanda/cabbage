@@ -49,7 +49,7 @@ public class MainCommand implements CommandExecutor {
                 all_players.addAll(blue_players);
 
                 for (String player : all_players) {
-                    sender.sendMessage( player );
+                    sender.sendMessage("- " + player );
                 }
             }
         }
