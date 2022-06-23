@@ -67,27 +67,30 @@ public class MainCommand implements CommandExecutor {
 
                     case "blue":
                         sender.sendMessage("You joined the blue team");
-
-                        ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList("teams.blue.players")); // prepare new list with existing list from config
-
-                        String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId().toString();
-
-                        players.add(uuid);
-                        Main.getPlugin().getConfig().set("teams.blue.players", players);
-                        
-                        //test
-                        // sender.sendMessage(Main.getPlugin().getConfig().getStringList("teams.blue.players")(0));
+                        String list_map = "teams.blue.players";
                         break;
 
                     case "red":
                         sender.sendMessage("You joined the red team");
+                        String list_map = "teams.red.players";
                         break;
                     
                     case "green":
                         sender.sendMessage("You joined the green team");
+                        String list_map = "teams.green.players";
                         break;
                         
                 }
+
+                ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList(list_map)); // prepare new list with existing list from config
+
+                String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId().toString();
+
+                players.add(uuid);
+                Main.getPlugin().getConfig().set(list_map, players);
+                
+                //test
+                // sender.sendMessage(Main.getPlugin().getConfig().getStringList(list_map)(0)); // sendMessage only accepts strings :(
 
                 Main.getPlugin().saveConfig();
 
