@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 
 public class MainCommand implements CommandExecutor {
@@ -48,7 +49,8 @@ public class MainCommand implements CommandExecutor {
                 all_players.addAll(blue_players);
 
                 for (String player : all_players) {
-                    sender.sendMessage(player);
+					Player playerObj = Bukkit.getPlayer( player ); 
+                    sender.sendMessage( playerObj );
                 }
             }
         }
