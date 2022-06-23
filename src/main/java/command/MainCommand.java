@@ -63,23 +63,28 @@ public class MainCommand implements CommandExecutor {
             
             if (args[0].equalsIgnoreCase("team") || args[0].equalsIgnoreCase("join")) {
 
+                String list_map;
+
                 switch(args[1].toLowerCase()) {
 
                     case "blue":
                         sender.sendMessage("You joined the blue team");
-                        String list_map = "teams.blue.players";
+                        list_map = "teams.blue.players";
                         break;
 
                     case "red":
                         sender.sendMessage("You joined the red team");
-                        String list_map = "teams.red.players";
+                        list_map = "teams.red.players";
                         break;
                     
                     case "green":
                         sender.sendMessage("You joined the green team");
-                        String list_map = "teams.green.players";
+                        list_map = "teams.green.players";
                         break;
-                        
+
+                    default:
+                        sender.sendMessage("Failed");
+                        return false;
                 }
 
                 ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList(list_map)); // prepare new list with existing list from config
