@@ -67,6 +67,7 @@ public class MainCommand implements CommandExecutor {
                     Bukkit.getLogger().info("team: " + team); // logs out all teams
                     for (String player : Main.getPlugin().getConfig().getStringList("teams." + team + ".players")) {
                         Bukkit.getLogger().info(team + " player: " + player);
+                        // may also be able to use: Main.getPlugin().getConfig().getStringList("list").contains("string"); // returns bool
                     }
                 }
                 
