@@ -57,6 +57,10 @@ public class MainCommand implements CommandExecutor {
                     sender.sendMessage("- " + player );
                 }
 
+                if (all_players.isEmpty()) {
+                    sender.sendMessage("no players joined");
+                }
+
                 // TEST:
 
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
