@@ -50,7 +50,7 @@ public class MainCommand implements CommandExecutor {
 
                 for (String player : all_players) {
 					Player playerObj = Bukkit.getPlayer( player ); 
-                    sender.sendMessage( playerObj );
+                    sender.sendMessage( playerObj.getUniqueId() );
                 }
             }
         }
