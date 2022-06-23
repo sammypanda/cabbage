@@ -3,6 +3,7 @@ import main.java.Main; // needed for getPlugin
 
 import java.util.ArrayList; // import ArrayList program
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -50,7 +51,7 @@ public class MainCommand implements CommandExecutor {
 
                 List<String> green_players = (List<String>) Main.getPlugin().getConfig().getStringList("teams.green.players");
 
-                all_players.addAll(blue_players, red_players, green_players);
+                Stream.of(blue_players, red_players, green_players).forEach(all_players::addAll); // loop through the lists and execute addAll into all_players
 
                 for (String player : all_players) {
                     sender.sendMessage("- " + player );
