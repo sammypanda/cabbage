@@ -61,7 +61,7 @@ public class MainCommand implements CommandExecutor {
 
                 List<String> teams = (List<String>) Main.getPlugin().getConfig().getList("teams");
 
-                Bukkit.getLogger().info(teams);
+                Bukkit.getLogger().info(teams.toString());
 
                 
             }
