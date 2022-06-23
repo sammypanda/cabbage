@@ -56,6 +56,14 @@ public class MainCommand implements CommandExecutor {
                 for (String player : all_players) {
                     sender.sendMessage("- " + player );
                 }
+
+                // TEST:
+
+                List<String> teams = (List<String>) Main.getPlugin().getConfig().getList("teams");
+
+                Bukkit.getLogger().info(teams);
+
+                
             }
         }
 
