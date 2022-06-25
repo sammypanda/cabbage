@@ -18,6 +18,8 @@ public class MainCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+        String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId().toString();
+
         if (args.length == 0) {
 
             sender.sendMessage("Test");
@@ -78,41 +80,59 @@ public class MainCommand implements CommandExecutor {
             
             if (args[0].equalsIgnoreCase("team") || args[0].equalsIgnoreCase("join")) {
 
-                String list_map;
+                Boolean exists = null;
+                String userteam = null;
 
-                switch(args[1].toLowerCase()) {
-
-                    case "blue":
-                        sender.sendMessage("You joined the blue team");
-                        list_map = "teams.blue.players";
-                        break;
-
-                    case "red":
-                        sender.sendMessage("You joined the red team");
-                        list_map = "teams.red.players";
-                        break;
-                    
-                    case "green":
-                        sender.sendMessage("You joined the green team");
-                        list_map = "teams.green.players";
-                        break;
-
-                    default:
-                        sender.sendMessage("Failed");
-                        return false;
+                for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
+                    for (String player : Main.getPlugin().getConfig().getStringList("teams." + team + ".players")) {
+                        if (Main.getPlugin().getConfig().getStringList("list").contains(uuid)) {
+                            exists = true;
+                            userteam = team;
+                        };
+                    }
                 }
 
-                ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList(list_map)); // prepare new list with existing list from config
+                if (!exists) {
 
-                String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId().toString();
+                    String list_map;
 
-                players.add(uuid);
-                Main.getPlugin().getConfig().set(list_map, players);
-                
-                //test
-                // sender.sendMessage(Main.getPlugin().getConfig().getStringList(list_map)(0)); // sendMessage only accepts strings :(
+                    switch(args[1].toLowerCase()) {
 
-                Main.getPlugin().saveConfig();
+                        case "blue":
+                            sender.sendMessage("You joined the blue team");
+                            list_map = "teams.blue.players";
+                            break;
+
+                        case "red":
+                            sender.sendMessage("You joined the red team");
+                            list_map = "teams.red.players";
+                            break;
+                        
+                        case "green":
+                            sender.sendMessage("You joined the green team");
+                            list_map = "teams.green.players";
+                            break;
+
+                        default:
+                            sender.sendMessage("Failed");
+                            return false;
+                    }
+
+                    ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList(list_map)); // prepare new list with existing list from config
+
+                    players.add(uuid);
+                    Main.getPlugin().getConfig().set(list_map, players);
+                    
+                    //test
+                    // sender.sendMessage(Main.getPlugin().getConfig().getStringList(list_map)(0)); // sendMessage only accepts strings :(
+
+                    Main.getPlugin().saveConfig();
+
+                } else {
+
+                    sender.sendMessage("you already joined the " + userteam + " team!");
+
+                }
 
             }
         }
