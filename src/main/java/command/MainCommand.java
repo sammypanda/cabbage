@@ -3,6 +3,7 @@ import main.java.Main; // needed for getPlugin
 
 import java.util.ArrayList; // import ArrayList program
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
