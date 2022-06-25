@@ -84,11 +84,9 @@ public class MainCommand implements CommandExecutor {
                 String userteam = null;
 
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
-                    for (String player : Main.getPlugin().getConfig().getStringList("teams." + team + ".players")) {
-                        if (Main.getPlugin().getConfig().getStringList("list").contains(uuid)) {
-                            userHasTeam = true;
-                            userteam = team;
-                        };
+                    if (Main.getPlugin().getConfig().getStringList("teams." + team + ".players").contains(uuid)) {
+                        userHasTeam = true;
+                        userteam = team;
                     }
                 }
 
