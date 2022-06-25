@@ -4,6 +4,7 @@ import java.util.ArrayList; // import ArrayList program
 
 import org.bukkit.plugin.java.JavaPlugin; // essential for functionality
 import org.bukkit.plugin.Plugin; // plugin type
+import org.bukkit.entity.Player;
 // import org.bukkit.event.HandlerList
 
 import main.java.listeners.*; // import every listener
@@ -50,6 +51,12 @@ public class Main extends JavaPlugin {
 		// Populating Scoreboard
 		Objective objective = board.registerNewObjective("main", "dummy", "Cabbage!");
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+
+		// TEST: scoreboard set as visible
+		for(Player online : Bukkit.getOnlinePlayers()){
+			online.setScoreboard(board);
+		}
+		// end test
 
 		// Registering Command Executors
 		this.getCommand("cabbage").setExecutor(new MainCommand());
