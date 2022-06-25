@@ -80,19 +80,19 @@ public class MainCommand implements CommandExecutor {
             
             if (args[0].equalsIgnoreCase("team") || args[0].equalsIgnoreCase("join")) {
 
-                Boolean exists = null;
+                Boolean userHasTeam = false;
                 String userteam = null;
 
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
                     for (String player : Main.getPlugin().getConfig().getStringList("teams." + team + ".players")) {
                         if (Main.getPlugin().getConfig().getStringList("list").contains(uuid)) {
-                            exists = true;
+                            userHasTeam = true;
                             userteam = team;
                         };
                     }
                 }
 
-                if (!exists) {
+                if (!userHasTeam) {
 
                     String list_map;
 
