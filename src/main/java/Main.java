@@ -48,8 +48,7 @@ public class Main extends JavaPlugin {
 		greenTeam.setPrefix(ChatColor.GREEN + "");
 
 		// Populating Scoreboard
-		Objective objective = board.registerNewObjective("main", "dummy");
-		objective.setDisplayName("Cabbage!");
+		Objective objective = board.registerNewObjective("main", "dummy", "Cabbage!");
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
 		// Registering Command Executors
