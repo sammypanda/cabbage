@@ -29,7 +29,7 @@ public class Main extends JavaPlugin {
 		this.getConfig().set("teams.green.players", new ArrayList<String>());
 
 		// Initiating Teams Container
-		ScoreboardManager manager = Bukkit.getScoreboardManager();
+		ScoreboardManager manager = getServer().getScoreboardManager();
 		Scoreboard board = manager.getNewScoreboard();
 
 		// Filling out teams
