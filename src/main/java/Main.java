@@ -9,6 +9,7 @@ import org.bukkit.plugin.Plugin; // plugin type
 import main.java.listeners.*; // import every listener
 import main.java.command.*; // import every command (ScoreboardManager/Scoreboard)
 import org.bukkit.scoreboard.*; // managing teams
+import org.bukkit.ChatColor;
 
 public class Main extends JavaPlugin {
 
@@ -34,9 +35,14 @@ public class Main extends JavaPlugin {
 		board = manager.getNewScoreboard();
 
 		// Filling out teams
-		board.registerNewTeam("blue");
-		board.registerNewTeam("red");
-		board.registerNewTeam("green");
+		Team blueTeam = board.registerNewTeam("blue");
+		blueTeam.setPrefix(ChatColor.BLUE);
+
+		Team redTeam = board.registerNewTeam("red");
+		redTeam.setPrefix(ChatColor.RED);
+		
+		Team greenTeam = board.registerNewTeam("green");
+		greenTeam.setPrefix(ChatColor.GREEN);
 
 		// Registering Command Executors
 		this.getCommand("cabbage").setExecutor(new MainCommand());
