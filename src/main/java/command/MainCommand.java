@@ -80,12 +80,12 @@ public class MainCommand implements CommandExecutor {
             if (args[0].equalsIgnoreCase("team") || args[0].equalsIgnoreCase("join")) {
 
                 Boolean userHasTeam = false;
-                String userteam = null;
+                String userTeam = null;
 
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
                     if (Main.getPlugin().getConfig().getStringList("teams." + team + ".players").contains(uuid)) {
                         userHasTeam = true;
-                        userteam = team;
+                        userTeam = team;
                     }
                 }
 
@@ -127,7 +127,7 @@ public class MainCommand implements CommandExecutor {
 
                 } else {
 
-                    sender.sendMessage("you already joined the " + userteam + " team!");
+                    sender.sendMessage("you already joined the " + userTeam + " team!");
 
                 }
 
