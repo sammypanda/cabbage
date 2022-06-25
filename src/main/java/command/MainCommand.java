@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.scoreboard.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,6 +19,12 @@ public class MainCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        // Testing Main.getScoreboard(); ?
+        for (String scoreboardTeam : Main.getScoreboard().getTeams()) {
+            Bukkit.getLogger().info(scoreboardTeam);
+        }
+        // End test
 
         String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId().toString();
 

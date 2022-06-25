@@ -7,7 +7,8 @@ import org.bukkit.plugin.Plugin; // plugin type
 // import org.bukkit.event.HandlerList
 
 import main.java.listeners.*; // import every listener
-import main.java.command.*; // import every command
+import main.java.command.*; // import every command (ScoreboardManager/Scoreboard)
+import org.bukkit.scoreboard.*; // managing teams
 
 public class Main extends JavaPlugin {
 
@@ -27,6 +28,15 @@ public class Main extends JavaPlugin {
 		this.getConfig().set("teams.red.players", new ArrayList<String>());
 		this.getConfig().set("teams.green.players", new ArrayList<String>());
 
+		// Initiating Teams Container
+		ScoreboardManager manager = Bukkit.getScoreboardManager();
+		Scoreboard board = manager.getNewScoreboard();
+
+		// Filling out teams
+		board.registerNewTeam("blue");
+		board.registerNewTeam("red");
+		board.registerNewTeam("green");
+
 		// Registering Command Executors
 		this.getCommand("cabbage").setExecutor(new MainCommand());
 	}
@@ -38,5 +48,9 @@ public class Main extends JavaPlugin {
 
 	public static Plugin getPlugin() {
 		return plugin; // for accessing plugin via other classes
+	}
+
+	public static Scoreboard getScoreboard() {
+		return board;
 	}
 }
