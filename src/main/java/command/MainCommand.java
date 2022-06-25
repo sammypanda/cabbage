@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -96,17 +97,17 @@ public class MainCommand implements CommandExecutor {
                     switch(args[1].toLowerCase()) {
 
                         case "blue":
-                            sender.sendMessage("You joined the blue team");
+                            sender.sendMessage("You joined the" + ChatColor.BLUE + " blue " + ChatColor.RESET + "team");
                             list_map = "teams.blue.players";
                             break;
 
                         case "red":
-                            sender.sendMessage("You joined the red team");
+                            sender.sendMessage("You joined the" + ChatColor.RED + " red " + ChatColor.RESET + "team");
                             list_map = "teams.red.players";
                             break;
                         
                         case "green":
-                            sender.sendMessage("You joined the green team");
+                            sender.sendMessage("You joined the" + ChatColor.GREEN + " green " + ChatColor.RESET + "team");
                             list_map = "teams.green.players";
                             break;
 
@@ -127,7 +128,7 @@ public class MainCommand implements CommandExecutor {
 
                 } else {
 
-                    sender.sendMessage("you already joined the " + userTeam + " team!");
+                    sender.sendMessage("you already joined the " + userTeam + " team!"); // could use java reflection to colour this?
 
                 }
 
