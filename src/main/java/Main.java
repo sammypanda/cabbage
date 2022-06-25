@@ -49,8 +49,8 @@ public class Main extends JavaPlugin {
 
 		// Populating Scoreboard
 		Objective objective = board.registerNewObjective("main", "dummy");
-		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		objective.setDisplayName("Cabbage!");
+		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
 		// Registering Command Executors
 		this.getCommand("cabbage").setExecutor(new MainCommand());
