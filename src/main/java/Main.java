@@ -13,6 +13,7 @@ import org.bukkit.scoreboard.*; // managing teams
 public class Main extends JavaPlugin {
 
 	private static Plugin plugin;
+	private static Scoreboard board;
 
 	@Override
 	public void onEnable() {
@@ -30,7 +31,7 @@ public class Main extends JavaPlugin {
 
 		// Initiating Teams Container
 		ScoreboardManager manager = getServer().getScoreboardManager();
-		Scoreboard board = manager.getNewScoreboard();
+		board = manager.getNewScoreboard();
 
 		// Filling out teams
 		board.registerNewTeam("blue");
