@@ -20,7 +20,7 @@ public class MainCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        // Testing Main.getScoreboard();
+        // TEST: Main.getScoreboard();
         for (Team scoreboardTeam : Main.getScoreboard().getTeams()) {
             Bukkit.getLogger().info(scoreboardTeam.getName());
         }
@@ -71,14 +71,14 @@ public class MainCommand implements CommandExecutor {
                     }
                 }
 
-                // TEST:
-
+                // TEST: looping through config.yml paths
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
                     Bukkit.getLogger().info("team: " + team); // logs out all teams
                     for (String player : Main.getPlugin().getConfig().getStringList("teams." + team + ".players")) {
                         Bukkit.getLogger().info(team + " player: " + player);
                     }
                 }
+                // end test
                 
             }
         }
