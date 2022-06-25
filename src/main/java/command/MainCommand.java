@@ -3,7 +3,6 @@ import main.java.Main; // needed for getPlugin
 
 import java.util.ArrayList; // import ArrayList program
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
@@ -21,7 +20,7 @@ public class MainCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        // Testing Main.getScoreboard(); ?
+        // Testing Main.getScoreboard();
         for (Team scoreboardTeam : Main.getScoreboard().getTeams()) {
             Bukkit.getLogger().info(scoreboardTeam.getName());
         }
