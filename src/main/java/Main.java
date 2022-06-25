@@ -36,12 +36,15 @@ public class Main extends JavaPlugin {
 
 		// Filling out teams
 		Team blueTeam = board.registerNewTeam("blue");
+		blueTeam.setDisplayName("Blue");
 		blueTeam.setPrefix(ChatColor.BLUE + "");
 
 		Team redTeam = board.registerNewTeam("red");
+		blueTeam.setDisplayName("Red");
 		redTeam.setPrefix(ChatColor.RED + "");
 		
 		Team greenTeam = board.registerNewTeam("green");
+		blueTeam.setDisplayName("Green");
 		greenTeam.setPrefix(ChatColor.GREEN + "");
 
 		// Registering Command Executors
