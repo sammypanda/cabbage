@@ -123,6 +123,8 @@ public class MainCommand implements CommandExecutor {
                             return false;
                     }
 
+                    Main.getScoreboard().getTeam(args[1].toLowerCase()).addEntry(uuid);
+
                     ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList(list_map)); // prepare new list with existing list from config
 
                     players.add(uuid);
