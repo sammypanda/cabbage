@@ -23,6 +23,9 @@ public class MainCommand implements CommandExecutor {
         // TEST: Main.getScoreboard();
         for (Team scoreboardTeam : Main.getScoreboard().getTeams()) {
             Bukkit.getLogger().info(scoreboardTeam.getName());
+            for (String scoreboardTeamEntries : scoreboardTeam.getEntries()) {
+                Bukkit.getLogger().info(scoreboardTeamEntries);
+            }
         }
         // End test
 
