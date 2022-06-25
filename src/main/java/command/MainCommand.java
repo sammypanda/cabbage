@@ -21,9 +21,9 @@ public class MainCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         // Testing Main.getScoreboard(); ?
-        // for (String scoreboardTeam : Main.getScoreboard().getTeams()) {
-        //     Bukkit.getLogger().info(scoreboardTeam);
-        // } // ERROR: immutable set cannot conv to string
+        for (String scoreboardTeam : Main.getScoreboard().getTeams()) {
+            Bukkit.getLogger().info(scoreboardTeam);
+        } // ERROR: immutable set cannot conv to string
         // End test
 
         String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId().toString();
