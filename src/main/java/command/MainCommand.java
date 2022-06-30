@@ -13,8 +13,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 
 
@@ -78,7 +81,7 @@ public class MainCommand implements CommandExecutor {
                         // item replace entity @p armor.chest with leather_chestplate{AttributeModifiers:[{AttributeName:"generic.knockback_resistance",Amount:10,Operation:0,UUID:[I;-121325,5963,12567,-11926],Slot:chest,Name:"generic.knockback_resistance"}]} 1
                         Player playerObject = Bukkit.getPlayer(player);
                         Inventory inventory = playerObject.getInventory();
-                        inventory.ItemStack centralChestplate = new inventory.ItemStack(Material.LEATHER_CHESTPLATE);
+                        ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 
                         ItemMeta meta = centralChestplate.getItemMeta();
                         
