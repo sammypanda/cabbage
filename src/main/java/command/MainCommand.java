@@ -90,7 +90,7 @@ public class MainCommand implements CommandExecutor {
 
                             ItemMeta meta = centralChestplate.getItemMeta();
                             
-                            AttributeModifier modifier = new AttributeModifier("centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+                            AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
                             meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
 
                             centralChestplate.setItemMeta(meta);
