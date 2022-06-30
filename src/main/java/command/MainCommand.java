@@ -13,7 +13,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.Material;
@@ -80,7 +80,7 @@ public class MainCommand implements CommandExecutor {
                         //TODO: give playing players no knock-back chestplate: in-game command ex below: 
                         // item replace entity @p armor.chest with leather_chestplate{AttributeModifiers:[{AttributeName:"generic.knockback_resistance",Amount:10,Operation:0,UUID:[I;-121325,5963,12567,-11926],Slot:chest,Name:"generic.knockback_resistance"}]} 1
                         Player playerObject = Bukkit.getPlayer(player);
-                        Inventory inventory = playerObject.getInventory();
+                        PlayerInventory inventory = playerObject.getInventory();
                         ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 
                         ItemMeta meta = centralChestplate.getItemMeta();
