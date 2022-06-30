@@ -4,6 +4,7 @@ import main.java.Main; // needed for getPlugin
 import java.util.ArrayList; // import ArrayList program
 import java.util.List;
 import java.util.stream.Stream;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -80,7 +81,8 @@ public class MainCommand implements CommandExecutor {
 
                         //TODO: give playing players no knock-back chestplate: in-game command ex below: 
                         // item replace entity @p armor.chest with leather_chestplate{AttributeModifiers:[{AttributeName:"generic.knockback_resistance",Amount:10,Operation:0,UUID:[I;-121325,5963,12567,-11926],Slot:chest,Name:"generic.knockback_resistance"}]} 1
-                        Player playerObject = Bukkit.getPlayer(player);
+                        UUID playerUUID = UUID.fromString(player);
+                        Player playerObject = Bukkit.getPlayer(playerUUID);
 
                         if (playerObject != null) {
                             Bukkit.getLogger().info("giving a player a tunic");
