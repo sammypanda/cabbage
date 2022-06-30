@@ -70,6 +70,10 @@ public class MainCommand implements CommandExecutor {
                     sender.sendMessage("no players joined");
                 } else {
                     for (String player : all_players) {
+
+                        //TODO: give playing players no knock-back chestplate: in-game command ex below: 
+                        // item replace entity @p armor.chest with leather_chestplate{AttributeModifiers:[{AttributeName:"generic.knockback_resistance",Amount:10,Operation:0,UUID:[I;-121325,5963,12567,-11926],Slot:chest,Name:"generic.knockback_resistance"}]} 1
+
                         sender.sendMessage("- " + player );
                     }
                 }
