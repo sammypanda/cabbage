@@ -76,7 +76,8 @@ public class MainCommand implements CommandExecutor {
 
                         //TODO: give playing players no knock-back chestplate: in-game command ex below: 
                         // item replace entity @p armor.chest with leather_chestplate{AttributeModifiers:[{AttributeName:"generic.knockback_resistance",Amount:10,Operation:0,UUID:[I;-121325,5963,12567,-11926],Slot:chest,Name:"generic.knockback_resistance"}]} 1
-                        Inventory inventory = player.getInventory();
+                        Player playerObject = Bukkit.getPlayer(player);
+                        Inventory inventory = playerObject.getInventory();
                         ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 
                         ItemMeta meta = centralChestplate.getItemMeta();
