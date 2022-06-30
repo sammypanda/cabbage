@@ -14,7 +14,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory;
-import org.bukkit.material;
+import org.bukkit.Material;
 import org.bukkit.attribute.AttributeModifier;
 
 
