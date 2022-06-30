@@ -80,17 +80,20 @@ public class MainCommand implements CommandExecutor {
                         //TODO: give playing players no knock-back chestplate: in-game command ex below: 
                         // item replace entity @p armor.chest with leather_chestplate{AttributeModifiers:[{AttributeName:"generic.knockback_resistance",Amount:10,Operation:0,UUID:[I;-121325,5963,12567,-11926],Slot:chest,Name:"generic.knockback_resistance"}]} 1
                         Player playerObject = Bukkit.getPlayer(player);
-                        PlayerInventory inventory = playerObject.getInventory();
-                        ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 
-                        ItemMeta meta = centralChestplate.getItemMeta();
-                        
-                        AttributeModifier modifier = new AttributeModifier("centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER);
-                        meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
+                        if (playerObject != null) {
+                            PlayerInventory inventory = playerObject.getInventory();
+                            ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 
-                        centralChestplate.setItemMeta(meta);
+                            ItemMeta meta = centralChestplate.getItemMeta();
+                            
+                            AttributeModifier modifier = new AttributeModifier("centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER);
+                            meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
 
-                        inventory.setChestplate(centralChestplate);
+                            centralChestplate.setItemMeta(meta);
+
+                            inventory.setChestplate(centralChestplate);
+                        }
 
                         sender.sendMessage("- " + player );
                     }
