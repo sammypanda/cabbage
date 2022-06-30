@@ -88,7 +88,7 @@ public class MainCommand implements CommandExecutor {
                             PlayerInventory inventory = playerObject.getInventory();
                             ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 
-                            ItemMeta meta = centralChestplate.getItemMeta();
+                            ItemMeta meta = centralChestplate.getItemMeta(); // TODO: add LeatherArmorMeta extension to the ItemMeta 
                             
                             AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
                             meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
