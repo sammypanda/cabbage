@@ -13,6 +13,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -82,6 +83,8 @@ public class MainCommand implements CommandExecutor {
                         Player playerObject = Bukkit.getPlayer(player);
 
                         if (playerObject != null) {
+                            Bukkit.getLogger().info("giving a player a tunic");
+
                             PlayerInventory inventory = playerObject.getInventory();
                             ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 
