@@ -79,13 +79,10 @@ public class MainCommand implements CommandExecutor {
                 } else {
                     for (String player : all_players) {
 
-                        //TODO: give playing players no knock-back chestplate: in-game command ex below: 
-                        // item replace entity @p armor.chest with leather_chestplate{AttributeModifiers:[{AttributeName:"generic.knockback_resistance",Amount:10,Operation:0,UUID:[I;-121325,5963,12567,-11926],Slot:chest,Name:"generic.knockback_resistance"}]} 1
                         UUID playerUUID = UUID.fromString(player);
                         Player playerObject = Bukkit.getPlayer(playerUUID);
 
                         if (playerObject != null) {
-                            Bukkit.getLogger().info("giving a player a tunic");
 
                             PlayerInventory inventory = playerObject.getInventory();
                             ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
@@ -98,6 +95,7 @@ public class MainCommand implements CommandExecutor {
                             centralChestplate.setItemMeta(meta);
 
                             inventory.setChestplate(centralChestplate);
+
                         }
 
                         sender.sendMessage("- " + player );
