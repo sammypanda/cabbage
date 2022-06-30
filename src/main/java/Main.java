@@ -53,7 +53,7 @@ public class Main extends JavaPlugin {
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
 		// TEST: scoreboard set as visible
-		for(Player online : Bukkit.getOnlinePlayers()){
+		for(Player online : getServer().getOnlinePlayers()){
 			online.setScoreboard(board);
 		}
 		// end test
