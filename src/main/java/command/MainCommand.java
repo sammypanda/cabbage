@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -89,7 +90,7 @@ public class MainCommand implements CommandExecutor {
 
                             ItemMeta meta = centralChestplate.getItemMeta();
                             
-                            AttributeModifier modifier = new AttributeModifier("centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER);
+                            AttributeModifier modifier = new AttributeModifier("centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
                             meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
 
                             centralChestplate.setItemMeta(meta);
