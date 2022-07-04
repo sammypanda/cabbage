@@ -26,6 +26,36 @@ import org.bukkit.attribute.AttributeModifier;
 
 public class MainCommand implements CommandExecutor {
 
+    public static void teamPrep(String team, List<String> players, CommandSender sender) {
+        if (players.isEmpty()) {
+            sender.sendMessage("no players joined " + team);
+        } else {
+            for (String player : players) {
+
+                UUID playerUUID = UUID.fromString(player);
+                Player playerObject = Bukkit.getPlayer(playerUUID);
+
+                if (playerObject != null) {
+
+                    PlayerInventory inventory = playerObject.getInventory();
+                    ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
+
+                    ItemMeta meta = centralChestplate.getItemMeta(); // TODO: add LeatherArmorMeta extension to the ItemMeta 
+                    
+                    AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+                    meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
+
+                    centralChestplate.setItemMeta(meta);
+
+                    inventory.setChestplate(centralChestplate);
+
+                }
+
+                sender.sendMessage("- " + player );
+            }
+        }
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -64,44 +94,12 @@ public class MainCommand implements CommandExecutor {
             }
 
             else if (args[0].equalsIgnoreCase("start")) {
-                
-                ArrayList<String> all_players = new ArrayList<>();
 
-                List<String> blue_players = (List<String>) Main.getPlugin().getConfig().getStringList("teams.blue.players");
+                teamPrep("blue", (List<String>) Main.getPlugin().getConfig().getStringList("teams.blue.players"), sender);
 
-                List<String> red_players = (List<String>) Main.getPlugin().getConfig().getStringList("teams.red.players");
+                teamPrep("red", (List<String>) Main.getPlugin().getConfig().getStringList("teams.red.players"), sender);
 
-                List<String> green_players = (List<String>) Main.getPlugin().getConfig().getStringList("teams.green.players");
-
-                Stream.of(blue_players, red_players, green_players).forEach(all_players::addAll); // loop through the lists and execute addAll into all_players
-
-                if (all_players.isEmpty()) {
-                    sender.sendMessage("no players joined");
-                } else {
-                    for (String player : all_players) {
-
-                        UUID playerUUID = UUID.fromString(player);
-                        Player playerObject = Bukkit.getPlayer(playerUUID);
-
-                        if (playerObject != null) {
-
-                            PlayerInventory inventory = playerObject.getInventory();
-                            ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
-
-                            ItemMeta meta = centralChestplate.getItemMeta(); // TODO: add LeatherArmorMeta extension to the ItemMeta 
-                            
-                            AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-                            meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
-
-                            centralChestplate.setItemMeta(meta);
-
-                            inventory.setChestplate(centralChestplate);
-
-                        }
-
-                        sender.sendMessage("- " + player );
-                    }
-                }
+                teamPrep("green", (List<String>) Main.getPlugin().getConfig().getStringList("teams.green.players"), sender);
 
                 // TEST: looping through config.yml paths
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
