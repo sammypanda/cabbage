@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.ChatColor;
 import org.bukkit.scoreboard.*;
 import org.bukkit.command.Command;
@@ -27,7 +28,7 @@ import org.bukkit.attribute.AttributeModifier;
 
 public class MainCommand implements CommandExecutor {
 
-    public static void teamPrep(String team, List<String> players, CommandSender sender) {
+    public static void teamPrep(String team, List<String> players, Color color, CommandSender sender) {
         if (players.isEmpty()) {
             sender.sendMessage("no players joined " + team);
         } else {
@@ -41,10 +42,11 @@ public class MainCommand implements CommandExecutor {
                     PlayerInventory inventory = playerObject.getInventory();
                     ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 
-                    ItemMeta meta = (LeatherArmorMeta) centralChestplate.getItemMeta();
+                    LeatherArmorMeta meta = (LeatherArmorMeta) centralChestplate.getItemMeta();
                     
                     AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
                     meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
+                    meta.setColor(color);
 
                     centralChestplate.setItemMeta(meta);
 
@@ -96,11 +98,11 @@ public class MainCommand implements CommandExecutor {
 
             else if (args[0].equalsIgnoreCase("start")) {
 
-                teamPrep("blue", (List<String>) Main.getPlugin().getConfig().getStringList("teams.blue.players"), sender);
+                teamPrep("blue", (List<String>) Main.getPlugin().getConfig().getStringList("teams.blue.players"), Color.BLUE, sender);
 
-                teamPrep("red", (List<String>) Main.getPlugin().getConfig().getStringList("teams.red.players"), sender);
+                teamPrep("red", (List<String>) Main.getPlugin().getConfig().getStringList("teams.red.players"), Color.RED, sender);
 
-                teamPrep("green", (List<String>) Main.getPlugin().getConfig().getStringList("teams.green.players"), sender);
+                teamPrep("green", (List<String>) Main.getPlugin().getConfig().getStringList("teams.green.players"), Color.GREEN, sender);
 
                 // TEST: looping through config.yml paths
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
