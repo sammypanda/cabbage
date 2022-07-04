@@ -19,6 +19,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -40,7 +41,7 @@ public class MainCommand implements CommandExecutor {
                     PlayerInventory inventory = playerObject.getInventory();
                     ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 
-                    ItemMeta meta = centralChestplate.getItemMeta(); // TODO: add LeatherArmorMeta extension to the ItemMeta 
+                    ItemMeta meta = (LeatherArmorMeta) centralChestplate.getItemMeta();
                     
                     AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
                     meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
