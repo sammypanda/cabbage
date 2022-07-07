@@ -24,6 +24,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.Location;
 
 
 public class MainCommand implements CommandExecutor {
@@ -51,6 +52,17 @@ public class MainCommand implements CommandExecutor {
                     centralChestplate.setItemMeta(meta);
 
                     inventory.setChestplate(centralChestplate);
+
+					// teleport the player
+					Location playerLocation = player.getLocation();
+					playerObject.teleport(
+						new Location(
+							playerLocation.getWorld(),
+							playerLocation.getX() + 5,
+							playerLocation.getY(),
+							playerLocation.getZ(),
+						)
+					);
 
                 }
 
