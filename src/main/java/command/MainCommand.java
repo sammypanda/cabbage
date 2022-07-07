@@ -54,7 +54,7 @@ public class MainCommand implements CommandExecutor {
                     inventory.setChestplate(centralChestplate);
 
 					// teleport the player
-					Location playerLocation = player.getLocation();
+					Location playerLocation = playerObject.getLocation();
 					playerObject.teleport(
 						new Location(
 							playerLocation.getWorld(),
