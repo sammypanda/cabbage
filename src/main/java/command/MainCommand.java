@@ -60,7 +60,7 @@ public class MainCommand implements CommandExecutor {
 							playerLocation.getWorld(),
 							playerLocation.getX(),
 							playerLocation.getY(),
-							playerLocation.getZ()
+							playerLocation.getZ() + 42
 						)
 					);
 
