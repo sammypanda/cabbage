@@ -29,7 +29,7 @@ import org.bukkit.Location;
 
 public class MainCommand implements CommandExecutor {
 
-    public static void teamPrep(String team, List<String> players, Color color, CommandSender sender) {
+    public static void teamPrep(String team, List<String> players, Color color, CommandSender sender, Location location) {
         if (players.isEmpty()) {
             sender.sendMessage("no players joined " + team);
         } else {
@@ -56,14 +56,7 @@ public class MainCommand implements CommandExecutor {
 					// teleport the player
 					Location playerLocation = playerObject.getLocation();
 					playerObject.teleport(
-						new Location(
-							playerLocation.getWorld(),
-							252.500,
-							-60,
-							820.500,
-                            -136,
-                            34
-						)
+						location
 					);
 
                 }
@@ -112,11 +105,50 @@ public class MainCommand implements CommandExecutor {
 
             else if (args[0].equalsIgnoreCase("start")) {
 
-                teamPrep("blue", (List<String>) Main.getPlugin().getConfig().getStringList("teams.blue.players"), Color.BLUE, sender);
+                teamPrep(
+                    "blue", 
+                    (List<String>) Main.getPlugin().getConfig().getStringList("teams.blue.players"), 
+                    Color.BLUE, 
+                    sender,
+                    new Location(
+                        Bukkit.getServer().getWorld("World"),
+                        252.500,
+                        -60,
+                        820.500,
+                        -136,
+                        34
+                    )
+                );
 
-                teamPrep("red", (List<String>) Main.getPlugin().getConfig().getStringList("teams.red.players"), Color.RED, sender);
+                teamPrep(
+                    "red", 
+                    (List<String>) Main.getPlugin().getConfig().getStringList("teams.red.players"), 
+                    Color.RED, 
+                    sender,
+                    new Location(
+                        Bukkit.getServer().getWorld("World"),
+                        252.500,
+                        -60,
+                        820.500,
+                        -136,
+                        34
+                    )
+                );
 
-                teamPrep("green", (List<String>) Main.getPlugin().getConfig().getStringList("teams.green.players"), Color.GREEN, sender);
+                teamPrep(
+                    "green", 
+                    (List<String>) Main.getPlugin().getConfig().getStringList("teams.green.players"), 
+                    Color.GREEN, 
+                    sender, 
+                    new Location(
+                        Bukkit.getServer().getWorld("World"),
+                        252.500,
+                        -60,
+                        820.500,
+                        -136,
+                        34
+                    )
+                );
 
                 // TEST: looping through config.yml paths
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
