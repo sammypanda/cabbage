@@ -58,9 +58,9 @@ public class MainCommand implements CommandExecutor {
 					playerObject.teleport(
 						new Location(
 							playerLocation.getWorld(),
-							playerLocation.getX(),
-							playerLocation.getY(),
-							playerLocation.getZ() + 42
+							252.500,
+							-60,
+							820.500
 						)
 					);
 
