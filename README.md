@@ -2,7 +2,7 @@
 - ~~Create working file layout for minecraft plugins~~
 - ~~Create a /cabbage join command that allows you to choose a colour and remembers it~~
 - ~~Make the /cabbage join command classify a player into the team~~
-- Create a /cabbage start command that teleports the joined users to a predefined location
+- ~~Create a /cabbage start command that teleports the joined users to a predefined location~~
 - Create a /cabbage forcefinish command that forces a finish function and finishes a game
 - Add a timer to the start command that counts up and stops when finished
 - Add a command /cabbage chest that spawns a chest somewhere like how chests would spawn at the start of a game
