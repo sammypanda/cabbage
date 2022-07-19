@@ -60,7 +60,9 @@ public class MainCommand implements CommandExecutor {
 							playerLocation.getWorld(),
 							252.500,
 							-60,
-							820.500
+							820.500,
+                            -136,
+                            34
 						)
 					);
 
