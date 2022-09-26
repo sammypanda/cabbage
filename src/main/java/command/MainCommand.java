@@ -62,8 +62,16 @@ public class MainCommand implements CommandExecutor {
                 }
 
                 sender.sendMessage("- " + player );
+
+                for(String keys : Main.getPlugin().getConfig().getKeys(false)) {
+                    sender.sendMessage(keys);
+                };
             }
         }
+    }
+
+    public static void endGame(List<String> players) {
+        
     }
 
     @Override
@@ -220,6 +228,10 @@ public class MainCommand implements CommandExecutor {
 
                 }
 
+            }
+
+            if (args[0].equalsIgnoreCase("forcefinish")) {
+                sender.sendMessage("x");
             }
         }
 
