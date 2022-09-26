@@ -63,7 +63,7 @@ public class MainCommand implements CommandExecutor {
 
                 sender.sendMessage("- " + player );
 
-                for(String keys : Main.getPlugin().getConfig().getKeys(false)) {
+                for(String keys : Main.getPlugin().getConfig().getKeys(true)) {
                     sender.sendMessage(keys);
                 };
             }
