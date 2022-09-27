@@ -27,9 +27,9 @@ public class Main extends JavaPlugin {
 
 		// Initiating/Creating Config
 		this.saveDefaultConfig();
-		this.getConfig().set("teams.blue.players", new ArrayList<String>());
-		this.getConfig().set("teams.red.players", new ArrayList<String>());
-		this.getConfig().set("teams.green.players", new ArrayList<String>());
+		this.getConfig().createSection("teams.blue.players");
+		this.getConfig().createSection("teams.red.players");
+		this.getConfig().createSection("teams.green.players");
 
 		// Initiating Teams Container
 		ScoreboardManager manager = getServer().getScoreboardManager();

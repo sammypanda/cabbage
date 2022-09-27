@@ -115,7 +115,7 @@ public class MainCommand implements CommandExecutor {
 
                 teamPrep(
                     "blue", 
-                    (List<String>) Main.getPlugin().getConfig().getStringList("teams.blue.players"), 
+                    (List<String>) Main.getPlugin().getConfig().getConfigurationSection("teams.blue.players").getKeys(false), 
                     Color.BLUE, 
                     sender,
                     new Location(
@@ -130,7 +130,7 @@ public class MainCommand implements CommandExecutor {
 
                 teamPrep(
                     "red", 
-                    (List<String>) Main.getPlugin().getConfig().getStringList("teams.red.players"), 
+                    (List<String>) Main.getPlugin().getConfig().getConfigurationSection("teams.red.players").getKeys(false), 
                     Color.RED, 
                     sender,
                     new Location(
@@ -145,7 +145,7 @@ public class MainCommand implements CommandExecutor {
 
                 teamPrep(
                     "green", 
-                    (List<String>) Main.getPlugin().getConfig().getStringList("teams.green.players"), 
+                    (List<String>) Main.getPlugin().getConfig().getConfigurationSection("teams.green.players").getKeys(false), 
                     Color.GREEN, 
                     sender, 
                     new Location(
@@ -161,7 +161,7 @@ public class MainCommand implements CommandExecutor {
                 // TEST: looping through config.yml paths
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
                     Bukkit.getLogger().info("team: " + team); // logs out all teams
-                    for (String player : Main.getPlugin().getConfig().getStringList("teams." + team + ".players")) {
+                    for (String player : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
                         Bukkit.getLogger().info(team + " player: " + player);
                     }
                 }
@@ -178,7 +178,7 @@ public class MainCommand implements CommandExecutor {
                 String userTeam = null;
 
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
-                    if (Main.getPlugin().getConfig().getStringList("teams." + team + ".players").contains(uuid)) {
+                    if (Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false).contains(uuid)) {
                         userHasTeam = true;
                         userTeam = team;
                     }
@@ -212,10 +212,7 @@ public class MainCommand implements CommandExecutor {
 
                     Main.getScoreboard().getTeam(args[1].toLowerCase()).addEntry(uuid);
 
-                    ArrayList<String> players = new ArrayList<String>(Main.getPlugin().getConfig().getStringList(list_map)); // prepare new list with existing list from config
-
-                    players.add(uuid);
-                    Main.getPlugin().getConfig().set(list_map, players);
+                    Main.getPlugin().getConfig().getConfigurationSection(list_map).createSection(list_map + "." + uuid);
                     
                     //test
                     // sender.sendMessage(Main.getPlugin().getConfig().getStringList(list_map)(0)); // sendMessage only accepts strings :(
