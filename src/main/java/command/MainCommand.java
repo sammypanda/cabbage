@@ -183,6 +183,8 @@ public class MainCommand implements CommandExecutor {
                         userHasTeam = true;
                         userTeam = team;
                     }
+
+                    Main.getPlugin().getConfig().set("teams." + team + ".players." + uuid + ".origin", "location");
                 }
 
                 if (!userHasTeam) {
@@ -214,9 +216,6 @@ public class MainCommand implements CommandExecutor {
                     Main.getScoreboard().getTeam(args[1].toLowerCase()).addEntry(uuid);
 
                     Main.getPlugin().getConfig().getConfigurationSection(list_map).createSection(uuid);
-                    
-                    //test
-                    // sender.sendMessage(Main.getPlugin().getConfig().getStringList(list_map)(0)); // sendMessage only accepts strings :(
 
                     Main.getPlugin().saveConfig();
 
