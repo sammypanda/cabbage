@@ -30,7 +30,7 @@ import org.bukkit.Location;
 
 public class MainCommand implements CommandExecutor {
 
-    public static void teamPrep(String team, HashSet<String> players, Color color, CommandSender sender, Location location) {
+    public static void teamPrep(String team, Set<String> players, Color color, CommandSender sender, Location location) {
         if (players.isEmpty()) {
             sender.sendMessage("no players joined " + team);
         } else {
