@@ -232,6 +232,8 @@ public class MainCommand implements CommandExecutor {
 
                     Main.getPlugin().getConfig().getConfigurationSection(list_map).createSection(uuid);
 
+                    Main.getPlugin().getConfig().setLocation(list_map + "." + uuid + ".origin", Bukkit.getPlayer(UUID.fromString(uuid)).getLocation());
+
                     Main.getPlugin().saveConfig();
 
                 } else {
