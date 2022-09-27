@@ -115,7 +115,7 @@ public class MainCommand implements CommandExecutor {
 
                 teamPrep(
                     "blue", 
-                    (List<String>) Main.getPlugin().getConfig().getConfigurationSection("teams.blue.players").getKeys(false), 
+                    Main.getPlugin().getConfig().getConfigurationSection("teams.blue.players").getKeys(false).asList(), 
                     Color.BLUE, 
                     sender,
                     new Location(
@@ -130,7 +130,7 @@ public class MainCommand implements CommandExecutor {
 
                 teamPrep(
                     "red", 
-                    (List<String>) Main.getPlugin().getConfig().getConfigurationSection("teams.red.players").getKeys(false), 
+                    Main.getPlugin().getConfig().getConfigurationSection("teams.red.players").getKeys(false).asList(), 
                     Color.RED, 
                     sender,
                     new Location(
@@ -145,7 +145,7 @@ public class MainCommand implements CommandExecutor {
 
                 teamPrep(
                     "green", 
-                    (List<String>) Main.getPlugin().getConfig().getConfigurationSection("teams.green.players").getKeys(false), 
+                    Main.getPlugin().getConfig().getConfigurationSection("teams.green.players").getKeys(false).asList(), 
                     Color.GREEN, 
                     sender, 
                     new Location(
