@@ -169,6 +169,19 @@ public class MainCommand implements CommandExecutor {
                 // end test
                 
             }
+
+            if (args[0].equalsIgnoreCase("forcefinish")) {
+                sender.sendMessage("finishing");
+
+                UUID realUUID = UUID.fromString(uuid);
+                Player playerObject = Bukkit.getPlayer(realUUID);
+
+                for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
+                    playerObject.teleport(
+                        Main.getPlugin().getConfig().get("teams." + team + ".players." + uuid + ".origin")
+                    ); // teleport player back to their origin position
+                }
+            }
         }
 
         else if (args.length == 2) {
@@ -228,10 +241,6 @@ public class MainCommand implements CommandExecutor {
 
                 }
 
-            }
-
-            if (args[0].equalsIgnoreCase("forcefinish")) {
-                sender.sendMessage("x");
             }
         }
 
