@@ -173,13 +173,12 @@ public class MainCommand implements CommandExecutor {
             if (args[0].equalsIgnoreCase("forcefinish")) {
                 sender.sendMessage("finishing");
 
-                UUID realUUID = UUID.fromString(uuid);
-                Player playerObject = Bukkit.getPlayer(realUUID);
-
-                for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
-                    playerObject.teleport(
-                        Main.getPlugin().getConfig().getLocation("teams." + team + ".players." + uuid + ".origin")
-                    ); // teleport player back to their origin position
+                for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
+                    for (String strUUID : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
+                        Bukkit.getPlayer(UUID.fromString(strUUID)).teleport(
+                            Main.getPlugin().getConfig().getLocation("teams." + team + ".players." + strUUID + ".origin")
+                        ); // teleport player back to their origin position
+                    }
                 }
             }
         }
