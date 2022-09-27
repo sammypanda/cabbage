@@ -3,6 +3,7 @@ import main.java.Main; // needed for getPlugin
 
 import java.util.ArrayList; // import ArrayList program
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 import java.util.UUID;
 
@@ -29,7 +30,7 @@ import org.bukkit.Location;
 
 public class MainCommand implements CommandExecutor {
 
-    public static void teamPrep(String team, List<String> players, Color color, CommandSender sender, Location location) {
+    public static void teamPrep(String team, HashSet<String> players, Color color, CommandSender sender, Location location) {
         if (players.isEmpty()) {
             sender.sendMessage("no players joined " + team);
         } else {
@@ -115,7 +116,7 @@ public class MainCommand implements CommandExecutor {
 
                 teamPrep(
                     "blue", 
-                    Main.getPlugin().getConfig().getConfigurationSection("teams.blue.players").getKeys(false).asList(), 
+                    Main.getPlugin().getConfig().getConfigurationSection("teams.blue.players").getKeys(false), 
                     Color.BLUE, 
                     sender,
                     new Location(
@@ -130,7 +131,7 @@ public class MainCommand implements CommandExecutor {
 
                 teamPrep(
                     "red", 
-                    Main.getPlugin().getConfig().getConfigurationSection("teams.red.players").getKeys(false).asList(), 
+                    Main.getPlugin().getConfig().getConfigurationSection("teams.red.players").getKeys(false), 
                     Color.RED, 
                     sender,
                     new Location(
@@ -145,7 +146,7 @@ public class MainCommand implements CommandExecutor {
 
                 teamPrep(
                     "green", 
-                    Main.getPlugin().getConfig().getConfigurationSection("teams.green.players").getKeys(false).asList(), 
+                    Main.getPlugin().getConfig().getConfigurationSection("teams.green.players").getKeys(false), 
                     Color.GREEN, 
                     sender, 
                     new Location(
