@@ -184,7 +184,9 @@ public class MainCommand implements CommandExecutor {
                         userTeam = team;
                     }
 
-                    Main.getPlugin().getConfig().set("teams." + team + ".players." + uuid + ".origin", "location");
+                    Player playerObject = Bukkit.getPlayer(uuid);
+
+                    Main.getPlugin().getConfig().set("teams." + team + ".players." + uuid + ".origin", playerObject.getLocation());
                 }
 
                 if (!userHasTeam) {
