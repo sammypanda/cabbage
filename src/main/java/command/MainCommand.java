@@ -178,7 +178,7 @@ public class MainCommand implements CommandExecutor {
 
                 for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
                     playerObject.teleport(
-                        Main.getPlugin().getConfig().get("teams." + team + ".players." + uuid + ".origin")
+                        Main.getPlugin().getConfig().getLocation("teams." + team + ".players." + uuid + ".origin")
                     ); // teleport player back to their origin position
                 }
             }
