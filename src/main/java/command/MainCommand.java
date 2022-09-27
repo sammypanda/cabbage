@@ -183,8 +183,9 @@ public class MainCommand implements CommandExecutor {
                         userHasTeam = true;
                         userTeam = team;
                     }
-
-                    Player playerObject = Bukkit.getPlayer(uuid);
+                    
+                    UUID realUUID = UUID.fromString(uuid);
+                    Player playerObject = Bukkit.getPlayer(realUUID);
 
                     Main.getPlugin().getConfig().set("teams." + team + ".players." + uuid + ".origin", playerObject.getLocation());
                 }
