@@ -1,6 +1,7 @@
 package main.java.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -15,7 +16,8 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !event.isBlockInHand())
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && 
+            event.getClickedBlock().getType() == Material.CHEST)
             Bukkit.broadcastMessage("Cabbage saw that!");
     }
 }
