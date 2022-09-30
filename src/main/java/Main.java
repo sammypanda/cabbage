@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import main.java.listeners.*; // import every listener
 import main.java.command.*; // import every command (ScoreboardManager/Scoreboard)
+import main.java.game.*;
 import org.bukkit.scoreboard.*; // managing teams
 import org.bukkit.ChatColor;
 
@@ -16,6 +17,8 @@ public class Main extends JavaPlugin {
 
 	private static Plugin plugin;
 	private static Scoreboard board;
+
+	private static ArrayList<CabbageChest> trackedChests;
 
 	@Override
 	public void onEnable() {
@@ -73,5 +76,13 @@ public class Main extends JavaPlugin {
 
 	public static Scoreboard getScoreboard() {
 		return board;
+	}
+
+	public static ArrayList<CabbageChest> getTrackedChests() {
+		return trackedChests;
+	}
+
+	public static void addTrackedChest(CabbageChest c) {
+		trackedChests.add(c);
 	}
 }
