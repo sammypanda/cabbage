@@ -1,11 +1,16 @@
 package main.java.command;
+
 import main.java.Main; // needed for getPlugin
+import main.java.game.CabbageChest;
 
 import java.util.ArrayList; // import ArrayList program
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 import java.util.UUID;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -166,7 +171,7 @@ public class MainCommand implements CommandExecutor {
                 
             }
 
-            if (args[0].equalsIgnoreCase("forcefinish")) {
+            else if (args[0].equalsIgnoreCase("forcefinish")) {
                 sender.sendMessage("finishing");
 
                 for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
@@ -176,6 +181,11 @@ public class MainCommand implements CommandExecutor {
                         ); // teleport player back to their origin position
                     }
                 }
+            }
+
+            else if (args[0].equalsIgnoreCase("chest")) {
+                CabbageChest c = new CabbageChest(Bukkit.getPlayer(sender.getName()).getLocation(),
+                                                  Instant.now().plus(30, ChronoUnit.SECONDS));
             }
         }
 
