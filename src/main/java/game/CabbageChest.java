@@ -28,7 +28,7 @@ public class CabbageChest {
         block.getState().setLock("Anyone holding this key hates women");
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(
             Main.getPlugin(),
-            expire,
+            this.expire,
             ChronoUnit.SECONDS.between(Instant.now(), expiryDate) * 20
         );
     }

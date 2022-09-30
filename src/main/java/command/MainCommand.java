@@ -186,6 +186,7 @@ public class MainCommand implements CommandExecutor {
             else if (args[0].equalsIgnoreCase("chest")) {
                 CabbageChest c = new CabbageChest(Bukkit.getPlayer(sender.getName()).getLocation(),
                                                   Instant.now().plus(30, ChronoUnit.SECONDS));
+                Main.addTrackedChest(c);
             }
         }
 
