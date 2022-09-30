@@ -1,7 +1,7 @@
-package com.sammypanda.command;
+package main.java.command;
 
-import com.sammypanda.Main; // needed for getPlugin
-import com.sammypanda.game.CabbageChest;
+import main.java.Main; // needed for getPlugin
+import main.java.game.CabbageChest;
 
 import java.util.List;
 import java.util.Set;

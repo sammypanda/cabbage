@@ -1,4 +1,4 @@
-package com.sammypanda;
+package main.java;
 
 import java.util.ArrayList; // import ArrayList program
 
@@ -7,9 +7,9 @@ import org.bukkit.plugin.Plugin; // plugin type
 import org.bukkit.entity.Player;
 // import org.bukkit.event.HandlerList
 
-import com.sammypanda.listeners.*; // import every listener
-import com.sammypanda.command.*; // import every command (ScoreboardManager/Scoreboard)
-import com.sammypanda.game.*;
+import main.java.listeners.*; // import every listener
+import main.java.command.*; // import every command (ScoreboardManager/Scoreboard)
+import main.java.game.*;
 import org.bukkit.scoreboard.*; // managing teams
 import org.bukkit.ChatColor;
 

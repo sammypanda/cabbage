@@ -1,6 +1,6 @@
-package com.sammypanda.game;
+package main.java.game;
 
-import com.sammypanda.Main;
+import main.java.Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
