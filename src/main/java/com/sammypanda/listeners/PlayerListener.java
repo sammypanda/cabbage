@@ -1,4 +1,4 @@
-package main.java.listeners;
+package com.sammypanda.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

@@ -1,10 +1,9 @@
-package main.java.game;
+package com.sammypanda.game;
 
-import main.java.Main;
+import com.sammypanda.Main;
+
 import org.bukkit.Bukkit;
-
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
@@ -20,22 +19,22 @@ public class CabbageChest {
     public CabbageChest(Location loc, Instant expiry) {
         expired = false;
         expiryDate = expiry;
-        block = World.getBlockAt(loc);
+        block = Bukkit.getServer().getWorld("World").getBlockAt(loc);
         block.setType(Material.CHEST);
 
         // To lock a chest, we need to set a key, but we don't want it to be
         // unlocked until we say so
-        block.getState().setLock("Anyone holding this key hates women");
+        ((Chest) block.getState()).setLock("Anyone holding this key hates women");
         Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(
             Main.getPlugin(),
-            this.expire,
+            () -> {this.expire();},
             ChronoUnit.SECONDS.between(Instant.now(), expiryDate) * 20
         );
     }
 
     public void expire() {
         expired = true;
-        Chest data = block.getState();
+        Chest data = (Chest) block.getState();
         data.setLock(null);
         data.open();
     }

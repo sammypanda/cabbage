@@ -1,0 +1,9 @@
+name: Cabbage
+version: 0.1
+main: main.java.Main
+api-version: 1.13
+
+commands:
+  cabbage:
+    description: the peculiar cabbage game!
+    aliases: []
