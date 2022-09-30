@@ -17,7 +17,8 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && 
-            event.getClickedBlock().getType() == Material.CHEST)
+            event.getMaterial() == Material.CHEST &&
+            !event.getPlayer().isSneaking())
             Bukkit.broadcastMessage("Cabbage saw that!");
     }
 }
