@@ -176,7 +176,17 @@ public class MainCommand implements CommandExecutor {
             }
 
             if (args[0].equalsIgnoreCase("forcefinish")) {
-                sender.sendMessage("finishing");
+
+                if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == false) {
+                    sender.sendMessage("Game already stopped");
+                    return false;
+                }
+
+                Main.getPlugin().getConfig().set("game.ongoing", false);
+
+                Main.getPlugin().saveConfig();
+
+                sender.sendMessage("finishing the game");
 
                 for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
                     for (String strUUID : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
