@@ -110,6 +110,15 @@ public class MainCommand implements CommandExecutor {
 
             else if (args[0].equalsIgnoreCase("start")) {
 
+                if (Main.getPlugin().getConfig().getConfigurationSection("game.ongoing") == true) {
+                    sender.sendMessage("Game already ongoing");
+                    return false;
+                }
+
+                Main.getPlugin().getConfig().set("game.ongoing", true);
+
+                Main.getPlugin().saveConfig();
+
                 teamPrep(
                     "blue", 
                     Main.getPlugin().getConfig().getConfigurationSection("teams.blue.players").getKeys(false), 
