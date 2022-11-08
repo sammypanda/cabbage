@@ -52,6 +52,7 @@ public class MainCommand implements CommandExecutor {
 
                     centralChestplate.setItemMeta(meta);
 
+                    inventory.clear(); // clear the players iventory before adding anything
                     inventory.setChestplate(centralChestplate);
 
 					// teleport the player
