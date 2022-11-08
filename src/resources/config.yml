@@ -1,3 +1,5 @@
+game:
+  ongoing: false
 teams:
   blue:
     players:
