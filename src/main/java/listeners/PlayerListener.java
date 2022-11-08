@@ -11,11 +11,6 @@ import main.java.game.PlayerHit;
 
 public class PlayerListener implements Listener {
     @EventHandler
-    public void onPlayerDrop(PlayerDropItemEvent event) { // when player drops an item
-        Bukkit.broadcastMessage("Cabbage saw you drop that!");
-    }
-
-    @EventHandler
     public void onPlayerHit(EntityDamageByEntityEvent event) {
         PlayerHit playerhit = new PlayerHit();
         
