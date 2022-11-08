@@ -110,7 +110,7 @@ public class MainCommand implements CommandExecutor {
 
             else if (args[0].equalsIgnoreCase("start")) {
 
-                if (Main.getPlugin().getConfig().getConfigurationSection("game.ongoing") == true) {
+                if (Main.getPlugin().getConfig().get("game.ongoing") == true) {
                     sender.sendMessage("Game already ongoing");
                     return false;
                 }
