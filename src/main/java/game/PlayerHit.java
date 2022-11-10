@@ -27,7 +27,7 @@ public class PlayerHit {
         // search for player
         for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
             for (String player : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
-                if (player.equals(event.getEntity().getUniqueId().toString())) {
+                if (player.equals(event.getEntity().getUniqueId().toString()) && player.equals(event.getDamager().getUniqueId().toString())) {
                     this.gamer = true;
                     // do hit logic
                 }
