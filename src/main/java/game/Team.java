@@ -31,7 +31,7 @@ public class Team {
     Color color;
     Location location;
 
-    public Team() {
+    public Team(String team, Set<String> players, Color color, Location location) {
         for (String player : players) {
 
             UUID playerUUID = UUID.fromString(player);
