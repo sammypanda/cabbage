@@ -1,9 +1,6 @@
 package main.java.command;
 import main.java.Main; // needed for getPlugin
 
-// game package
-import main.java.game.Team;
-
 import java.util.ArrayList; // import ArrayList program
 import java.util.List;
 import java.util.Set;
@@ -26,6 +23,15 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.HumanEntity;
 
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
+
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+
 public class MainCommand implements CommandExecutor {
 
     public static void endGame(List<String> players) {
@@ -36,12 +42,12 @@ public class MainCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         // TEST: Main.getScoreboard();
-        for (Team scoreboardTeam : Main.getScoreboard().getTeams()) {
-            Bukkit.getLogger().info("scoreboard team: " + scoreboardTeam.getName());
-            for (String scoreboardTeamEntries : scoreboardTeam.getEntries()) {
-                Bukkit.getLogger().info("scoreboard " + scoreboardTeam.getName() + " team entries: " + scoreboardTeamEntries);
-            }
-        }
+        // for (Team scoreboardTeam : Main.getScoreboard().getTeams()) {
+        //     Bukkit.getLogger().info("scoreboard team: " + scoreboardTeam.getName());
+        //     for (String scoreboardTeamEntries : scoreboardTeam.getEntries()) {
+        //         Bukkit.getLogger().info("scoreboard " + scoreboardTeam.getName() + " team entries: " + scoreboardTeamEntries);
+        //     }
+        // }
         // End test
 
         String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId().toString();
