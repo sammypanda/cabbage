@@ -33,6 +33,7 @@ public class RegisterHit {
                     this.gamer = true;    
                 
                     // do hit logic
+                    Bukkit.broadcastMessage("gamer hit gamer");
                 } else {
                     return;
                 }
