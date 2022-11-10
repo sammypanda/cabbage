@@ -83,7 +83,6 @@ public class MainCommand implements CommandExecutor {
                     "blue", 
                     Main.getPlugin().getConfig().getConfigurationSection("teams.blue.players").getKeys(false), 
                     Color.BLUE, 
-                    sender,
                     new Location(
                         Bukkit.getServer().getWorld("World"),
                         252.500,
@@ -98,7 +97,6 @@ public class MainCommand implements CommandExecutor {
                     "red", 
                     Main.getPlugin().getConfig().getConfigurationSection("teams.red.players").getKeys(false), 
                     Color.RED, 
-                    sender,
                     new Location(
                         Bukkit.getServer().getWorld("World"),
                         252.500,
@@ -113,7 +111,6 @@ public class MainCommand implements CommandExecutor {
                     "green", 
                     Main.getPlugin().getConfig().getConfigurationSection("teams.green.players").getKeys(false), 
                     Color.GREEN, 
-                    sender, 
                     new Location(
                         Bukkit.getServer().getWorld("World"),
                         252.500,
