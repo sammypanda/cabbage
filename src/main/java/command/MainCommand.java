@@ -1,6 +1,9 @@
 package main.java.command;
 import main.java.Main; // needed for getPlugin
 
+// game package
+import main.java.game.Team;
+
 import java.util.ArrayList; // import ArrayList program
 import java.util.List;
 import java.util.Set;
@@ -23,55 +26,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.HumanEntity;
 
-import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
-
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
-
-
 public class MainCommand implements CommandExecutor {
-
-    public static void teamPrep(String team, Set<String> players, Color color, CommandSender sender, Location location) {
-        if (players.isEmpty()) {
-            sender.sendMessage("no players joined " + team);
-        } else {
-            for (String player : players) {
-
-                UUID playerUUID = UUID.fromString(player);
-                Player playerObject = Bukkit.getPlayer(playerUUID);
-
-                if (playerObject != null) {
-
-                    PlayerInventory inventory = playerObject.getInventory();
-                    ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
-
-                    LeatherArmorMeta meta = (LeatherArmorMeta) centralChestplate.getItemMeta();
-                    
-                    AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-                    meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
-                    meta.setColor(color);
-
-                    centralChestplate.setItemMeta(meta);
-
-                    inventory.clear(); // clear the players iventory before adding anything
-                    inventory.setChestplate(centralChestplate);
-
-					// teleport the player
-					Location playerLocation = playerObject.getLocation();
-					playerObject.teleport(
-						location
-					);
-
-                }
-
-                sender.sendMessage("- " + player );
-            }
-        }
-    }
 
     public static void endGame(List<String> players) {
         
@@ -125,7 +80,7 @@ public class MainCommand implements CommandExecutor {
 
                 Main.getPlugin().saveConfig();
 
-                teamPrep(
+                new Team(
                     "blue", 
                     Main.getPlugin().getConfig().getConfigurationSection("teams.blue.players").getKeys(false), 
                     Color.BLUE, 
@@ -140,7 +95,7 @@ public class MainCommand implements CommandExecutor {
                     )
                 );
 
-                teamPrep(
+                new Team(
                     "red", 
                     Main.getPlugin().getConfig().getConfigurationSection("teams.red.players").getKeys(false), 
                     Color.RED, 
@@ -155,7 +110,7 @@ public class MainCommand implements CommandExecutor {
                     )
                 );
 
-                teamPrep(
+                new Team(
                     "green", 
                     Main.getPlugin().getConfig().getConfigurationSection("teams.green.players").getKeys(false), 
                     Color.GREEN, 
