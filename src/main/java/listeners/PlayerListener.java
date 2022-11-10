@@ -8,13 +8,13 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 // game package
-import main.java.game.PlayerHit;
+import main.java.game.RegisterHit;
 
 public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerHit(EntityDamageByEntityEvent event) {
-        PlayerHit playerhit = new PlayerHit();
+        RegisterHit registerhit = new RegisterHit();
         
-        playerhit.RegisterHit(event); // pass our event through to PlayerHit's main function
+        registerhit.Player(event); // pass our event through to RegisterHit main function
     }
 }

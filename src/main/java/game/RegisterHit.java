@@ -10,10 +10,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.EntityEvent;
 
-public class PlayerHit {
+public class RegisterHit {
     private Boolean gamer = false; // is the player a gamer? (currently in a game of cabbage)
     
-    public void RegisterHit(EntityDamageByEntityEvent event) {
+    public void Player(EntityDamageByEntityEvent event) {
         // if game not started don't continue
         if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == false) {
             Bukkit.broadcastMessage("game not ongoing, hit doesn't count");
@@ -28,8 +28,11 @@ public class PlayerHit {
         for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
             for (String player : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
                 if (player.equals(event.getEntity().getUniqueId().toString()) && player.equals(event.getDamager().getUniqueId().toString())) {
-                    this.gamer = true;
+                    this.gamer = true;    
+                
                     // do hit logic
+                } else {
+                    return;
                 }
             }
         }
