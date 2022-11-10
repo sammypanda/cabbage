@@ -10,7 +10,6 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.ChatColor;
-import org.bukkit.scoreboard.*;
 import org.bukkit.Material;
 import org.bukkit.Location;
 
@@ -40,15 +39,6 @@ public class MainCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        // TEST: Main.getScoreboard();
-        // for (Team scoreboardTeam : Main.getScoreboard().getTeams()) {
-        //     Bukkit.getLogger().info("scoreboard team: " + scoreboardTeam.getName());
-        //     for (String scoreboardTeamEntries : scoreboardTeam.getEntries()) {
-        //         Bukkit.getLogger().info("scoreboard " + scoreboardTeam.getName() + " team entries: " + scoreboardTeamEntries);
-        //     }
-        // }
-        // End test
 
         String uuid = Bukkit.getPlayer(sender.getName()).getUniqueId().toString();
 
@@ -209,8 +199,6 @@ public class MainCommand implements CommandExecutor {
                             sender.sendMessage("Failed");
                             return false;
                     }
-
-                    Main.getScoreboard().getTeam(args[1].toLowerCase()).addEntry(uuid);
 
                     Main.getPlugin().getConfig().getConfigurationSection(list_map).createSection(uuid);
 
