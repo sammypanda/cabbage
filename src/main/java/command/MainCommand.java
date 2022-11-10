@@ -31,6 +31,9 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 
+// game package
+import main.java.game.Team;
+
 public class MainCommand implements CommandExecutor {
 
     public static void endGame(List<String> players) {
