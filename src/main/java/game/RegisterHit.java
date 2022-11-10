@@ -14,14 +14,16 @@ public class RegisterHit {
     private Boolean gamer = false; // is the player a gamer? (currently in a game of cabbage)
     
     public void Player(EntityDamageByEntityEvent event) {
+        // if hit not by player don't continue
+        if (event.getDamager().getType() != EntityType.PLAYER) {
+            Bukkit.broadcastMessage("not hit by player, hit doesn't count");
+            return;
+        }
+
         // if game not started don't continue
         if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == false) {
             Bukkit.broadcastMessage("game not ongoing, hit doesn't count");
             return;
-        }
-
-        if (event.getDamager().getType() != EntityType.PLAYER) {
-            Bukkit.broadcastMessage("not hit by player, hit doesn't count");
         }
 
         // search for player
