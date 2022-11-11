@@ -7,8 +7,15 @@ import org.bukkit.Bukkit;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.EntityEvent;
+
+import org.bukkit.inventory.ItemStack;
+
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+
+// game package
+import main.java.game.Team;
 
 public class RegisterHit {
     public void Player(EntityDamageByEntityEvent event) {
@@ -40,9 +47,22 @@ public class RegisterHit {
             }
         }
 
-        if (isGamer && isHitByGamer) {
+        if (isGamer && isHitByGamer) { // do hit logic
 
-            // do hit logic
+            // retrieve our premade 'cabbage slice' ItemStack
+            ItemStack theCabbage = Team.getCabbage();
+
+            // retrieve the player object from event
+            Player theGamer = Bukkit.getPlayer(event.getEntity().getUniqueId());
+
+            // remove cabbage slice from the gamer who was hit
+            theCabbage.setAmount(1);
+            theGamer.getInventory().removeItem(theCabbage);
+
+            // throw a cabbage slice on the ground
+            Bukkit.getServer().getWorld("World").dropItem(theGamer.getLocation(), theCabbage);
+
+            // temporary
             Bukkit.broadcastMessage("gamer hit gamer");
 
         } else {

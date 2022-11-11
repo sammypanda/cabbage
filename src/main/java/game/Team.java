@@ -34,14 +34,8 @@ public class Team {
 
     public Team(String team, Set<String> players, Color color, Location location) {
         // create bonemeal
-        ArrayList cabbageLore = new ArrayList<String>();
-        cabbageLore.add("First team to collect all [number] wins!");
-        ItemStack theCabbage = new ItemStack(Material.BONE_MEAL);
-        ItemMeta cabbageMeta = theCabbage.getItemMeta();
-        cabbageMeta.setDisplayName("Cabbage Slice");
-        cabbageMeta.setLore(cabbageLore);
+        ItemStack theCabbage = this.getCabbage();
         theCabbage.setAmount(1); // variable amount given to each player
-        theCabbage.setItemMeta(cabbageMeta);
 
         // create chestplate
         ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
@@ -76,5 +70,17 @@ public class Team {
 
             }
         }
+    }
+
+    public static ItemStack getCabbage() {
+        ArrayList cabbageLore = new ArrayList<String>();
+        cabbageLore.add("First team to collect all [number] wins!");
+        ItemStack theCabbage = new ItemStack(Material.BONE_MEAL);
+        ItemMeta cabbageMeta = theCabbage.getItemMeta();
+        cabbageMeta.setDisplayName("Cabbage Slice");
+        cabbageMeta.setLore(cabbageLore);
+        theCabbage.setItemMeta(cabbageMeta);
+
+        return theCabbage;
     }
 }

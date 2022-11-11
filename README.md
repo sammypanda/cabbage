@@ -6,7 +6,7 @@
 - ~~/cabbage forcefinish command that forces a finish function and finishes a game~~
 - Cancel hits from other team members (no friendly fire)
 - ~~Create "Cabbage Slice" item using bonemeal as the base item~~
-- A hit from an enemy drops one cabbage slice
+- A hit from an enemy drops one of your cabbage slices **(needs to be tested)**
 - Distribute the cabbage slices by all players
 - When one team has all the cabbage slices end and say [team] won
 - ...
