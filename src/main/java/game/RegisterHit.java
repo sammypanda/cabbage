@@ -80,7 +80,7 @@ public class RegisterHit {
                 theHitter.getInventory().removeItem(theCabbage);
 
                 // give us their cabbage slice! :)
-                theGamer.getInventory().setItemInMainHand(theCabbage);
+                theGamer.getInventory().addItem(theCabbage);
             } else { // they are enemy!
                 // remove cabbage slice from us cuz we have one and we were hit
                 theGamer.getInventory().removeItem(theCabbage);
