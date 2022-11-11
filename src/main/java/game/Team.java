@@ -38,12 +38,7 @@ public class Team {
         theCabbage.setAmount(1); // variable amount given to each player
 
         // create chestplate
-        ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
-        LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) centralChestplate.getItemMeta();
-        AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-        chestplateMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
-        chestplateMeta.setColor(color);
-        centralChestplate.setItemMeta(chestplateMeta);
+
 
         for (String player : players) {
 
@@ -63,6 +58,7 @@ public class Team {
                 );
 
                 // give chestplate
+                ItemStack centralChestplate = this.getChestplate(color);
                 inventory.setChestplate(centralChestplate);
 
                 // give cabbage
@@ -73,14 +69,31 @@ public class Team {
     }
 
     public static ItemStack getCabbage() {
-        ArrayList cabbageLore = new ArrayList<String>();
-        cabbageLore.add("First team to collect all [number] wins!");
         ItemStack theCabbage = new ItemStack(Material.BONE_MEAL);
         ItemMeta cabbageMeta = theCabbage.getItemMeta();
+        ArrayList cabbageLore = new ArrayList<String>();
+
+        cabbageLore.add("First team to collect all [number] wins!");
+
         cabbageMeta.setDisplayName("Cabbage Slice");
         cabbageMeta.setLore(cabbageLore);
+
         theCabbage.setItemMeta(cabbageMeta);
 
         return theCabbage;
+    }
+
+    public static ItemStack getChestplate(Color color) {
+        ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
+        LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) centralChestplate.getItemMeta();
+        
+        AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        chestplateMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
+
+        chestplateMeta.setColor(color); // diversify colour
+        
+        centralChestplate.setItemMeta(chestplateMeta);
+
+        return centralChestplate;
     }
 }
