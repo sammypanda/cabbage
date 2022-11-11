@@ -4,7 +4,7 @@
 - ~~/cabbage join command classify a player into the team~~
 - ~~/cabbage start command that teleports the joined users to a predefined location~~
 - ~~/cabbage forcefinish command that forces a finish function and finishes a game~~
-- Cancel hits from other team members (no friendly fire)
+- Cancel hits from other team members (no friendly fire) **(needs to be tested)**
 - ~~Create "Cabbage Slice" item using bonemeal as the base item~~
 - A hit from an enemy drops one of your cabbage slices **(needs to be tested)**
 - Distribute the cabbage slices by all players

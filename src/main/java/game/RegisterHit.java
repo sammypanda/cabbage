@@ -21,6 +21,7 @@ public class RegisterHit {
     public void Player(EntityDamageByEntityEvent event) {
         Boolean isGamer = false; // is the player being hit a gamer?
         Boolean isHitByGamer = false; // is the player doing the hitting a gamer?
+        Boolean sameTeam = false;
 
         // if game not started don't continue
         if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == false) {
@@ -37,23 +38,37 @@ public class RegisterHit {
         // search for player
         for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
             for (String player : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
+                String friendTeam = "a";
+                String enemyTeam = "b";
+
                 if (player.equals(event.getEntity().getUniqueId().toString())) {
                     isGamer = true;
+                    friendTeam = team;
                 }
 
                 if (player.equals(event.getDamager().getUniqueId().toString())) {
                     isHitByGamer = true;
+                    enemyTeam = team;
+                }
+
+                if (friendTeam.equals(enemyTeam)) {
+                    sameTeam = true;
                 }
             }
         }
 
         if (isGamer && isHitByGamer) { // do hit logic
 
-            // retrieve our premade 'cabbage slice' ItemStack
-            ItemStack theCabbage = Team.getCabbage();
-
             // retrieve the player object from event
             Player theGamer = Bukkit.getPlayer(event.getEntity().getUniqueId());
+
+            if (sameTeam) {
+                // cancel hit interaction
+                event.setCancelled(true);
+            }
+
+            // retrieve our premade 'cabbage slice' ItemStack
+            ItemStack theCabbage = Team.getCabbage();
 
             // remove cabbage slice from the gamer who was hit
             theCabbage.setAmount(1);
