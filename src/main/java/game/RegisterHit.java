@@ -61,22 +61,31 @@ public class RegisterHit {
 
             // retrieve the player object from event
             Player theGamer = Bukkit.getPlayer(event.getEntity().getUniqueId());
-
-            if (sameTeam) {
-                // cancel hit interaction
-                event.setCancelled(true);
-            }
+            Player theHitter = Bukkit.getPlayer(event.getDamager().getUniqueId());
 
             // retrieve our premade 'cabbage slice' ItemStack
             ItemStack theCabbage = Team.getCabbage();
 
-            if (theGamer.getInventory().containsAtLeast(theCabbage, 1)) { // if we have a cabbage slice
-                theCabbage.setAmount(1);
+            if (!theGamer.getInventory().containsAtLeast(theCabbage, 1)) {
+                event.setCancelled(true); // cancel the damage
+                Bukkit.getPlayer(event.getDamager().getUniqueId()).sendMessage("this player has no cabbage slices");
+                return;
+            }
 
-                // remove cabbage slice from us cuz we were hit
+            theCabbage.setAmount(1);
+            
+            if (sameTeam) {
+                event.setCancelled(true); // cancel the damage
+                // remove cabbage slice from them cuz they hit us
+                theHitter.getInventory().removeItem(theCabbage);
+
+                // give us their cabbage slice! :)
+                theGamer.getInventory().setItemInMainHand(theCabbage);
+            } else { // they are enemy!
+                // remove cabbage slice from us cuz we have one and we were hit
                 theGamer.getInventory().removeItem(theCabbage);
 
-                // ..and throw a cabbage slice to the ground
+                // throw a cabbage slice to the ground
                 Bukkit.getServer().getWorld("World").dropItem(theGamer.getLocation(), theCabbage);
             }
 
