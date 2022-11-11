@@ -23,6 +23,9 @@ public class RegisterHit {
         Boolean isHitByGamer = false; // is the player doing the hitting a gamer?
         Boolean sameTeam = false;
 
+        String friendTeam = "a";
+        String enemyTeam = "b";
+
         // if game not started don't continue
         if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == false) {
             Bukkit.broadcastMessage("game not ongoing, hit doesn't count");
@@ -38,9 +41,6 @@ public class RegisterHit {
         // search for player
         for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
             for (String player : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
-                String friendTeam = "a";
-                String enemyTeam = "b";
-
                 if (player.equals(event.getEntity().getUniqueId().toString())) {
                     isGamer = true;
                     friendTeam = team;
