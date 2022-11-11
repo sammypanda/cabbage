@@ -3,6 +3,7 @@ import main.java.Main; // needed for getPlugin
 
 import java.util.Set;
 import java.util.UUID;
+import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -32,6 +33,24 @@ public class Team {
     Location location;
 
     public Team(String team, Set<String> players, Color color, Location location) {
+        // create bonemeal
+        ArrayList cabbageLore = new ArrayList<String>();
+        cabbageLore.add("First team to collect all [number] wins!");
+        ItemStack theCabbage = new ItemStack(Material.BONE_MEAL);
+        ItemMeta cabbageMeta = theCabbage.getItemMeta();
+        cabbageMeta.setDisplayName("Cabbage Slice");
+        cabbageMeta.setLore(cabbageLore);
+        theCabbage.setAmount(1); // variable amount given to each player
+        theCabbage.setItemMeta(cabbageMeta);
+
+        // create chestplate
+        ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
+        LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) centralChestplate.getItemMeta();
+        AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
+        chestplateMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
+        chestplateMeta.setColor(color);
+        centralChestplate.setItemMeta(chestplateMeta);
+
         for (String player : players) {
 
             UUID playerUUID = UUID.fromString(player);
@@ -40,24 +59,20 @@ public class Team {
             if (playerObject != null) {
 
                 PlayerInventory inventory = playerObject.getInventory();
-                ItemStack centralChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
-
-                LeatherArmorMeta meta = (LeatherArmorMeta) centralChestplate.getItemMeta();
-                
-                AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "centralKnockbackResistance", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-                meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
-                meta.setColor(color);
-
-                centralChestplate.setItemMeta(meta);
 
                 inventory.clear(); // clear the players iventory before adding anything
-                inventory.setChestplate(centralChestplate);
 
                 // teleport the player
                 Location playerLocation = playerObject.getLocation();
                 playerObject.teleport(
                     location
                 );
+
+                // give chestplate
+                inventory.setChestplate(centralChestplate);
+
+                // give cabbage
+                inventory.setItemInMainHand(theCabbage);
 
             }
         }
