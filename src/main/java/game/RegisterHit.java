@@ -70,9 +70,10 @@ public class RegisterHit {
             // retrieve our premade 'cabbage slice' ItemStack
             ItemStack theCabbage = Team.getCabbage();
 
-            if (theGamer.getInventory().contains(theCabbage)) { // if we have a cabbage slice
-                // remove cabbage slice from us cuz we were hit
+            if (theGamer.getInventory().containsAtLeast(theCabbage, 1)) { // if we have a cabbage slice
                 theCabbage.setAmount(1);
+
+                // remove cabbage slice from us cuz we were hit
                 theGamer.getInventory().removeItem(theCabbage);
 
                 // ..and throw a cabbage slice to the ground
