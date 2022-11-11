@@ -1,4 +1,5 @@
 package main.java.command;
+import main.java.command.AdminCommand;
 import main.java.Main; // needed for getPlugin
 
 import java.util.ArrayList; // import ArrayList program
@@ -133,25 +134,9 @@ public class MainCommand implements CommandExecutor {
             }
 
             if (args[0].equalsIgnoreCase("forcefinish")) {
+            
+                sender.sendMessage(AdminCommand.forceFinish());
 
-                if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == false) {
-                    sender.sendMessage("Game already stopped");
-                    return false;
-                }
-
-                Main.getPlugin().getConfig().set("game.ongoing", false);
-
-                Main.getPlugin().saveConfig();
-
-                sender.sendMessage("finishing the game");
-
-                for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
-                    for (String strUUID : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
-                        Bukkit.getPlayer(UUID.fromString(strUUID)).teleport(
-                            Main.getPlugin().getConfig().getLocation("teams." + team + ".players." + strUUID + ".origin")
-                        ); // teleport player back to their origin position
-                    }
-                }
             }
         }
 
