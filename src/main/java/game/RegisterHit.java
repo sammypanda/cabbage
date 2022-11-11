@@ -70,12 +70,14 @@ public class RegisterHit {
             // retrieve our premade 'cabbage slice' ItemStack
             ItemStack theCabbage = Team.getCabbage();
 
-            // remove cabbage slice from the gamer who was hit
-            theCabbage.setAmount(1);
-            theGamer.getInventory().removeItem(theCabbage);
+            if (theGamer.getInventory().contains(theCabbage)) { // if we have a cabbage slice
+                // remove cabbage slice from us cuz we were hit
+                theCabbage.setAmount(1);
+                theGamer.getInventory().removeItem(theCabbage);
 
-            // throw a cabbage slice on the ground
-            Bukkit.getServer().getWorld("World").dropItem(theGamer.getLocation(), theCabbage);
+                // ..and throw a cabbage slice to the ground
+                Bukkit.getServer().getWorld("World").dropItem(theGamer.getLocation(), theCabbage);
+            }
 
             // temporary
             Bukkit.broadcastMessage("gamer hit gamer");
