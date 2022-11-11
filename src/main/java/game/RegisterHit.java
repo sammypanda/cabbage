@@ -65,35 +65,32 @@ public class RegisterHit {
 
             // retrieve our premade 'cabbage slice' ItemStack
             ItemStack theCabbage = Team.getCabbage();
-
-            if (!theGamer.getInventory().containsAtLeast(theCabbage, 1) && !sameTeam) {
-                event.setCancelled(true); // cancel the damage
-                Bukkit.getPlayer(event.getDamager().getUniqueId()).sendMessage("this player has no cabbage slices");
-                return;
-            }
-
-            theCabbage.setAmount(1);
             
+            theCabbage.setAmount(1); // amount that gets passed or dropped
+
             if (sameTeam) {
                 event.setCancelled(true); // cancel the damage
-                // remove cabbage slice from them cuz they hit us
+            }
+            
+            if (theHitter.getInventory().containsAtLeast(theCabbage, 1) && sameTeam) {
+                // remove cabbage slice from hitter cuz they have one and "passed" it to us
                 theHitter.getInventory().removeItem(theCabbage);
 
                 // give us their cabbage slice! :)
                 theGamer.getInventory().addItem(theCabbage);
-            } else { // they are enemy!
+            } else if (theGamer.getInventory().containsAtLeast(theCabbage, 1) && !sameTeam) { // they are enemy!
                 // remove cabbage slice from us cuz we have one and we were hit
                 theGamer.getInventory().removeItem(theCabbage);
 
-                // throw a cabbage slice to the ground
+                // throw a cabbage slice to the ground for anyone to have
                 Bukkit.getServer().getWorld("World").dropItem(theGamer.getLocation(), theCabbage);
+            } else {
+                event.setCancelled(true); // cancel the damage
+
+                Bukkit.getPlayer(event.getDamager().getUniqueId()).sendMessage("this player has no cabbage slices");
+
+                return;
             }
-
-            // temporary
-            Bukkit.broadcastMessage("gamer hit gamer");
-
-        } else {
-            return;
         }
     }
 }
