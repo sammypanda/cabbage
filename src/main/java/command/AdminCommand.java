@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
+import org.bukkit.inventory.PlayerInventory;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,6 +31,9 @@ public class AdminCommand {
             for (String strUUID : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
 
                 Player player = Bukkit.getPlayer(UUID.fromString(strUUID));
+
+                // clear the game items from the player (generically)
+                player.getInventory().clear();
                 
                 // teleport player back to their origin position
                 player.teleport(
