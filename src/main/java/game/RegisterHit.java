@@ -66,7 +66,7 @@ public class RegisterHit {
             // retrieve our premade 'cabbage slice' ItemStack
             ItemStack theCabbage = Team.getCabbage();
 
-            if (!theGamer.getInventory().containsAtLeast(theCabbage, 1)) {
+            if (!theGamer.getInventory().containsAtLeast(theCabbage, 1) && !sameTeam) {
                 event.setCancelled(true); // cancel the damage
                 Bukkit.getPlayer(event.getDamager().getUniqueId()).sendMessage("this player has no cabbage slices");
                 return;
