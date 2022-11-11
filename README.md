@@ -9,6 +9,7 @@
 - A hit from an enemy drops one of your cabbage slices **(needs to be tested)**
 - Distribute the cabbage slices by all players
 - When one team has all the cabbage slices end and say [team] won
+- Rescue any abandoned cabbage slices!
 - ...
 
 <!-- OLD POINTS:
