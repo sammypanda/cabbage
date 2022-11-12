@@ -65,6 +65,7 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		// HandlerList.unregisterAll(Listener);
+		AdminCommand.forceFinish();
 	}
 
 	public static Plugin getPlugin() {
