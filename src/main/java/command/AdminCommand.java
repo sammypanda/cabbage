@@ -33,7 +33,7 @@ public class AdminCommand {
 
                 Player player = Bukkit.getPlayer(UUID.fromString(strUUID));
 
-                if (player.isOnline) {
+                if (player != null) {
                     // clear the game items from the player (generically)
                     player.getInventory().clear();
                     
