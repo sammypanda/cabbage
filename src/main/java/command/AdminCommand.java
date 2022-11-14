@@ -25,6 +25,7 @@ public class AdminCommand {
         }
 
         Main.getPlugin().getConfig().set("game.ongoing", false);
+        Main.getPlugin().reloadConfig();
         Main.getPlugin().saveConfig();
 
         for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
@@ -32,13 +33,15 @@ public class AdminCommand {
 
                 Player player = Bukkit.getPlayer(UUID.fromString(strUUID));
 
-                // clear the game items from the player (generically)
-                player.getInventory().clear();
-                
-                // teleport player back to their origin position
-                player.teleport(
-                    Main.getPlugin().getConfig().getLocation("teams." + team + ".players." + strUUID + ".origin")
-                );
+                if (player.isOnline) {
+                    // clear the game items from the player (generically)
+                    player.getInventory().clear();
+                    
+                    // teleport player back to their origin position
+                    player.teleport(
+                        Main.getPlugin().getConfig().getLocation("teams." + team + ".players." + strUUID + ".origin")
+                    );
+                }
             }
         }
 
