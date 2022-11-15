@@ -48,4 +48,7 @@ public class AdminCommand {
         return "Finishing the game";
     }
 
+    public static String arenaEditor() {
+        return "(wip) entering the cabbage editor";
+    }
 }

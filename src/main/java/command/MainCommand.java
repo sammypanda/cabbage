@@ -138,6 +138,11 @@ public class MainCommand implements CommandExecutor {
                 sender.sendMessage(AdminCommand.forceFinish());
 
             }
+
+            if (args[0].equalsIgnoreCase("editor")) {
+
+                sender.sendMessage("Need name of arena to edit");
+            }
         }
 
         else if (args.length == 2) {
@@ -197,6 +202,11 @@ public class MainCommand implements CommandExecutor {
 
                 }
 
+            }
+
+            if (args[0].equalsIgnoreCase("editor")) {
+
+                sender.sendMessage(AdminCommand.arenaEditor());
             }
         }
 
