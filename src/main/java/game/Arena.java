@@ -8,9 +8,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class Arena {
-    public void editor(Player player, String arena) {
+    public static String editor(Player player, String arena) {
         Main.getPlugin().getConfig().createSection("arena." + arena);
 
         player.sendRawMessage("test, this is a 'raw' message.. you are working on " + arena);
+
+        return "editing " + arena;
     }   
 }
