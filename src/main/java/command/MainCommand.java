@@ -215,8 +215,7 @@ public class MainCommand implements CommandExecutor {
 
             if (args[0].equalsIgnoreCase("editor")) {
 
-                String res = AdminCommand.arenaEditor(Bukkit.getPlayer(UUID.fromString(uuid)), args[1]);
-                sender.sendMessage(res);
+                AdminCommand.arenaEditor(Bukkit.getPlayer(UUID.fromString(uuid)), args[1]);
                 
             }
         }

@@ -50,7 +50,7 @@ public class AdminCommand {
         return "Finishing the game";
     }
 
-    public static String arenaEditor(Player player, String arena) {
-        return Arena.editor(player, arena);
+    public void arenaEditor(Player player, String arena) {
+        Arena.editor(player, arena);
     }
 }

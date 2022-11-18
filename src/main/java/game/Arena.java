@@ -10,7 +10,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class Arena {
-    public static String editor(Player player, String arena) {
+    public void editor(Player player, String arena) {
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
 
@@ -18,7 +18,5 @@ public class Arena {
         }
         
         player.sendRawMessage("- use" + ChatColor.MAGIC + " colour" + ChatColor.RESET + " wool to set team spawn");
-
-        return "editing " + arena;
     }   
 }
