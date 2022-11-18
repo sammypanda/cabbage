@@ -11,7 +11,7 @@ import org.bukkit.configuration.ConfigurationSection;
 
 public class Arena {
     public static String editor(Player player, String arena) {
-        if (Main.getPlugin().getConfig().getConfigurationSection("arenas").get(arena) == null) {
+        if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
 
             player.sendRawMessage("- created " + ChatColor.BOLD + arena + ".");
