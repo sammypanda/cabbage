@@ -1,10 +1,16 @@
 package main.java.game;
 import main.java.Main; // needed for getPlugin
 
+import org.bukkit.Bukkit;
+
 import org.bukkit.entity.Player;
 
-public class Arena {
-    // public void editor(Player player) {
+import org.bukkit.configuration.ConfigurationSection;
 
-    // }   
+public class Arena {
+    public void editor(Player player, String arena) {
+        Main.getPlugin().getConfig().createSection("arena." + arena);
+
+        player.sendRawMessage("test, this is a 'raw' message.. you are working on " + arena);
+    }   
 }

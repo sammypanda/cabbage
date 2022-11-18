@@ -16,6 +16,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import org.bukkit.entity.Player;
 
+import main.java.game.Arena;
+
 public class AdminCommand {
 
     public static String forceFinish() {
@@ -48,7 +50,7 @@ public class AdminCommand {
         return "Finishing the game";
     }
 
-    public static String arenaEditor() {
-        return "(wip) entering the cabbage editor";
+    public static String arenaEditor(Player player, String arena) {
+        return Arena.editor(player, arena);
     }
 }
