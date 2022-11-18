@@ -145,7 +145,7 @@ public class MainCommand implements CommandExecutor {
             }
 
             if (args[0].equalsIgnoreCase("list")) {
-                Int loop = 0;
+                int loop = 0;
 
                 for(String arena : Main.getPlugin().getConfig().getConfigurationSection("arenas").getKeys(false)) {
                     Bukkit.broadcastMessage("1. " + arena);
