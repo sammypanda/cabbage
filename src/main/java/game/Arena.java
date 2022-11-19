@@ -34,6 +34,6 @@ public class Arena {
         String woolColor = wool.toString().replace("_WOOL","");
         Bukkit.broadcastMessage(woolColor);
 
-        state.setType(Material.AIR); // disappear da block
+        block.setType(Material.AIR); // disappear da block
     }
 }
