@@ -17,6 +17,7 @@ import org.bukkit.block.BlockState;
 
 public class Arena {
     Boolean editing;
+    String arena;
 
     public static void editor(Player player, String arena) {
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
@@ -35,5 +36,7 @@ public class Arena {
         Bukkit.broadcastMessage(woolColor);
 
         block.setType(Material.AIR); // disappear da block
+
+        Main.getPlugin().getConfig().set("arenas." + this.arena + "." + woolColor + ".spawn", location.toString());
     }
 }
