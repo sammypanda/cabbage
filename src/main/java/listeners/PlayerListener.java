@@ -46,5 +46,9 @@ public class PlayerListener implements Listener {
         if (blockState.getType().toString().endsWith("WOOL")) { // if the block is wool
             AdminCommand.getArena().setSpawn(block, location);
         }
+
+        if (blockState.getType().toString().equals("BARRIER")) {
+            AdminCommand.getArena().exit();
+        }
     }
 }

@@ -6,6 +6,9 @@ import org.bukkit.Location;
 
 import org.bukkit.Material;
 
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
 import org.bukkit.entity.Player;
 
 import org.bukkit.ChatColor;
@@ -17,9 +20,20 @@ import org.bukkit.block.BlockState;
 
 public class Arena {
     String arena;
+    Player player;
 
     public Arena(Player player, String arena) {
         this.arena = arena;
+        this.player = player;
+
+        player.getInventory().clear();
+
+        ItemStack barrier = new ItemStack(Material.BARRIER);
+        ItemMeta barrierMeta = barrier.getItemMeta();
+        barrierMeta.setDisplayName(ChatColor.ITALIC + "Exit");
+
+        barrier.setItemMeta(barrierMeta);
+        player.getInventory().setItem(8, barrier); // give the admin the barrier in their last hotbar slot 
 
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
@@ -41,6 +55,10 @@ public class Arena {
 
         Main.getPlugin().getConfig().set("arenas." + this.arena + "." + woolColor + ".spawn", location.toString());
         Main.getPlugin().saveConfig();
+    }
+
+    public void exit() {
+        this.player.getInventory().clear();
     }
 
     public String getName() {
