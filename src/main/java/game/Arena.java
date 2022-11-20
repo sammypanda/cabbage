@@ -23,6 +23,7 @@ public class Arena {
 
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
+            Main.getPlugin().saveConfig();
 
             player.sendRawMessage("- created " + ChatColor.BOLD + arena + ".");
         }
@@ -39,6 +40,7 @@ public class Arena {
         block.setType(Material.AIR); // disappear da block
 
         Main.getPlugin().getConfig().set("arenas." + this.arena + "." + woolColor + ".spawn", location.toString());
+        Main.getPlugin().saveConfig();
     }
 
     public String getName() {
