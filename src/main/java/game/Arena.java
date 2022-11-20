@@ -59,6 +59,7 @@ public class Arena {
 
     public void exit() {
         this.player.getInventory().clear();
+        this.player.sendRawMessage(ChatColor.BOLD + "" + ChatColor.RED + "exited " + ChatColor.WHITE + this.arena + ChatColor.RED + " editor");
     }
 
     public String getName() {

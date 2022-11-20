@@ -51,8 +51,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getItem().getType().toString().equals("BARRIER")) {
-            Bukkit.broadcastMessage("barrier.. action: " + event.getAction().toString() + ", hand: " + event.getHand().toString());
+        if (event.getAction().toString().startsWith("RIGHT") && event.getItem().getType().toString().equals("BARRIER")) {
             event.setCancelled(true);
             AdminCommand.getArena().exit();
         }
