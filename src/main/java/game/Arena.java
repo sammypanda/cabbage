@@ -16,10 +16,11 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 
 public class Arena {
-    Boolean editing;
     String arena;
 
-    public void editor(Player player, String arena) {
+    public Arena(Player player, String arena) {
+        this.arena = arena;
+
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
 
