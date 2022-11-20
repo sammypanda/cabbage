@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 import org.bukkit.entity.Item;
 
@@ -46,8 +47,13 @@ public class PlayerListener implements Listener {
         if (blockState.getType().toString().endsWith("WOOL")) { // if the block is wool
             AdminCommand.getArena().setSpawn(block, location);
         }
+    }
 
-        if (blockState.getType().toString().equals("BARRIER")) {
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        if (event.getItem().getType().toString().equals("BARRIER")) {
+            Bukkit.broadcastMessage("barrier.. action: " + event.getAction().toString() + ", hand: " + event.getHand().toString());
+            event.setCancelled(true);
             AdminCommand.getArena().exit();
         }
     }
