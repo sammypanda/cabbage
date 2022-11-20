@@ -19,7 +19,7 @@ public class Arena {
     Boolean editing;
     String arena;
 
-    public static void editor(Player player, String arena) {
+    public void editor(Player player, String arena) {
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
 
@@ -29,7 +29,7 @@ public class Arena {
         player.sendRawMessage("- use" + ChatColor.MAGIC + " colour" + ChatColor.RESET + " wool to set team spawn");
     }
 
-    public static void setSpawn(Block block, Location location) {
+    public void setSpawn(Block block, Location location) {
         BlockState state = block.getState();
         Material wool = state.getType();
         String woolColor = wool.toString().replace("_WOOL","");
@@ -38,5 +38,9 @@ public class Arena {
         block.setType(Material.AIR); // disappear da block
 
         Main.getPlugin().getConfig().set("arenas." + this.arena + "." + woolColor + ".spawn", location.toString());
+    }
+
+    public String getName() {
+        return this.arena;
     }
 }

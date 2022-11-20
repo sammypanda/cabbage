@@ -1,6 +1,7 @@
 package main.java.listeners;
 import main.java.game.Team;
 import main.java.game.Arena;
+import main.java.command.AdminCommand;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -20,6 +21,8 @@ import org.bukkit.entity.Item;
 import main.java.game.RegisterHit;
 
 public class PlayerListener implements Listener {
+    String currentArena;
+
     @EventHandler
     public void onPlayerHit(EntityDamageByEntityEvent event) {
         RegisterHit registerhit = new RegisterHit();
@@ -41,7 +44,7 @@ public class PlayerListener implements Listener {
         Location location = block.getLocation();
 
         if (blockState.getType().toString().endsWith("WOOL")) { // if the block is wool
-            Arena.setSpawn(block, location);
+            AdminCommand.getArena().setSpawn(block, location);
         }
     }
 }
