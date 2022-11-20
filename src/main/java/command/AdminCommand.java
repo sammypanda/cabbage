@@ -19,6 +19,7 @@ import org.bukkit.entity.Player;
 import main.java.game.Arena;
 
 public class AdminCommand {
+    static Arena arena;
 
     public static String forceFinish() {
         // don't continue if game is already stopped
@@ -51,10 +52,10 @@ public class AdminCommand {
     }
 
     public static void arenaEditor(Player admin, String arena) {
-        AdminCommand.arena = new Arena(admin, arena);
+        arena = new Arena(admin, arena);
     }
 
     public static Arena getArena() {
-        return AdminCommand.arena;
+        return arena;
     }
 }
