@@ -79,8 +79,13 @@ public class Arena {
             this.player.sendRawMessage(ChatColor.BOLD + "" + ChatColor.RED + "deleted " + ChatColor.WHITE + this.arena);
             this.exit();
         } else {
-            this.player.sendRawMessage("> press again to exit");
+            this.player.sendRawMessage("right click to delete, left click to cancel");
             this.deleting = true;
         }
+    }
+
+    public void cancel() {
+        // resets all the pending actions to default
+        this.deleting = false;
     }
 }

@@ -60,5 +60,10 @@ public class PlayerListener implements Listener {
             event.setCancelled(true);
             AdminCommand.getArena().delete();
         }
+
+        if (event.getAction().toString().startsWith("LEFT") && event.getItem().getType().toString().equals("BARRIER")) {
+            event.setCancelled(true);
+            AdminCommand.getArena().cancel();
+        }
     }
 }
