@@ -51,9 +51,14 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction().toString().startsWith("RIGHT") && event.getItem().getType().toString().equals("BARRIER")) {
+        if (event.getAction().toString().startsWith("RIGHT") && event.getItem().getType().toString().equals("OAK_DOOR")) {
             event.setCancelled(true);
             AdminCommand.getArena().exit();
+        }
+
+        if (event.getAction().toString().startsWith("RIGHT") && event.getItem().getType().toString().equals("BARRIER")) {
+            event.setCancelled(true);
+            AdminCommand.getArena().delete();
         }
     }
 }

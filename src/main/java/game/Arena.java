@@ -21,6 +21,7 @@ import org.bukkit.block.BlockState;
 public class Arena {
     String arena;
     Player player;
+    Boolean deleting = false;
 
     public Arena(Player player, String arena) {
         this.arena = arena;
@@ -32,8 +33,14 @@ public class Arena {
         ItemMeta doorMeta = door.getItemMeta();
         doorMeta.setDisplayName(ChatColor.ITALIC + "Exit");
 
+        ItemStack barrier = new ItemStack(Material.BARRIER);
+        ItemMeta barrierMeta = barrier.getItemMeta();
+        barrierMeta.setDisplayName(ChatColor.ITALIC + "Delete");
+
         door.setItemMeta(doorMeta);
-        player.getInventory().setItem(8, door); // give the admin the door in the second last hotbar slot 
+        barrier.setItemMeta(barrierMeta);
+        player.getInventory().setItem(8, barrier); // give the admin the barrier in the last hotbar slot
+        player.getInventory().setItem(7, door); // give the admin the door in the second last hotbar slot 
 
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
@@ -64,5 +71,14 @@ public class Arena {
 
     public String getName() {
         return this.arena;
+    }
+
+    public void delete() {
+        if (this.deleting) {
+            Main.getPlugin().getConfig().set("arenas." + this.arena, null);
+            this.exit();
+        } else {
+            this.deleting = true;
+        }
     }
 }
