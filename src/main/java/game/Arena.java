@@ -28,12 +28,12 @@ public class Arena {
 
         player.getInventory().clear();
 
-        ItemStack barrier = new ItemStack(Material.BARRIER);
-        ItemMeta barrierMeta = barrier.getItemMeta();
-        barrierMeta.setDisplayName(ChatColor.ITALIC + "Exit");
+        ItemStack door = new ItemStack(Material.OAK_DOOR);
+        ItemMeta doorMeta = door.getItemMeta();
+        doorMeta.setDisplayName(ChatColor.ITALIC + "Exit");
 
-        barrier.setItemMeta(barrierMeta);
-        player.getInventory().setItem(8, barrier); // give the admin the barrier in their last hotbar slot 
+        door.setItemMeta(doorMeta);
+        player.getInventory().setItem(8, door); // give the admin the door in the second last hotbar slot 
 
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
