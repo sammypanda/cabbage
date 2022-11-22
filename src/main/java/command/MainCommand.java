@@ -138,6 +138,20 @@ public class MainCommand implements CommandExecutor {
                 sender.sendMessage(AdminCommand.forceFinish());
 
             }
+
+            if (args[0].equalsIgnoreCase("editor")) {
+
+                sender.sendMessage("Need name of arena to edit");
+            }
+
+            if (args[0].equalsIgnoreCase("list")) {
+                int loop = 0;
+
+                for(String arena : Main.getPlugin().getConfig().getConfigurationSection("arenas").getKeys(false)) {
+                    Bukkit.broadcastMessage("1. " + arena);
+                    loop++;
+                }
+            }
         }
 
         else if (args.length == 2) {
@@ -197,6 +211,12 @@ public class MainCommand implements CommandExecutor {
 
                 }
 
+            }
+
+            if (args[0].equalsIgnoreCase("editor")) {
+
+                AdminCommand.arenaEditor(Bukkit.getPlayer(UUID.fromString(uuid)), args[1]);
+                
             }
         }
 
