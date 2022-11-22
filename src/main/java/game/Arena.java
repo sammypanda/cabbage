@@ -76,8 +76,10 @@ public class Arena {
     public void delete() {
         if (this.deleting) {
             Main.getPlugin().getConfig().set("arenas." + this.arena, null);
+            this.player.sendRawMessage(ChatColor.BOLD + "" + ChatColor.RED + "deleted " + ChatColor.WHITE + this.arena);
             this.exit();
         } else {
+            this.player.sendRawMessage(ChatColor.UNDERLINE + "press again to exit");
             this.deleting = true;
         }
     }
