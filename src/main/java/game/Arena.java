@@ -86,6 +86,9 @@ public class Arena {
 
     public void cancel() {
         // resets all the pending actions to default
-        this.deleting = false;
+        if (this.deleting) {
+            this.deleting = false;
+            this.player.sendRawMessage("cancelled deletion");
+        }
     }
 }
