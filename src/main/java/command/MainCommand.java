@@ -64,7 +64,7 @@ public class MainCommand implements CommandExecutor {
 
             else if (args[0].equalsIgnoreCase("team") || args[0].equalsIgnoreCase("join")) {
 
-                sender.sendMessage("Enter team you intend to join (Blue, Red, Green)");
+                sender.sendMessage("Enter team you intend to join (any of the dye colours)");
                 return false;
 
             }
@@ -175,6 +175,16 @@ public class MainCommand implements CommandExecutor {
 
                 if (!userHasTeam) {
 
+                    for (Material material : Material.values()) {
+                        if (material.toString().endsWith("_DYE")) {
+                            String color = material.toString().replace("_DYE", "");
+
+                            if (args[1].toLowerCase().equals(color.toLowerCase())) {
+                                Bukkit.broadcastMessage("you selected " + color);
+                            }
+                        }
+                    }
+
                     String list_map;
 
                     switch(args[1].toLowerCase()) {
@@ -195,7 +205,7 @@ public class MainCommand implements CommandExecutor {
                             break;
 
                         default:
-                            sender.sendMessage("Failed");
+                            sender.sendMessage("not a valid colour");
                             return false;
                     }
 
