@@ -64,7 +64,7 @@ public class MainCommand implements CommandExecutor {
 
             else if (args[0].equalsIgnoreCase("team") || args[0].equalsIgnoreCase("join")) {
 
-                sender.sendMessage("Enter team you intend to join (Blue, Red, Green)");
+                sender.sendMessage("Enter team you intend to join (any of the dye colours)");
                 return false;
 
             }
@@ -177,33 +177,22 @@ public class MainCommand implements CommandExecutor {
 
                     String list_map;
 
-                    switch(args[1].toLowerCase()) {
+                    for (Material material : Material.values()) {
+                        if (material.toString().endsWith("_DYE")) {
+                            String color = material.toString().replace("_DYE", "").toLowerCase();
 
-                        case "blue":
-                            sender.sendMessage("You joined the" + ChatColor.BLUE + " blue " + ChatColor.RESET + "team");
-                            list_map = "teams.blue.players";
-                            break;
+                            if (args[1].toLowerCase().equals(color)) {
+                                sender.sendMessage("You joined the " + color + " team");
+                                list_map = "teams."+color+".players";
 
-                        case "red":
-                            sender.sendMessage("You joined the" + ChatColor.RED + " red " + ChatColor.RESET + "team");
-                            list_map = "teams.red.players";
-                            break;
-                        
-                        case "green":
-                            sender.sendMessage("You joined the" + ChatColor.GREEN + " green " + ChatColor.RESET + "team");
-                            list_map = "teams.green.players";
-                            break;
+                                Main.getPlugin().getConfig().getConfigurationSection(list_map).createSection(uuid);
 
-                        default:
-                            sender.sendMessage("Failed");
-                            return false;
+                                Main.getPlugin().getConfig().set(list_map + "." + uuid + ".origin", Bukkit.getPlayer(UUID.fromString(uuid)).getLocation());
+
+                                Main.getPlugin().saveConfig();
+                            }
+                        }
                     }
-
-                    Main.getPlugin().getConfig().getConfigurationSection(list_map).createSection(uuid);
-
-                    Main.getPlugin().getConfig().set(list_map + "." + uuid + ".origin", Bukkit.getPlayer(UUID.fromString(uuid)).getLocation());
-
-                    Main.getPlugin().saveConfig();
 
                 } else {
 
