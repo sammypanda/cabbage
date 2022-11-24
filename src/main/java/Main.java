@@ -5,6 +5,7 @@ import java.util.ArrayList; // import ArrayList program
 import org.bukkit.plugin.java.JavaPlugin; // essential for functionality
 import org.bukkit.plugin.Plugin; // plugin type
 import org.bukkit.entity.Player;
+import org.bukkit.Material;
 // import org.bukkit.event.HandlerList
 
 import main.java.listeners.*; // import every listener
@@ -27,9 +28,12 @@ public class Main extends JavaPlugin {
 
 		// Initiating/Creating Config
 		this.saveDefaultConfig();
-		this.getConfig().createSection("teams.blue.players");
-		this.getConfig().createSection("teams.red.players");
-		this.getConfig().createSection("teams.green.players");
+		for (Material material : Material.values()) {
+			if (material.toString().endsWith("_DYE")) {
+				this.getConfig().createSection("teams."+material.toString().replace("_DYE", "").toLowerCase()+".players");
+			}
+		}
+		Main.getPlugin().saveConfig();
 
 		// Initiating Teams Container
 		ScoreboardManager manager = getServer().getScoreboardManager();
