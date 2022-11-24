@@ -182,7 +182,7 @@ public class MainCommand implements CommandExecutor {
                             String color = material.toString().replace("_DYE", "").toLowerCase();
 
                             if (args[1].toLowerCase().equals(color)) {
-                                sender.sendMessage("You joined the" + color + "team");
+                                sender.sendMessage("You joined the " + color + " team");
                                 list_map = "teams."+color+".players";
 
                                 Main.getPlugin().getConfig().getConfigurationSection(list_map).createSection(uuid);
