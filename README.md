@@ -8,6 +8,9 @@
 - ~~Create "Cabbage Slice" item using bonemeal as the base item~~
 - ~~A hit from an enemy drops one of your cabbage slices~~
 - ~~No throwing cabbage slices on the ground~~
+- Stop players from joining multiple teams at once
+- Add Material.DYE-chatColor translating methods
+- Refactor copied loop through materials for identifying teams
 - When one team has all the cabbage slices end and say [team] won
 - Rescue any abandoned cabbage slices!
 - ...
