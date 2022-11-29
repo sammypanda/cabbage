@@ -161,17 +161,17 @@ public class MainCommand implements CommandExecutor {
                 Boolean userHasTeam = false;
                 String userTeam = null;
 
-                // for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
-                //     UUID realUUID = UUID.fromString(uuid);
-                //     Player playerObject = Bukkit.getPlayer(realUUID);
+                for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
+                    UUID realUUID = UUID.fromString(uuid);
+                    Player playerObject = Bukkit.getPlayer(realUUID);
 
-                //     if (Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false).contains(uuid)) {
-                //         userHasTeam = true;
-                //         userTeam = team;
+                    if (Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false).contains(uuid)) {
+                        userHasTeam = true;
+                        userTeam = team;
 
-                //         Main.getPlugin().getConfig().set("teams." + team + ".players." + uuid + ".origin", playerObject.getLocation());
-                //     }
-                // }
+                        Main.getPlugin().getConfig().set("teams." + team + ".players." + uuid + ".origin", playerObject.getLocation());
+                    }
+                }
 
                 if (!userHasTeam) {
 
