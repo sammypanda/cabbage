@@ -9,14 +9,12 @@ import org.bukkit.Material;
 // import org.bukkit.event.HandlerList
 
 import main.java.listeners.*; // import every listener
-import main.java.command.*; // import every command (ScoreboardManager/Scoreboard)
-import org.bukkit.scoreboard.*; // managing teams
+import main.java.command.*; // import every command
 import org.bukkit.ChatColor;
 
 public class Main extends JavaPlugin {
 
 	private static Plugin plugin;
-	private static Scoreboard board;
 
 	@Override
 	public void onEnable() {
@@ -47,9 +45,5 @@ public class Main extends JavaPlugin {
 
 	public static Plugin getPlugin() {
 		return plugin; // for accessing plugin via other classes
-	}
-
-	public static Scoreboard getScoreboard() {
-		return board;
 	}
 }
