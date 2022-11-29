@@ -137,11 +137,15 @@ public class MainCommand implements CommandExecutor {
                     UUID realUUID = UUID.fromString(uuid);
                     Player playerObject = Bukkit.getPlayer(realUUID);
 
-                    if (Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false).contains(uuid)) {
-                        userHasTeam = true;
-                        userTeam = team;
-
-                        Main.getPlugin().getConfig().set("teams." + team + ".players." + uuid + ".origin", playerObject.getLocation());
+                    if (!Main.getPlugin().getConfig().isSet("teams." + team + ".players")) { // if players *not* isSet (if no players set in team)
+                        Main.getPlugin().getConfig().createSection("teams." + team + ".players"); // create the players object
+                    } else { // we have some players in this team!
+                        if (Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false).contains(uuid)) { // if one of the players matches our uuid
+                            userHasTeam = true;
+                            userTeam = team;
+    
+                            Main.getPlugin().getConfig().set("teams." + team + ".players." + uuid + ".origin", playerObject.getLocation());
+                        }
                     }
                 }
 

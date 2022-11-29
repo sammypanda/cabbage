@@ -28,7 +28,7 @@ public class Main extends JavaPlugin {
 		this.saveDefaultConfig();
 		for (Material material : Material.values()) {
 			if (material.toString().endsWith("_DYE")) {
-				this.getConfig().createSection("teams."+material.toString().replace("_DYE", "").toLowerCase()+".players");
+				this.getConfig().createSection("teams."+material.toString().replace("_DYE", "").toLowerCase());
 			}
 		}
 		Main.getPlugin().saveConfig();

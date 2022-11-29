@@ -28,7 +28,6 @@ public class AdminCommand {
         }
 
         Main.getPlugin().getConfig().set("game.ongoing", false);
-        Main.getPlugin().saveConfig();
 
         for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
             for (String strUUID : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
@@ -45,8 +44,11 @@ public class AdminCommand {
                     );
                 }
             }
+
+            Main.getPlugin().getConfig().set("teams." + team, "");
         }
 
+        Main.getPlugin().saveConfig();
         return "Finishing the game";
     }
 
