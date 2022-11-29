@@ -76,61 +76,33 @@ public class MainCommand implements CommandExecutor {
                     return false;
                 }
 
-                Main.getPlugin().getConfig().set("game.ongoing", true);
+                if (!Main.getPlugin().getConfig().contains("arenas.default")) {
+                    sender.sendMessage("No 'default' arena made :(");
+                    return false;
+                }
 
+                Main.getPlugin().getConfig().set("game.ongoing", true);
                 Main.getPlugin().saveConfig();
 
-                new Team(
-                    "blue", 
-                    Main.getPlugin().getConfig().getConfigurationSection("teams.blue.players").getKeys(false), 
-                    Color.BLUE, 
-                    new Location(
-                        Bukkit.getServer().getWorld("World"),
-                        252.500,
-                        -60,
-                        820.500,
-                        -136,
-                        34
-                    )
-                );
+                for(String arena : Main.getPlugin().getConfig().getConfigurationSection("arenas").getKeys(false)) {
+                    for(String color : Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena).getKeys(false)) {
+                        String team = color.toLowerCase();
 
-                new Team(
-                    "red", 
-                    Main.getPlugin().getConfig().getConfigurationSection("teams.red.players").getKeys(false), 
-                    Color.RED, 
-                    new Location(
-                        Bukkit.getServer().getWorld("World"),
-                        252.500,
-                        -60,
-                        820.500,
-                        -136,
-                        34
-                    )
-                );
-
-                new Team(
-                    "green", 
-                    Main.getPlugin().getConfig().getConfigurationSection("teams.green.players").getKeys(false), 
-                    Color.GREEN, 
-                    new Location(
-                        Bukkit.getServer().getWorld("World"),
-                        252.500,
-                        -60,
-                        820.500,
-                        -136,
-                        34
-                    )
-                );
-
-                // TEST: looping through config.yml paths
-                for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
-                    Bukkit.getLogger().info("team: " + team); // logs out all teams
-                    for (String player : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
-                        Bukkit.getLogger().info(team + " player: " + player);
+                        new Team(
+                            team, 
+                            Main.getPlugin().getConfig().getConfigurationSection("teams."+team+".players").getKeys(false), 
+                            Color.RED, // needs to be translated from string to type:Color
+                            new Location(
+                                Bukkit.getServer().getWorld("World"),
+                                252.500,
+                                -60,
+                                820.500,
+                                -136,
+                                34
+                            )
+                        );
                     }
                 }
-                // end test
-                
             }
 
             if (args[0].equalsIgnoreCase("forcefinish")) {
