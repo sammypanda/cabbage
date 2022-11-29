@@ -36,9 +36,6 @@ public class Team {
         ItemStack theCabbage = this.getCabbage();
         theCabbage.setAmount(1); // variable amount given to each player
 
-        // create chestplate
-
-
         for (String player : players) {
 
             UUID playerUUID = UUID.fromString(player);
