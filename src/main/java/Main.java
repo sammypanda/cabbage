@@ -35,33 +35,6 @@ public class Main extends JavaPlugin {
 		}
 		Main.getPlugin().saveConfig();
 
-		// Initiating Teams Container
-		ScoreboardManager manager = getServer().getScoreboardManager();
-		board = manager.getNewScoreboard();
-
-		// Filling out teams
-		Team blueTeam = board.registerNewTeam("blue");
-		blueTeam.setDisplayName("Blue");
-		blueTeam.setPrefix(ChatColor.BLUE + "");
-
-		Team redTeam = board.registerNewTeam("red");
-		blueTeam.setDisplayName("Red");
-		redTeam.setPrefix(ChatColor.RED + "");
-		
-		Team greenTeam = board.registerNewTeam("green");
-		blueTeam.setDisplayName("Green");
-		greenTeam.setPrefix(ChatColor.GREEN + "");
-
-		// Populating Scoreboard
-		Objective objective = board.registerNewObjective("main", "dummy", "Cabbage!");
-		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-
-		// TEST: scoreboard set as visible
-		for(Player online : getServer().getOnlinePlayers()){
-			online.setScoreboard(board);
-		}
-		// end test
-
 		// Registering Command Executors
 		this.getCommand("cabbage").setExecutor(new MainCommand());
 	}
