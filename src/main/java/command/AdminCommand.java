@@ -28,7 +28,6 @@ public class AdminCommand {
         }
 
         Main.getPlugin().getConfig().set("game.ongoing", false);
-        Main.getPlugin().reloadConfig();
         Main.getPlugin().saveConfig();
 
         for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
