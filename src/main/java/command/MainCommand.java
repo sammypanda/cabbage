@@ -92,13 +92,16 @@ public class MainCommand implements CommandExecutor {
                             team, 
                             Main.getPlugin().getConfig().getConfigurationSection("teams."+team+".players").getKeys(false), 
                             Color.RED, // needs to be translated from string to type:Color
-                            new Location(
-                                Bukkit.getServer().getWorld("World"),
-                                252.500,
-                                -60,
-                                820.500,
-                                -136,
-                                34
+                            Main.getPlugin().getConfig().getConfigurationSection("arenas.default").getLocation(
+                                color + ".spawn",
+                                new Location(
+                                    Bukkit.getServer().getWorld("World"),
+                                    252.500,
+                                    -60,
+                                    820.500,
+                                    -136,
+                                    34
+                                )
                             )
                         );
                     }
