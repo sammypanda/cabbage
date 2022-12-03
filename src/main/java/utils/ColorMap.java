@@ -108,52 +108,5 @@ public class ColorMap {
         map.put(ChatColor.YELLOW, Color.YELLOW);
 
         return map.get(chat_color);
-
-        // switch(chat_color) { // old method
-        //     case BLUE:
-        //         return Color.BLUE;
-        //         break;
-        //     case DARK_AQUA:
-        //         return Color.BLUE;
-        //         break;
-        //     case DARK_BLUE:
-        //         return Color.BLUE;
-        //         break;
-        //     case DARK_GRAY:
-        //         return Color.GRAY;
-        //         break;
-        //     case DARK_GREEN:
-        //         return Color.GREEN;
-        //         break;
-        //     case DARK_PURPLE:
-        //         return Color.PURPLE;
-        //         break;
-        //     case DARK_RED:
-        //         return Color.RED;
-        //         break;
-        //     case GOLD:
-        //         return Color.YELLOW;
-        //         break;
-        //     case GRAY:
-        //         return Color.GRAY;
-        //         break;
-        //     case GREEN:
-        //         return Color.GREEN;
-        //         break;
-        //     case LIGHT_PURPLE:
-        //         return Color.PURPLE;
-        //         break;
-        //     case RED:
-        //         return Color.RED;
-        //         break;
-        //     case WHITE:
-        //         return Color.WHITE;
-        //         break;
-        //     case YELLOW:
-        //         return Color.YELLOW;
-        //         break;
-        //     default:
-        //         break;
-        // }
     }
 }
