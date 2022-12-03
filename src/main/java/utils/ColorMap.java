@@ -1,13 +1,9 @@
 package main.java.utils;
 
 import java.util.*;
-
 import org.bukkit.Bukkit;
-
 import org.bukkit.Material; // toDye()
-
 import org.bukkit.Color; // both from*() and to*()
-
 import org.bukkit.ChatColor; // toChatColor()
 
 public class ColorMap {
