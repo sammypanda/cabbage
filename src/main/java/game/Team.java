@@ -10,6 +10,7 @@ import org.bukkit.Color;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Location;
+import org.bukkit.GameMode;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -42,6 +43,9 @@ public class Team {
             Player playerObject = Bukkit.getPlayer(playerUUID);
 
             if (playerObject != null) {
+
+                // change gamemode to adventure to stop player destroying world
+                playerObject.setGameMode(GameMode.ADVENTURE);
 
                 PlayerInventory inventory = playerObject.getInventory();
 
