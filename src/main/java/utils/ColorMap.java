@@ -45,7 +45,7 @@ public class ColorMap {
         map.put(Color.BLUE, Material.BLUE_DYE);
         map.put(Color.FUCHSIA, Material.MAGENTA_DYE);
         map.put(Color.GRAY, Material.GRAY_DYE);
-        map.put(Color.GREEN, Material.DARK_GREEN);
+        map.put(Color.GREEN, Material.GREEN_DYE);
         map.put(Color.LIME, Material.LIME_DYE);
         map.put(Color.MAROON, Material.RED_DYE);
         map.put(Color.NAVY, Material.BLUE_DYE);
@@ -70,7 +70,7 @@ public class ColorMap {
         map.put(Material.BLUE_DYE, Color.BLUE);
         map.put(Material.MAGENTA_DYE, Color.FUCHSIA);
         map.put(Material.GRAY_DYE, Color.GRAY);
-        map.put(Material.DARK_GREEN, Color.GREEN);
+        map.put(Material.GREEN_DYE, Color.GREEN);
         map.put(Material.LIME_DYE, Color.LIME);
         map.put(Material.RED_DYE, Color.MAROON);
         map.put(Material.BLUE_DYE, Color.NAVY);
