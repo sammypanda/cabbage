@@ -60,7 +60,7 @@ public class Arena {
 
         block.setType(Material.AIR); // disappear da block
 
-        Main.getPlugin().getConfig().set("arenas." + this.arena + "." + woolColor + ".spawn", location);
+        Main.getPlugin().getConfig().set("arenas." + this.arena + ".teams." + woolColor.toLowerCase() + ".spawn", location);
         Main.getPlugin().saveConfig();
     }
 

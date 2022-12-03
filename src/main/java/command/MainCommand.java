@@ -85,15 +85,14 @@ public class MainCommand implements CommandExecutor {
                 Main.getPlugin().saveConfig();
 
                 for(String arena : Main.getPlugin().getConfig().getConfigurationSection("arenas").getKeys(false)) {
-                    for(String color : Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena).getKeys(false)) {
-                        String team = color.toLowerCase();
+                    for(String team : Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena + ".teams").getKeys(false)) {
 
                         new Team(
                             team, 
                             Main.getPlugin().getConfig().getConfigurationSection("teams."+team+".players").getKeys(false), 
-                            Color.RED, // needs to be translated from string to type:Color
+                            Color.RED, // needs to be translated from type:String to type:Color
                             Main.getPlugin().getConfig().getLocation(
-                                "arenas."+arena+"."+color+".spawn",
+                                "arenas."+arena+".teams."+team+".spawn",
                                 new Location(
                                     Bukkit.getServer().getWorld("World"),
                                     252.500,
