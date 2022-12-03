@@ -177,7 +177,7 @@ public class MainCommand implements CommandExecutor {
 
                     Material teamAsDye = Material.valueOf(userTeam.toUpperCase() + "_DYE");
 
-                    sender.sendMessage("you already joined the " + ColorMap.toChatColor(ColorMap.fromDye(teamAsDye)) + userTeam + " team!");
+                    sender.sendMessage("you already joined the " + ColorMap.toChatColor(ColorMap.fromDye(teamAsDye)) + userTeam + ChatColor.RESET + " team!");
 
                 }
 
