@@ -1,6 +1,6 @@
 package main.java.utils;
 
-import java.util.EnumMap;
+import java.util.*;
 
 import org.bukkit.Bukkit;
 
@@ -13,7 +13,7 @@ import org.bukkit.ChatColor; // toChatColor()
 public class ColorMap {
     public static ChatColor toChatColor(Color color) {
 
-        EnumMap<Color, ChatColor> map = new EnumMap<Color, ChatColor>(Color.class);
+        Map<Color, ChatColor> map = new HashMap<Color, ChatColor>();
 
         map.put(Color.AQUA, ChatColor.AQUA);
         map.put(Color.BLACK, ChatColor.BLACK);
@@ -38,7 +38,7 @@ public class ColorMap {
 
     public static Material toDye(Color color) {
 
-        EnumMap<Color, Material> map = new EnumMap<Color, Material>(Color.class);
+        Map<Color, Material> map = new HashMap<Color, Material>();
 
         map.put(Color.AQUA, Material.LIGHT_BLUE_DYE);
         map.put(Color.BLACK, Material.BLACK_DYE);
@@ -63,7 +63,7 @@ public class ColorMap {
 
     public static Color fromDye(Material dye) {
 
-        EnumMap<Material, Color> map = new EnumMap<Material, Color>(Color.class);
+        Map<Material, Color> map = new HashMap<Material, Color>();
 
         map.put(Material.LIGHT_BLUE_DYE, Color.AQUA);
         map.put(Material.BLACK_DYE, Color.BLACK);
@@ -88,7 +88,7 @@ public class ColorMap {
 
     public static Color fromChatColor(ChatColor chat_color) {
 
-        EnumMap<ChatColor, Color> map = new EnumMap<ChatColor, Color>(ChatColor.class);
+        Map<ChatColor, Color> map = new HashMap<ChatColor, Color>();
 
         map.put(ChatColor.AQUA, Color.AQUA);
         map.put(ChatColor.BLACK, Color.BLACK);
