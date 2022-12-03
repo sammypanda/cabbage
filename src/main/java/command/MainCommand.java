@@ -32,8 +32,9 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 
-// game package
+// local packages
 import main.java.game.Team;
+import main.java.utils.ColorMap;
 
 public class MainCommand implements CommandExecutor {
 
@@ -174,7 +175,9 @@ public class MainCommand implements CommandExecutor {
 
                 } else {
 
-                    sender.sendMessage("you already joined the " + userTeam + " team!"); // could use java reflection to colour this?
+                    Material teamAsDye = Material.valueOf(userTeam.toUpperCase() + "_DYE");
+
+                    sender.sendMessage("you already joined the " + ColorMap.toChatColor(ColorMap.fromDye(teamAsDye)) + userTeam + " team!");
 
                 }
 
