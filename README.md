@@ -28,6 +28,7 @@
 
 ## Dependencies
 - Maven
+  - current build command: ``mvn -f [path/to/cabbage/root/directory] clean package -U -e -q -DskipTests``
 
 ### Standard Directory Layout
 > https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html
