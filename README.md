@@ -8,7 +8,8 @@
 - ~~Create "Cabbage Slice" item using bonemeal as the base item~~
 - ~~A hit from an enemy drops one of your cabbage slices~~
 - ~~No throwing cabbage slices on the ground~~
-- Stop players from joining multiple teams at once
+- Fix improper exiting from arena editor (when multiple participants) 
+- ~~Stop players from joining multiple teams at once~~
 - Add Material.DYE-chatColor translating methods
 - Refactor copied loop through materials for identifying teams
 - When one team has all the cabbage slices end and say [team] won
@@ -27,6 +28,7 @@
 
 ## Dependencies
 - Maven
+  - current build command: ``mvn -f [path/to/cabbage/root/directory] clean package -U -e -q -DskipTests``
 
 ### Standard Directory Layout
 > https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html
