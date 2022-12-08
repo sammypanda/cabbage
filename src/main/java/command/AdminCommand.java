@@ -52,6 +52,50 @@ public class AdminCommand {
         return "Finishing the game";
     }
 
+    public static String start() {
+        this.start("default");
+    }
+
+    public static String start(String arena) {
+        this.arena = arena;
+
+        if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == true) {
+            sender.sendMessage("Game already ongoing");
+            return false;
+        }
+
+        if (!Main.getPlugin().getConfig().contains("arenas." + arena)) {
+            sender.sendMessage("No '"+ arena +"' arena made :(");
+            return false;
+        }
+
+        Main.getPlugin().getConfig().set("game.ongoing", true);
+        Main.getPlugin().getConfig().set("game.arena", arena);
+        Main.getPlugin().saveConfig();
+
+        for(String arena : Main.getPlugin().getConfig().getConfigurationSection("arenas").getKeys(false)) {
+            for(String team : Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena + ".teams").getKeys(false)) {
+
+                new Team(
+                    team, 
+                    Main.getPlugin().getConfig().getConfigurationSection("teams."+team+".players").getKeys(false), 
+                    Color.RED, // needs to be translated from type:String to type:Color
+                    Main.getPlugin().getConfig().getLocation(
+                        "arenas."+arena+".teams."+team+".spawn",
+                        new Location(
+                            Bukkit.getServer().getWorld("World"),
+                            252.500,
+                            -60,
+                            820.500,
+                            -136,
+                            34
+                        )
+                    )
+                );
+            }
+        }
+    }
+
     public static void arenaEditor(Player admin, String arenaName) {
         arena = new Arena(admin, arenaName);
     }
