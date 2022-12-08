@@ -31,6 +31,7 @@ public class AdminCommand {
         }
 
         Main.getPlugin().getConfig().set("game.ongoing", false);
+        Main.getPlugin().getConfig().set("game.players", 0);
 
         for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
             for (String strUUID : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {

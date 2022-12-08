@@ -1,5 +1,6 @@
 game:
   ongoing: false
   arena: "default"
+  players: 0
 teams:
 arenas:

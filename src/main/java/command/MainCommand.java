@@ -129,10 +129,12 @@ public class MainCommand implements CommandExecutor {
                             if (args[1].toLowerCase().equals(color)) {
                                 sender.sendMessage("You joined the " + color + " team");
                                 list_map = "teams."+color+".players";
+                                int curr_players = Main.getPlugin().getConfig().getInt("game.players");
 
                                 Main.getPlugin().getConfig().getConfigurationSection(list_map).createSection(uuid);
 
                                 Main.getPlugin().getConfig().set(list_map + "." + uuid + ".origin", Bukkit.getPlayer(UUID.fromString(uuid)).getLocation());
+                                Main.getPlugin().getConfig().set("game.players", curr_players++);
 
                                 Main.getPlugin().saveConfig();
                             }
