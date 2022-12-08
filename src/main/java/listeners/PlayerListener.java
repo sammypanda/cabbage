@@ -75,7 +75,6 @@ public class PlayerListener implements Listener {
         String color = Team.getPlayerTeam(event.getPlayer().getUniqueId().toString());
         String arena = Main.getPlugin().getConfig().getString("game.arena");
         Location spawn = Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + color + ".spawn");
-        Bukkit.broadcastMessage(color + " moved: " + event.getTo().toString() + " target: " + spawn.toString());
 
         if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if is at spawn
             Bukkit.broadcastMessage(color + " wins!");
