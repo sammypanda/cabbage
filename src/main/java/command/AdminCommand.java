@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 // local packages
 import main.java.game.Arena;
 import main.java.game.Team;
+import main.java.utils.ColorMap;
 
 public class AdminCommand {
     static Arena arena;
@@ -80,7 +81,7 @@ public class AdminCommand {
             new Team(
                 team, 
                 Main.getPlugin().getConfig().getConfigurationSection("teams."+team+".players").getKeys(false), 
-                Color.RED, // needs to be translated from type:String to type:Color
+                ColorMap.fromDye(ColorMap.toMaterial(team)),
                 Main.getPlugin().getConfig().getLocation(
                     "arenas."+arena+".teams."+team+".spawn",
                     new Location(

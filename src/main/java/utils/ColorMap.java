@@ -105,4 +105,29 @@ public class ColorMap {
 
         return map.get(chat_color);
     }
+
+    public static Material toMaterial(String color) {
+        color = color.toLowerCase();
+
+        Map<String, Material> map = new HashMap<String, Material>();
+
+        map.put("light_blue", Material.LIGHT_BLUE_DYE);
+        map.put("black", Material.BLACK_DYE);
+        map.put("blue", Material.BLUE_DYE);
+        map.put("magenta", Material.MAGENTA_DYE);
+        map.put("gray", Material.GRAY_DYE);
+        map.put("light_gray", Material.LIGHT_GRAY_DYE);
+        map.put("green", Material.GREEN_DYE);
+        map.put("lime", Material.LIME_DYE);
+        map.put("red", Material.RED_DYE);
+        map.put("brown", Material.BROWN_DYE);
+        map.put("cyan", Material.CYAN_DYE);
+        map.put("white", Material.WHITE_DYE);
+        map.put("orange", Material.ORANGE_DYE);
+        map.put("yellow", Material.YELLOW_DYE);
+        map.put("pink", Material.PINK_DYE);
+        map.put("purple", Material.PURPLE_DYE);
+
+        return map.get(color);
+    }
 }
