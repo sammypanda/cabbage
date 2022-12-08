@@ -77,10 +77,6 @@ public class Arena {
         return Main.getPlugin().getConfig().getString("game.arena");
     }
 
-    public Location getSpawn(String team) {
-        return Main.getPlugin().getConfig().getLocation("arenas." + this.arena + ".teams." + team + ".spawn");
-    }
-
     public void delete() {
         if (this.deleting) {
             Main.getPlugin().getConfig().set("arenas." + this.arena, null);

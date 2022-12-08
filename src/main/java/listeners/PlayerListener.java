@@ -1,4 +1,6 @@
 package main.java.listeners;
+import main.java.Main; // needed for getPlugin
+
 import main.java.game.Team;
 import main.java.game.Arena;
 import main.java.command.AdminCommand;
@@ -71,8 +73,9 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         String color = Team.getPlayerTeam(event.getPlayer().getUniqueId().toString());
-        Location spawn = AdminCommand.getArena().getSpawn(color);
-        Bukkit.broadcastMessage(color + " moved");
+        String arena = Main.getPlugin().getConfig().getString("game.arena");
+        Location spawn = Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + color + ".spawn");
+        Bukkit.broadcastMessage(color + " moved - " + event.getPlayer().getUniqueId().toString());
 
         if (event.getTo().equals(spawn)) {
             Bukkit.broadcastMessage(color + " wins!");
