@@ -72,6 +72,10 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
+        if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == false) {
+            return;
+        }
+
         String color = Team.getPlayerTeam(event.getPlayer().getUniqueId().toString());
 
         if (color != null) {
