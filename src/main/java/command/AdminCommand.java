@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Color;
 
 import org.bukkit.inventory.PlayerInventory;
 
@@ -16,7 +17,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import org.bukkit.entity.Player;
 
+// local packages
 import main.java.game.Arena;
+import main.java.game.Team;
 
 public class AdminCommand {
     static Arena arena;
@@ -53,47 +56,45 @@ public class AdminCommand {
     }
 
     public static String start() {
-        this.start("default");
+        return AdminCommand.start("default");
     }
 
     public static String start(String arena) {
-        this.arena = arena;
+        Main.getPlugin().getConfig().set("game.arena", arena);
 
         if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == true) {
-            sender.sendMessage("Game already ongoing");
-            return false;
+            return "game already ongoing";
         }
 
         if (!Main.getPlugin().getConfig().contains("arenas." + arena)) {
-            sender.sendMessage("No '"+ arena +"' arena made :(");
-            return false;
+            return "No '"+ arena +"' arena made :(";
         }
 
         Main.getPlugin().getConfig().set("game.ongoing", true);
         Main.getPlugin().getConfig().set("game.arena", arena);
         Main.getPlugin().saveConfig();
+        
+        for(String team : Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena + ".teams").getKeys(false)) {
 
-        for(String arena : Main.getPlugin().getConfig().getConfigurationSection("arenas").getKeys(false)) {
-            for(String team : Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena + ".teams").getKeys(false)) {
-
-                new Team(
-                    team, 
-                    Main.getPlugin().getConfig().getConfigurationSection("teams."+team+".players").getKeys(false), 
-                    Color.RED, // needs to be translated from type:String to type:Color
-                    Main.getPlugin().getConfig().getLocation(
-                        "arenas."+arena+".teams."+team+".spawn",
-                        new Location(
-                            Bukkit.getServer().getWorld("World"),
-                            252.500,
-                            -60,
-                            820.500,
-                            -136,
-                            34
-                        )
+            new Team(
+                team, 
+                Main.getPlugin().getConfig().getConfigurationSection("teams."+team+".players").getKeys(false), 
+                Color.RED, // needs to be translated from type:String to type:Color
+                Main.getPlugin().getConfig().getLocation(
+                    "arenas."+arena+".teams."+team+".spawn",
+                    new Location(
+                        Bukkit.getServer().getWorld("World"),
+                        252.500,
+                        -60,
+                        820.500,
+                        -136,
+                        34
                     )
-                );
-            }
+                )
+            );
         }
+
+        return "game started";
     }
 
     public static void arenaEditor(Player admin, String arenaName) {

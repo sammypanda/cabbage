@@ -33,7 +33,6 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 
 // local packages
-import main.java.game.Team;
 import main.java.utils.ColorMap;
 
 public class MainCommand implements CommandExecutor {
@@ -72,7 +71,7 @@ public class MainCommand implements CommandExecutor {
 
             else if (args[0].equalsIgnoreCase("start")) {
 
-                sender.sendMessage(AdminCommand.start(null)); // will go to default since no arena param passed /cabbage [start] [arena]
+                sender.sendMessage(AdminCommand.start()); // will go to default since no arena param passed /cabbage [start] [arena]
             }
 
             if (args[0].equalsIgnoreCase("forcefinish")) {

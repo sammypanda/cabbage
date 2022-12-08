@@ -1,4 +1,5 @@
 game:
   ongoing: false
+  arena: "default"
 teams:
 arenas:

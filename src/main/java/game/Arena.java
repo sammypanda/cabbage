@@ -52,6 +52,10 @@ public class Arena {
         player.sendRawMessage("- use" + ChatColor.MAGIC + " colour" + ChatColor.RESET + " wool to set team spawn");
     }
 
+    public void setName(String name) {
+        Main.getPlugin().getConfig().set("game.arena", name);
+    }
+
     public void setSpawn(Block block, Location location) {
         BlockState state = block.getState();
         Material wool = state.getType();
@@ -70,11 +74,11 @@ public class Arena {
     }
 
     public String getName() {
-        return this.arena;
+        return Main.getPlugin().getConfig().getString("game.arena");
     }
 
     public Location getSpawn(String team) {
-        return Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + team + ".spawn");
+        return Main.getPlugin().getConfig().getLocation("arenas." + this.arena + ".teams." + team + ".spawn");
     }
 
     public void delete() {
