@@ -96,4 +96,18 @@ public class Team {
 
         return centralChestplate;
     }
+
+    public static String getPlayerTeam(String uuid) {
+        String output = null;
+
+        for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
+            if (!Main.getPlugin().getConfig().isSet("teams." + team + ".players")) { // if players *not* isSet (if no players set in team)
+                if (Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false).contains(uuid)) { // if one of the players matches our uuid
+                    output = team;
+                }
+            }
+        }
+
+        return output;
+    }
 }

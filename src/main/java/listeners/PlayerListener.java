@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 import org.bukkit.entity.Item;
 
@@ -64,6 +65,18 @@ public class PlayerListener implements Listener {
         if (event.getAction().toString().startsWith("LEFT") && event.getItem().getType().toString().equals("BARRIER")) {
             event.setCancelled(true);
             AdminCommand.getArena().cancel();
+        }
+    }
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        String color = Team.getPlayerTeam(event.getPlayer().getUniqueId().toString());
+        Location spawn = AdminCommand.getArena().getSpawn(color);
+        Bukkit.broadcastMessage(color + " moved");
+
+        if (event.getTo().equals(spawn)) {
+            Bukkit.broadcastMessage(color + " wins!");
+            AdminCommand.forceFinish();
         }
     }
 }
