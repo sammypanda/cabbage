@@ -84,6 +84,7 @@ public class PlayerListener implements Listener {
             Location spawn = Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + color + ".spawn");
 
             if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if is at spawn
+                Bukkit.broadcastMessage(event.getPlayer().getInventory().contains(Team.getCabbage(),total_cabbages).toString());
                 if (event.getPlayer().getInventory().contains(Team.getCabbage(), total_cabbages)) {
                     Bukkit.broadcastMessage(color + " won, they have built the ultimate cabbage!");
                     AdminCommand.forceFinish();
