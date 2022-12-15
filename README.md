@@ -12,7 +12,7 @@
 - ~~Stop players from joining multiple teams at once~~
 - Add Material.DYE-chatColor translating methods
 - Refactor copied loop through materials for identifying teams
-- When one team has all the cabbage slices end and say [team] won
+- ~~When one team has all the cabbage slices end and say [team] won~~
 - Rescue any abandoned cabbage slices!
 - ...
 
