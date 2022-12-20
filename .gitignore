@@ -24,3 +24,5 @@ hs_err_pid*
 
 # IDE files
 .vscode
+target/classes/config.yml
+target/classes/plugin.yml
