@@ -18,6 +18,8 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 
+import org.bukkit.util.BoundingBox;
+
 public class Arena {
     String arena;
     Player player;
@@ -68,6 +70,27 @@ public class Arena {
         Main.getPlugin().saveConfig();
     }
 
+    public void setBounds(Location positionA, Location positionB) {
+
+        BoundingBox originalBounds = new BoundingBox(positionA, positionB);
+
+        Main.getPlugin().getConfig().set("arenas." + this.arena + ".bounds", originalBounds.toString()); // how do i store this?
+    }
+
+    public void addBounds(Location positionA, location positionB) {
+        String arenaBoundsPath = "arenas" + this.arena + ".bounds"; 
+        BoundingBox appendedBounds = new BoundingBox(positionA, positionB);
+
+        if Main.getPlugin().getConfig().isSet(arenaBoundsPath) {
+            // convert bounds path back to BoundingBox somehow = oldBounds
+            if oldBounds.touching(appendedBounds) { // not real but u get the point (if they are touching and can be added together)
+                BoundingBox newBounds = oldBounds.intersection(appendedBounds)
+
+                Main.getPlugin().getConfig().set(arenaBoundsPath, newBounds);
+            }
+        }   
+    }
+
     public void exit() {
         this.player.getInventory().clear();
         this.player.sendRawMessage(ChatColor.BOLD + "" + ChatColor.RED + "exited " + ChatColor.WHITE + this.arena + ChatColor.RED + " editor");
@@ -76,6 +99,8 @@ public class Arena {
     public String getName() {
         return Main.getPlugin().getConfig().getString("game.arena");
     }
+
+
 
     public void delete() {
         if (this.deleting) {
