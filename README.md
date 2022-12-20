@@ -14,6 +14,7 @@
 - Refactor copied loop through materials for identifying teams
 - ~~When one team has all the cabbage slices end and say [team] won~~
 - Rescue any abandoned cabbage slices!
+- Translate the spigot boundary ideas to functioning code
 - ...
 
 <!-- OLD POINTS:
