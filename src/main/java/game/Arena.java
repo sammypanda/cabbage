@@ -37,10 +37,16 @@ public class Arena {
         ItemMeta barrierMeta = barrier.getItemMeta();
         barrierMeta.setDisplayName(ChatColor.ITALIC + "Delete");
 
+        ItemStack chest = new ItemStack(Material.CHEST);
+        ItemMeta chestMeta = chest.getItemMeta();
+        chestMeta.setDisplayName(ChatColor.ITALIC + "Crate Locations");
+
         door.setItemMeta(doorMeta);
         barrier.setItemMeta(barrierMeta);
-        player.getInventory().setItem(8, barrier); // give the admin the barrier in the last hotbar slot
-        player.getInventory().setItem(7, door); // give the admin the door in the second last hotbar slot 
+        chest.setItemMeta(chestMeta);
+        player.getInventory().setItem(8, barrier); // give the barrier in the last hotbar slot
+        player.getInventory().setItem(7, door); // give the door in the second last hotbar slot 
+        player.getInventory().setItem(0, chest); // give the chest to set locations for crates to spawn in first hotbar slot
 
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
@@ -66,6 +72,10 @@ public class Arena {
 
         Main.getPlugin().getConfig().set("arenas." + this.arena + ".teams." + woolColor.toLowerCase() + ".spawn", location);
         Main.getPlugin().saveConfig();
+    }
+
+    public void addCrate(Location location) {
+        Bukkit.broadcastMessage("[wip] put chest location");
     }
 
     public void exit() {

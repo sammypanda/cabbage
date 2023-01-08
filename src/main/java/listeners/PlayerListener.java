@@ -51,11 +51,16 @@ public class PlayerListener implements Listener {
         if (blockState.getType().toString().endsWith("WOOL")) { // if the block is wool
             AdminCommand.getArena().setSpawn(block, location);
         }
+
+        if (blockState.getType().toString().endsWith("CHEST")) {
+            event.setCancelled(true);
+            AdminCommand.getArena().addCrate(location);
+        }
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction().toString().startsWith("RIGHT") && event.getItem().getType().toString().equals("OAK_DOOR")) {
+        if (event.getAction().toString().startsWith("RIGHT") && event.getItem().getType().toString().equals("CHEST")) {
             event.setCancelled(true);
             AdminCommand.getArena().exit();
         }
