@@ -76,6 +76,9 @@ public class Arena {
 
     public void addCrate(Location location) {
         Bukkit.broadcastMessage("[wip] put chest location");
+        
+        Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", location);
+        Main.getPlugin().saveConfig();
     }
 
     public void exit() {
