@@ -60,7 +60,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction().toString().startsWith("RIGHT") && event.getItem().getType().toString().equals("CHEST")) {
+        if (event.getAction().toString().startsWith("RIGHT") && event.getItem().getType().toString().equals("OAK_DOOR")) {
             event.setCancelled(true);
             AdminCommand.getArena().exit();
         }
