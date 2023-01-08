@@ -10,7 +10,7 @@
 - ~~No throwing cabbage slices on the ground~~
 - Fix improper exiting from arena editor (when multiple participants) 
 - ~~Stop players from joining multiple teams at once~~
-- Add Material.DYE-chatColor translating methods
+- ~~Add Material.DYE-chatColor translating methods~~
 - Refactor copied loop through materials for identifying teams
 - ~~When one team has all the cabbage slices end and say [team] won~~
 - Rescue any abandoned cabbage slices!
