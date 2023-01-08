@@ -18,6 +18,9 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Arena {
     String arena;
     Player player;
@@ -76,8 +79,18 @@ public class Arena {
 
     public void addCrate(Location location) {
         Bukkit.broadcastMessage("[wip] put chest location");
+        List<Location> locations = new ArrayList<Location>();
         
-        Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", location);
+        if (Main.getPlugin().getConfig().get("arenas." + this.arena + ".crates") == null) {
+            Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", new ArrayList<Location>()); // create empty crates list
+        } else {
+            List<Location> existingLocations = (List<Location>) Main.getPlugin().getConfig().getList("arenas." + this.arena + ".crates");
+            locations.addAll(existingLocations); // pull in existing crates list for editing
+        }
+
+        locations.add(location);
+        Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
+        
         Main.getPlugin().saveConfig();
     }
 
