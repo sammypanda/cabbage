@@ -20,6 +20,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 
 import org.bukkit.entity.Item;
 
@@ -108,5 +109,10 @@ public class PlayerListener implements Listener {
         }
 
         AdminCommand.validateWin(event);
+    }
+
+    @EventHandler
+    public void onInventoryClose(InventoryCloseEvent event) {
+        Bukkit.broadcastMessage("inventory close captured");
     }
 }
