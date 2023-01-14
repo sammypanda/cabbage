@@ -1,6 +1,6 @@
 package main.java.game;
 import main.java.Main; // needed for getPlugin
-import main.game.Arena;
+import main.java.game.Arena;
 
 import java.util.Set;
 import java.util.UUID;
