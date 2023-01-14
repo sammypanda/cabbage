@@ -148,10 +148,14 @@ public class AdminCommand {
             Chest crate = (Chest) chosenCrate.getBlock().getState();
             Inventory crateContents = crate.getInventory();
             int cabbageCount = totalCabbages / (teamCount + 1);
-            Bukkit.broadcastMessage("crate dispersed: " + Integer.toString(cabbageCount));
-            Bukkit.broadcastMessage("max attainable: " + Integer.toString(totalCabbages));
             theCabbage.setAmount(cabbageCount);
             crateContents.addItem(theCabbage);
+
+            // temp: messages and add beacon
+            Bukkit.broadcastMessage("crate dispersed: " + Integer.toString(cabbageCount));
+            Bukkit.broadcastMessage("max attainable: " + Integer.toString(totalCabbages));
+            //
+            Bukkit.getServer().getWorld("World").getHighestBlockAt(chosenCrate).setType(Material.BEACON);
 
             Bukkit.broadcastMessage("spawned a crate! go find it >:3");
         }
