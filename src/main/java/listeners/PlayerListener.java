@@ -66,11 +66,9 @@ public class PlayerListener implements Listener {
 
         if (AdminCommand.getArena() != null) {
             if (blockState.getType().toString().endsWith("TRAPPED_CHEST")) {
-                Bukkit.broadcastMessage("[wip] delete the chest");
+                AdminCommand.getArena().deleteCrate(location);
                 event.setCancelled(true); // temporary, delete me
             }
-
-            event.setCancelled(true);
         }
     }
 

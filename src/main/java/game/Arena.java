@@ -79,7 +79,7 @@ public class Arena {
         Main.getPlugin().saveConfig();
     }
 
-    public void addCrate(Location location) {
+    public List<Location> getCrates() {
         List<Location> locations = new ArrayList<Location>();
         
         if (Main.getPlugin().getConfig().get("arenas." + this.arena + ".crates") == null) {
@@ -88,6 +88,12 @@ public class Arena {
             List<Location> existingLocations = (List<Location>) Main.getPlugin().getConfig().getList("arenas." + this.arena + ".crates");
             locations.addAll(existingLocations); // pull in existing crates list for editing
         }
+
+        return locations;
+    }
+
+    public void addCrate(Location location) {
+        List<Location> locations = this.getCrates();
 
         if (!locations.contains(location)) {
             locations.add(location);
@@ -101,7 +107,11 @@ public class Arena {
         }
     }
 
-    // TODO: add a deleteCrate method
+    public void deleteCrate(Location location) {
+        List<Location> locations = this.getCrates();
+
+        locations.remove(location);
+    }
 
     public void showCrates(Boolean mode) {
         List<Location> crateLocations = (List<Location>) Main.getPlugin().getConfig().getList("arenas." + this.arena + ".crates");
