@@ -22,6 +22,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.HumanEntity;
 
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.EquipmentSlot;
@@ -121,7 +122,8 @@ public class Team {
 
             // place it in the world
             chosenCrate.getBlock().setType(Material.CHEST);
-            Inventory crateContents = chosenCrate.getBlockInventory();
+            Chest crate = (Chest) chosenCrate.getBlock().getState();
+            Inventory crateContents = crate.getInventory();
             
             // fill the crate with x cabbage slices
             int cabbageCount = this.totalCabbages / (teamCount + 1);
