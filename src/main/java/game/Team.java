@@ -30,6 +30,8 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 
+import java.util.List;
+
 public class Team {
     String team;
     Set<String> players;
