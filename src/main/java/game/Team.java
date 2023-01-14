@@ -99,7 +99,7 @@ public class Team {
         Random random = new Random();
         List<Location> crateLocations = Arena.getCrates(this.arena);
         int crateCount = crateLocations.size() - 1;
-        int teamCount = Main.getPlugin().getConfig().getObject("arenas" + this.arena + ".teams").size();
+        int teamCount = Main.getPlugin().getConfig().get("arenas" + this.arena + ".teams").size();
         ItemStack theCabbage = this.getCabbage();
         
         // for each team
