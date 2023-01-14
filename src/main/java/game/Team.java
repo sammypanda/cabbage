@@ -83,6 +83,8 @@ public class Team {
 
             }
         }
+
+        this.spawnCrate();
     }
 
     public static ItemStack getCabbage() {
@@ -129,6 +131,8 @@ public class Team {
             int cabbageCount = this.totalCabbages / (teamCount + 1);
             theCabbage.setAmount(cabbageCount);
             crateContents.addItem(theCabbage);
+
+            Bukkit.broadcastMessage("spawned a crate! go find it >:3");
         }
     }
 
