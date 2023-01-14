@@ -124,7 +124,7 @@ public class Team {
             Inventory crateContents = chosenCrate.getBlockInventory();
             
             // fill the crate with x cabbage slices
-            int cabbageCount = this.totalCabbages / (teamCount + 1)
+            int cabbageCount = this.totalCabbages / (teamCount + 1);
             theCabbage.setAmount(cabbageCount);
             crateContents.addItem(theCabbage);
         }
