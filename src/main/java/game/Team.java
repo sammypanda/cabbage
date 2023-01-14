@@ -107,7 +107,7 @@ public class Team {
 
         List<Location> chosenCrates = new ArrayList<Location>();
         
-        for ( team : teamCount ) { // (for each team)
+        for ( int i=0; i<teamCount; i++ ) { // (for each team)
             // assess list of crates
             int crateCount = crateLocations.size();
 
