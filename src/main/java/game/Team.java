@@ -1,9 +1,11 @@
 package main.java.game;
 import main.java.Main; // needed for getPlugin
+import main.game.Arena;
 
 import java.util.Set;
 import java.util.UUID;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -69,6 +71,11 @@ public class Team {
     }
 
     public static ItemStack getCabbage() {
+        Random random = new Random();
+        List<Location> createLocations = Arena.getCrates();
+        int crateCount = crateLocations.size() - 1;
+        int teamCount = Main.getPlugin().getConfig().getObject("arenas" + Arena.arena + ".teams").size();
+
         ItemStack theCabbage = new ItemStack(Material.BONE_MEAL);
         ItemMeta cabbageMeta = theCabbage.getItemMeta();
         ArrayList cabbageLore = new ArrayList<String>();
