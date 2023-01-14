@@ -1,6 +1,7 @@
 package main.java.game;
 import main.java.Main; // needed for getPlugin
 import main.java.game.Arena;
+import main.java.command.AdminCommand;
 
 import java.util.Set;
 import java.util.UUID;
@@ -13,6 +14,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Location;
 import org.bukkit.GameMode;
+import org.bukkit.event.Event;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -33,7 +35,12 @@ public class Team {
     Set<String> players;
     Color color;
     Location location;
+    int cabbagePerPlayer;
     String arena;
+
+    int playerCount = Main.getPlugin().getConfig().getInt("game.players");
+    int totalCabbages = playerCount * cabbagePerPlayer;
+
 
     public Team(String team, Set<String> players, Color color, Location location, int cabbagePerPlayer, String arena) {
         // create bonemeal
@@ -72,11 +79,6 @@ public class Team {
     }
 
     public static ItemStack getCabbage() {
-        Random random = new Random();
-        List<Location> crateLocations = Arena.getCrates();
-        int crateCount = crateLocations.size() - 1;
-        int teamCount = Main.getPlugin().getConfig().getObject("arenas" + this.arena + ".teams").size();
-
         ItemStack theCabbage = new ItemStack(Material.BONE_MEAL);
         ItemMeta cabbageMeta = theCabbage.getItemMeta();
         ArrayList cabbageLore = new ArrayList<String>();
@@ -89,6 +91,19 @@ public class Team {
         theCabbage.setItemMeta(cabbageMeta);
 
         return theCabbage;
+    }
+
+    public ItemStack spawnCrate() {
+        Random random = new Random();
+        List<Location> crateLocations = Arena.getCrates(this.arena);
+        int crateCount = crateLocations.size() - 1;
+        int teamCount = Main.getPlugin().getConfig().getObject("arenas" + this.arena + ".teams").size();
+        ItemStack theCabbage = this.getCabbage();
+        
+        // for each team
+            // pull out a random crateLocation
+            // fill a crate with x cabbage slices
+            // place it in the world
     }
 
     public static ItemStack getChestplate(Color color) {
@@ -115,5 +130,16 @@ public class Team {
         }
 
         return output;
+    }
+
+    public static void validateWin(String arena, Location spawn, Event event) {
+        if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if is at spawn
+            if (event.getPlayer().getInventory().contains(Material.BONE_MEAL, totalCabbages)) {
+                Bukkit.broadcastMessage(color + " won, they have built the ultimate cabbage!");
+                AdminCommand.forceFinish();
+            } else {
+                Bukkit.broadcastMessage(color + " tried to build the ultimate cabbage, they failed with not enough cabbages");
+            }
+        }
     }
 }

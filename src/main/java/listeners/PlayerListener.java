@@ -100,18 +100,10 @@ public class PlayerListener implements Listener {
         String color = Team.getPlayerTeam(event.getPlayer().getUniqueId().toString());
 
         if (color != null) {
-            int total_cabbages = Main.getPlugin().getConfig().getInt("game.players");
             String arena = Main.getPlugin().getConfig().getString("game.arena");
             Location spawn = Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + color + ".spawn");
 
-            if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if is at spawn
-                if (event.getPlayer().getInventory().contains(Material.BONE_MEAL, total_cabbages)) {
-                    Bukkit.broadcastMessage(color + " won, they have built the ultimate cabbage!");
-                    AdminCommand.forceFinish();
-                } else {
-                    Bukkit.broadcastMessage(color + " tried to build the ultimate cabbage, they failed with not enough cabbages");
-                }
-            }
+            
         }
     }
 }
