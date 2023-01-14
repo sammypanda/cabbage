@@ -151,11 +151,9 @@ public class AdminCommand {
             theCabbage.setAmount(cabbageCount);
             crateContents.addItem(theCabbage);
 
-            // temp: messages and add beacon
+            // temp: messages
             Bukkit.broadcastMessage("crate dispersed: " + Integer.toString(cabbageCount));
             Bukkit.broadcastMessage("max attainable: " + Integer.toString(totalCabbages));
-            //
-            Bukkit.getServer().getWorld("World").getHighestBlockAt(chosenCrate).setType(Material.BEACON);
 
             Bukkit.broadcastMessage("spawned a crate! go find it >:3");
         }
