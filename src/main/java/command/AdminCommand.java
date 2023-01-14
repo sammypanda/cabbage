@@ -27,6 +27,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import org.bukkit.entity.Player;
 
+import org.bukkit.event.player.PlayerMoveEvent;
+
 // local packages
 import main.java.game.Arena;
 import main.java.game.Team;
@@ -35,6 +37,7 @@ import main.java.utils.ColorMap;
 public class AdminCommand {
     static Arena arena;
     static List<Location> chosenCrates = new ArrayList<Location>();
+    static int totalCabbages;
 
     public static String forceFinish() {
         // don't continue if game is already stopped
@@ -124,7 +127,7 @@ public class AdminCommand {
         ItemStack theCabbage = Team.getCabbage();
 
         int playerCount = Main.getPlugin().getConfig().getInt("game.players");
-        int totalCabbages = playerCount * cabbagePerPlayer;
+        totalCabbages = playerCount * cabbagePerPlayer;
         
         for ( int i=0; i<teamCount; i++ ) { // (for each team)
             // assess list of crates
@@ -140,11 +143,12 @@ public class AdminCommand {
 
             // place it in the world
             chosenCrate.getBlock().setType(Material.CHEST);
-            Chest crate = (Chest) chosenCrate.getBlock().getState();
-            Inventory crateContents = crate.getInventory();
             
             // fill the crate with x cabbage slices
+            Chest crate = (Chest) chosenCrate.getBlock().getState();
+            Inventory crateContents = crate.getInventory();
             int cabbageCount = totalCabbages / (teamCount + 1);
+            Bukkit.broadcastMessage("amount: " + Integer.toString(cabbageCount));
             theCabbage.setAmount(cabbageCount);
             crateContents.addItem(theCabbage);
 
@@ -152,6 +156,24 @@ public class AdminCommand {
         }
 
         return "game started";
+    }
+
+    public static void validateWin(PlayerMoveEvent event) {
+        String color = Team.getPlayerTeam(event.getPlayer().getUniqueId().toString());
+
+        if (color != null) {
+            String arena = Main.getPlugin().getConfig().getString("game.arena");
+            Location spawn = Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + color + ".spawn");
+
+            if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if is at spawn
+                if (event.getPlayer().getInventory().contains(Material.BONE_MEAL, 100)) { // change from 1 cabbage to win
+                    Bukkit.broadcastMessage(color + " won, they have built the ultimate cabbage!");
+                    AdminCommand.forceFinish();
+                } else {
+                    Bukkit.broadcastMessage(color + " tried to build the ultimate cabbage, they failed with not enough cabbages");
+                }
+            }
+        }
     }
 
     public static void arenaEditor(Player admin, String arenaName) {

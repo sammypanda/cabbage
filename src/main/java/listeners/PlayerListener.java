@@ -107,6 +107,6 @@ public class PlayerListener implements Listener {
             return;
         }
 
-        Team.validateWin(event);
+        AdminCommand.validateWin(event);
     }
 }
