@@ -101,9 +101,7 @@ public class Arena {
             
             Main.getPlugin().saveConfig();
             
-            Bukkit.broadcastMessage("[wip] put chest location");
-        } else {
-            Bukkit.broadcastMessage("[wip] chest already placed here for this arena");
+            this.player.sendRawMessage("- " + ChatColor.BOLD + "" + ChatColor.GREEN + "added " + ChatColor.RESET + " crate location");
         }
     }
 
@@ -115,9 +113,7 @@ public class Arena {
         Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
         Main.getPlugin().saveConfig();
 
-        Bukkit.broadcastMessage("Deleted crate");
-
-        this.showCrates(true); // show our changes
+        this.player.sendRawMessage("- " + ChatColor.BOLD + "" + ChatColor.RED + "deleted " + ChatColor.RESET + " crate location");
     }
 
     public void showCrates(Boolean mode) {
