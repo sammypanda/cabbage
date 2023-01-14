@@ -21,6 +21,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryType;
 
 import org.bukkit.entity.Item;
 
@@ -28,7 +29,7 @@ import org.bukkit.entity.Item;
 import main.java.game.RegisterHit;
 
 public class PlayerListener implements Listener {
-    String currentArena;
+    String currentArena = Main.getPlugin().getConfig().getString("game.arena");
 
     @EventHandler
     public void onPlayerHit(EntityDamageByEntityEvent event) {
@@ -114,5 +115,18 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         Bukkit.broadcastMessage("inventory close captured");
+        if (event.getInventory().getType().equals(InventoryType.CHEST)) {
+            Bukkit.broadcastMessage("i'm a chest :)");
+
+            Location blockLocation = event.getInventory().getLocation();
+
+            if (Main.getPlugin().getConfig().getList("arenas." + currentArena + ".crates").contains(blockLocation)) {
+                Bukkit.broadcastMessage("i'm most likely a chest to be DESTROYED >:3");
+
+                if (event.getInventory().isEmpty()) {
+                    Bukkit.broadcastMessage("YES LET'S DESTROY IT! >:33333");
+                }
+            };
+        }
     }
 }
