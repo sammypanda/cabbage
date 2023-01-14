@@ -103,6 +103,14 @@ public class AdminCommand {
         arena = new Arena(admin, arenaName);
     }
 
+    public static void arenaEditor(Player admin, String arenaName, Boolean destroy) {
+        if (destroy) {
+            arena = null;
+        } else {
+            arena = new Arena(admin, arenaName);
+        }
+    }
+
     public static Arena getArena() {
         return arena;
     }

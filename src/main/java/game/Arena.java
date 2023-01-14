@@ -1,5 +1,6 @@
 package main.java.game;
 import main.java.Main; // needed for getPlugin
+import main.java.command.AdminCommand;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -98,9 +99,9 @@ public class Arena {
         } else {
             Bukkit.broadcastMessage("[wip] chest already placed here for this arena");
         }
-
-        this.showCrates(true);
     }
+
+    // TODO: add a deleteCrate method
 
     public void showCrates(Boolean mode) {
         List<Location> crateLocations = (List<Location>) Main.getPlugin().getConfig().getList("arenas." + this.arena + ".crates");
@@ -117,6 +118,7 @@ public class Arena {
     public void exit() {
         this.player.getInventory().clear();
         this.showCrates(false);
+        AdminCommand.arenaEditor(this.player, this.arena, true);
         this.player.sendRawMessage(ChatColor.BOLD + "" + ChatColor.RED + "exited " + ChatColor.WHITE + this.arena + ChatColor.RED + " editor");
     }
 
@@ -129,7 +131,6 @@ public class Arena {
             Main.getPlugin().getConfig().set("arenas." + this.arena, null);
             Main.getPlugin().saveConfig();
             this.player.sendRawMessage(ChatColor.BOLD + "" + ChatColor.RED + "deleted " + ChatColor.WHITE + this.arena);
-            this.exit();
         } else {
             this.player.sendRawMessage("right click to delete, left click to cancel");
             this.deleting = true;

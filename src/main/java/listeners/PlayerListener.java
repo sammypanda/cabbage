@@ -17,6 +17,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -53,8 +54,23 @@ public class PlayerListener implements Listener {
         }
 
         if (blockState.getType().toString().endsWith("CHEST")) {
-            event.setCancelled(true);
             AdminCommand.getArena().addCrate(location);
+        }
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        Block block = event.getBlock();
+        BlockState blockState = block.getState(); // static data on 'block' in this exact moment in time
+        Location location = block.getLocation();
+
+        if (AdminCommand.getArena() != null) {
+            if (blockState.getType().toString().endsWith("TRAPPED_CHEST")) {
+                Bukkit.broadcastMessage("[wip] delete the chest");
+                event.setCancelled(true); // temporary, delete me
+            }
+
+            event.setCancelled(true);
         }
     }
 
@@ -70,9 +86,11 @@ public class PlayerListener implements Listener {
             AdminCommand.getArena().delete();
         }
 
-        if (event.getAction().toString().startsWith("LEFT") && event.getItem().getType().toString().equals("BARRIER")) {
-            event.setCancelled(true);
-            AdminCommand.getArena().cancel();
+        if (event.getAction().toString().startsWith("LEFT")) {
+            if (event.getItem().getType().toString().equals("BARRIER")) {
+                event.setCancelled(true);
+                AdminCommand.getArena().cancel();
+            }
         }
     }
 
