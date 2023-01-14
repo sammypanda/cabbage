@@ -111,6 +111,8 @@ public class Arena {
         List<Location> locations = this.getCrates();
 
         locations.remove(location);
+
+        Bukkit.broadcastMessage("Deleted crate");
     }
 
     public void showCrates(Boolean mode) {
