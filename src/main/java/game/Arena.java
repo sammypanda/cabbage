@@ -112,7 +112,12 @@ public class Arena {
 
         locations.remove(location);
 
+        Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
+        Main.getPlugin().saveConfig();
+
         Bukkit.broadcastMessage("Deleted crate");
+
+        this.showCrates(true); // show our changes
     }
 
     public void showCrates(Boolean mode) {
