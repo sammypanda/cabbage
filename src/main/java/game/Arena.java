@@ -92,6 +92,7 @@ public class Arena {
             Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
             
             Main.getPlugin().saveConfig();
+            this.showCrates(true);
             
             Bukkit.broadcastMessage("[wip] put chest location");
         } else {
@@ -99,8 +100,21 @@ public class Arena {
         }
     }
 
+    public void showCrates(Boolean mode) {
+        List<Location> crateLocations = (List<Location>) Main.getPlugin().getConfig().getList("arenas." + this.arena + ".crates");
+
+        for (Location crate : crateLocations) {
+            if (mode) {
+                crate.getBlock().setType(Material.TRAPPED_CHEST);
+            } else {
+                crate.getBlock().setType(Material.AIR);
+            }
+        }
+    }
+
     public void exit() {
         this.player.getInventory().clear();
+        this.showCrates(false);
         this.player.sendRawMessage(ChatColor.BOLD + "" + ChatColor.RED + "exited " + ChatColor.WHITE + this.arena + ChatColor.RED + " editor");
     }
 
