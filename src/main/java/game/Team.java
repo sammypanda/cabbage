@@ -143,7 +143,7 @@ public class Team {
             Location spawn = Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + color + ".spawn");
 
             if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if is at spawn
-                if (event.getPlayer().getInventory().contains(Material.BONE_MEAL, totalCabbages)) {
+                if (event.getPlayer().getInventory().contains(Material.BONE_MEAL, 1)) { // change from 1 cabbage to win
                     Bukkit.broadcastMessage(color + " won, they have built the ultimate cabbage!");
                     AdminCommand.forceFinish();
                 } else {
