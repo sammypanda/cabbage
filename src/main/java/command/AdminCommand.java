@@ -148,7 +148,8 @@ public class AdminCommand {
             Chest crate = (Chest) chosenCrate.getBlock().getState();
             Inventory crateContents = crate.getInventory();
             int cabbageCount = totalCabbages / (teamCount + 1);
-            Bukkit.broadcastMessage("amount: " + Integer.toString(cabbageCount));
+            Bukkit.broadcastMessage("crate dispersed: " + Integer.toString(cabbageCount));
+            Bukkit.broadcastMessage("max attainable: " + Integer.toString(totalCabbages));
             theCabbage.setAmount(cabbageCount);
             crateContents.addItem(theCabbage);
 
