@@ -101,7 +101,7 @@ public class Arena {
             
             Main.getPlugin().saveConfig();
             
-            this.player.sendRawMessage("- " + ChatColor.BOLD + "" + ChatColor.GREEN + "added" + ChatColor.RESET + " crate location");
+            this.player.sendRawMessage("+ " + ChatColor.BOLD + "" + ChatColor.GREEN + "added" + ChatColor.RESET + " crate location");
         }
     }
 
