@@ -114,18 +114,12 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        Bukkit.broadcastMessage("inventory close captured");
-        if (event.getInventory().getType().equals(InventoryType.CHEST)) {
-            Bukkit.broadcastMessage("i'm a chest :)");
 
+        if (event.getInventory().getType().equals(InventoryType.CHEST)) {
             Location blockLocation = event.getInventory().getLocation();
 
-            if (Main.getPlugin().getConfig().getList("arenas." + currentArena + ".crates").contains(blockLocation)) {
-                Bukkit.broadcastMessage("i'm most likely a chest to be DESTROYED >:3");
-
-                if (event.getInventory().isEmpty()) {
-                    Bukkit.broadcastMessage("YES LET'S DESTROY IT! >:33333");
-                }
+            if (Main.getPlugin().getConfig().getList("arenas." + currentArena + ".crates").contains(blockLocation) && event.getInventory().isEmpty()) {
+                blockLocation.getBlock().setType(Material.AIR);
             };
         }
     }
