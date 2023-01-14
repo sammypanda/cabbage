@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.lang.Math;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -147,11 +148,20 @@ public class AdminCommand {
             // fill the crate with x cabbage slices
             Chest crate = (Chest) chosenCrate.getBlock().getState();
             Inventory crateContents = crate.getInventory();
-            int cabbageCount = totalCabbages / (teamCount + 1);
+            int cabbageCount;
+            
+            if (i==0 && teamCount > totalCabbages) {
+                cabbageCount = totalCabbages;
+                i = teamCount+1; // break out of loop
+            } else {
+                cabbageCount = (int) Math.round(Math.ceil(Double.valueOf(totalCabbages) / Double.valueOf((teamCount + 1))));
+            }
+
             theCabbage.setAmount(cabbageCount);
             crateContents.addItem(theCabbage);
 
             // temp: messages
+            Bukkit.broadcastMessage("max teams: " + Integer.toString(teamCount));
             Bukkit.broadcastMessage("crate dispersed: " + Integer.toString(cabbageCount));
             Bukkit.broadcastMessage("max attainable: " + Integer.toString(totalCabbages));
 
