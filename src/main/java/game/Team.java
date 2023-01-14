@@ -32,10 +32,10 @@ public class Team {
     Color color;
     Location location;
 
-    public Team(String team, Set<String> players, Color color, Location location) {
+    public Team(String team, Set<String> players, Color color, Location location, int cabbagePerPlayer) {
         // create bonemeal
         ItemStack theCabbage = this.getCabbage();
-        theCabbage.setAmount(1); // variable amount given to each player
+        theCabbage.setAmount(cabbagePerPlayer); // variable amount given to each player
 
         for (String player : players) {
 

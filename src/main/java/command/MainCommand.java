@@ -71,7 +71,7 @@ public class MainCommand implements CommandExecutor {
 
             else if (args[0].equalsIgnoreCase("start")) {
 
-                sender.sendMessage(AdminCommand.start()); // will go to default since no arena param passed /cabbage [start] [arena]
+                sender.sendMessage(AdminCommand.start()); // start with all game defaults
             }
 
             if (args[0].equalsIgnoreCase("forcefinish")) {
@@ -156,6 +156,22 @@ public class MainCommand implements CommandExecutor {
                 AdminCommand.arenaEditor(Bukkit.getPlayer(UUID.fromString(uuid)), args[1]);
                 
             }
+
+            if (args[0].equalsIgnoreCase("start")) {
+
+                sender.sendMessage(AdminCommand.start(args[1], 1)); // pass in arena name
+
+            }
+        } 
+        
+        else if (args.length == 3) {
+
+            if (args[0].equalsIgnoreCase("start")) {
+
+                sender.sendMessage(AdminCommand.start(args[1], Integer.parseInt(args[2]))); // pass in arena name and slices per person
+
+            }
+
         }
 
         return false; // if nothing handled say command failed

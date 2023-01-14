@@ -58,10 +58,14 @@ public class AdminCommand {
     }
 
     public static String start() {
-        return AdminCommand.start("default");
+        return AdminCommand.start("default", 1);
     }
 
     public static String start(String arena) {
+        return AdminCommand.start(arena, 1);
+    }
+
+    public static String start(String arena, int cabbagePerPlayer) {
         Main.getPlugin().getConfig().set("game.arena", arena);
 
         if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == true) {
@@ -92,7 +96,8 @@ public class AdminCommand {
                         -136,
                         34
                     )
-                )
+                ),
+                cabbagePerPlayer
             );
         }
 
