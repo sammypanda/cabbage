@@ -44,11 +44,7 @@ public class Team {
     Location location;
     int cabbagePerPlayer;
     String arena;
-
-    int playerCount = Main.getPlugin().getConfig().getInt("game.players");
-    int totalCabbages = playerCount * cabbagePerPlayer;
-
-
+    
     public Team(String team, Set<String> players, Color color, Location location, int cabbagePerPlayer, String arena) {
         // create bonemeal
         ItemStack theCabbage = this.getCabbage();
@@ -83,8 +79,6 @@ public class Team {
 
             }
         }
-
-        this.spawnCrate();
     }
 
     public static ItemStack getCabbage() {
@@ -100,40 +94,6 @@ public class Team {
         theCabbage.setItemMeta(cabbageMeta);
 
         return theCabbage;
-    }
-
-    public void spawnCrate() {
-        Random random = new Random();
-        List<Location> crateLocations = Arena.getCrates(this.arena);
-        int teamCount = Main.getPlugin().getConfig().getConfigurationSection("arenas." + this.arena + ".teams").getKeys(false).size();
-        ItemStack theCabbage = this.getCabbage();
-
-        List<Location> chosenCrates = new ArrayList<Location>();
-        
-        for ( int i=0; i<teamCount; i++ ) { // (for each team)
-            // assess list of crates
-            int crateCount = crateLocations.size();
-
-            // pull out a random crateLocation
-            int randIndex = random.nextInt(crateCount);
-            Location chosenCrate = crateLocations.get(randIndex);
-            chosenCrates.add(chosenCrate);
-
-            // remove out selection from list
-            crateLocations.remove(chosenCrate);
-
-            // place it in the world
-            chosenCrate.getBlock().setType(Material.CHEST);
-            Chest crate = (Chest) chosenCrate.getBlock().getState();
-            Inventory crateContents = crate.getInventory();
-            
-            // fill the crate with x cabbage slices
-            int cabbageCount = this.totalCabbages / (teamCount + 1);
-            theCabbage.setAmount(cabbageCount);
-            crateContents.addItem(theCabbage);
-
-            Bukkit.broadcastMessage("spawned a crate! go find it >:3");
-        }
     }
 
     public static ItemStack getChestplate(Color color) {
