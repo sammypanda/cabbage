@@ -73,7 +73,7 @@ public class Team {
                 inventory.setChestplate(centralChestplate);
 
                 // give cabbage
-                inventory.setItemInMainHand(theCabbage);
+                // inventory.setItemInMainHand(theCabbage);
 
             }
         }
