@@ -78,7 +78,6 @@ public class Arena {
     }
 
     public void addCrate(Location location) {
-        Bukkit.broadcastMessage("[wip] put chest location");
         List<Location> locations = new ArrayList<Location>();
         
         if (Main.getPlugin().getConfig().get("arenas." + this.arena + ".crates") == null) {
@@ -93,6 +92,8 @@ public class Arena {
             Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
             
             Main.getPlugin().saveConfig();
+            
+            Bukkit.broadcastMessage("[wip] put chest location");
         } else {
             Bukkit.broadcastMessage("[wip] chest already placed here for this arena");
         }
