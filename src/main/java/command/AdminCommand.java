@@ -34,6 +34,7 @@ import main.java.utils.ColorMap;
 
 public class AdminCommand {
     static Arena arena;
+    static List<Location> chosenCrates = new ArrayList<Location>();
 
     public static String forceFinish() {
         // don't continue if game is already stopped
@@ -61,6 +62,10 @@ public class AdminCommand {
             }
 
             Main.getPlugin().getConfig().set("teams." + team, "");
+        }
+
+        for (Location crate : chosenCrates) {
+            crate.getBlock().setType(Material.AIR);
         }
 
         Main.getPlugin().saveConfig();
@@ -120,8 +125,6 @@ public class AdminCommand {
 
         int playerCount = Main.getPlugin().getConfig().getInt("game.players");
         int totalCabbages = playerCount * cabbagePerPlayer;
-
-        List<Location> chosenCrates = new ArrayList<Location>();
         
         for ( int i=0; i<teamCount; i++ ) { // (for each team)
             // assess list of crates
