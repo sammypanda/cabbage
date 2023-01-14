@@ -96,7 +96,7 @@ public class Team {
         return theCabbage;
     }
 
-    public ItemStack spawnCrate() {
+    public void spawnCrate() {
         Random random = new Random();
         List<Location> crateLocations = Arena.getCrates(this.arena);
         int crateCount = crateLocations.size() - 1;
