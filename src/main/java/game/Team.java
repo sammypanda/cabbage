@@ -31,7 +31,10 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 
+import org.bukkit.block.Chest;
+
 import java.util.List;
+import java.util.ArrayList;
 
 public class Team {
     String team;
@@ -99,14 +102,32 @@ public class Team {
     public void spawnCrate() {
         Random random = new Random();
         List<Location> crateLocations = Arena.getCrates(this.arena);
-        int crateCount = crateLocations.size() - 1;
         int teamCount = Main.getPlugin().getConfig().getConfigurationSection("arenas." + this.arena + ".teams").getKeys(false).size();
         ItemStack theCabbage = this.getCabbage();
+
+        List<Location> chosenCrates = new ArrayList<Location>();
         
-        // for each team
+        for ( team : teamCount ) { // (for each team)
+            // assess list of crates
+            int crateCount = crateLocations.size();
+
             // pull out a random crateLocation
-            // fill a crate with x cabbage slices
+            int randIndex = random.nextInt(crateCount);
+            Location chosenCrate = crateLocations.get(randIndex);
+            chosenCrates.add(chosenCrate);
+
+            // remove out selection from list
+            crateLocations.remove(chosenCrate);
+
             // place it in the world
+            chosenCrate.getBlock().setType(Material.CHEST);
+            Inventory crateContents = chosenCrate.getBlockInventory();
+            
+            // fill the crate with x cabbage slices
+            int cabbageCount = this.totalCabbages / (teamCount + 1)
+            theCabbage.setAmount(cabbageCount);
+            crateContents.addItem(theCabbage);
+        }
     }
 
     public static ItemStack getChestplate(Color color) {
