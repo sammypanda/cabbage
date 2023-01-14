@@ -15,6 +15,7 @@ import org.bukkit.Material;
 import org.bukkit.Location;
 import org.bukkit.GameMode;
 import org.bukkit.event.Event;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -134,13 +135,20 @@ public class Team {
         return output;
     }
 
-    public static void validateWin(String arena, Location spawn, Event event) {
-        if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if is at spawn
-            if (event.getPlayer().getInventory().contains(Material.BONE_MEAL, totalCabbages)) {
-                Bukkit.broadcastMessage(color + " won, they have built the ultimate cabbage!");
-                AdminCommand.forceFinish();
-            } else {
-                Bukkit.broadcastMessage(color + " tried to build the ultimate cabbage, they failed with not enough cabbages");
+    public static void validateWin(PlayerMoveEvent event) {
+        String color = Team.getPlayerTeam(event.getPlayer().getUniqueId().toString());
+
+        if (color != null) {
+            String arena = Main.getPlugin().getConfig().getString("game.arena");
+            Location spawn = Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + color + ".spawn");
+
+            if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if is at spawn
+                if (event.getPlayer().getInventory().contains(Material.BONE_MEAL, totalCabbages)) {
+                    Bukkit.broadcastMessage(color + " won, they have built the ultimate cabbage!");
+                    AdminCommand.forceFinish();
+                } else {
+                    Bukkit.broadcastMessage(color + " tried to build the ultimate cabbage, they failed with not enough cabbages");
+                }
             }
         }
     }

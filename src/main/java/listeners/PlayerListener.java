@@ -97,13 +97,6 @@ public class PlayerListener implements Listener {
             return;
         }
 
-        String color = Team.getPlayerTeam(event.getPlayer().getUniqueId().toString());
-
-        if (color != null) {
-            String arena = Main.getPlugin().getConfig().getString("game.arena");
-            Location spawn = Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + color + ".spawn");
-
-            
-        }
+        Team.validateWin(event);
     }
 }
