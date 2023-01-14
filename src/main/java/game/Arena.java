@@ -88,10 +88,14 @@ public class Arena {
             locations.addAll(existingLocations); // pull in existing crates list for editing
         }
 
-        locations.add(location);
-        Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
-        
-        Main.getPlugin().saveConfig();
+        if (!locations.contains(location)) {
+            locations.add(location);
+            Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
+            
+            Main.getPlugin().saveConfig();
+        } else {
+            Bukkit.broadcastMessage("[wip] chest already placed here for this arena");
+        }
     }
 
     public void exit() {
