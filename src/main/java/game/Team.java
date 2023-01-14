@@ -33,8 +33,9 @@ public class Team {
     Set<String> players;
     Color color;
     Location location;
+    String arena;
 
-    public Team(String team, Set<String> players, Color color, Location location, int cabbagePerPlayer) {
+    public Team(String team, Set<String> players, Color color, Location location, int cabbagePerPlayer, String arena) {
         // create bonemeal
         ItemStack theCabbage = this.getCabbage();
         theCabbage.setAmount(cabbagePerPlayer); // variable amount given to each player
@@ -74,7 +75,7 @@ public class Team {
         Random random = new Random();
         List<Location> createLocations = Arena.getCrates();
         int crateCount = crateLocations.size() - 1;
-        int teamCount = Main.getPlugin().getConfig().getObject("arenas" + Arena.arena + ".teams").size();
+        int teamCount = Main.getPlugin().getConfig().getObject("arenas" + this.arena + ".teams").size();
 
         ItemStack theCabbage = new ItemStack(Material.BONE_MEAL);
         ItemMeta cabbageMeta = theCabbage.getItemMeta();

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Arena {
-    public String arena;
+    String arena;
     Player player;
     Boolean deleting = false;
 

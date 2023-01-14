@@ -97,7 +97,8 @@ public class AdminCommand {
                         34
                     )
                 ),
-                cabbagePerPlayer
+                cabbagePerPlayer,
+                arena
             );
         }
 
