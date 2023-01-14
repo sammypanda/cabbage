@@ -4,11 +4,19 @@ import main.java.Main; // needed for getPlugin
 import java.util.UUID;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Color;
 
+import org.bukkit.Material;
+
+import org.bukkit.block.Chest;
+
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.PlayerInventory;
 
 import org.bukkit.command.Command;
