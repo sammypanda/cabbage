@@ -31,6 +31,7 @@ public class Arena {
         this.player = player;
 
         player.getInventory().clear();
+        this.showCrates(true);
 
         ItemStack door = new ItemStack(Material.OAK_DOOR);
         ItemMeta doorMeta = door.getItemMeta();
@@ -92,12 +93,13 @@ public class Arena {
             Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
             
             Main.getPlugin().saveConfig();
-            this.showCrates(true);
             
             Bukkit.broadcastMessage("[wip] put chest location");
         } else {
             Bukkit.broadcastMessage("[wip] chest already placed here for this arena");
         }
+
+        this.showCrates(true);
     }
 
     public void showCrates(Boolean mode) {
