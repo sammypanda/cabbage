@@ -65,9 +65,8 @@ public class PlayerListener implements Listener {
         Location location = block.getLocation();
 
         if (AdminCommand.getArena() != null) {
-            if (blockState.getType().toString().endsWith("TRAPPED_CHEST")) {
+            if (blockState.getType().toString().endsWith("CHEST")) {
                 AdminCommand.getArena().deleteCrate(location);
-                event.setCancelled(true); // temporary, delete me
             }
         }
     }

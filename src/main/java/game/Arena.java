@@ -101,7 +101,7 @@ public class Arena {
             
             Main.getPlugin().saveConfig();
             
-            this.player.sendRawMessage("- " + ChatColor.BOLD + "" + ChatColor.GREEN + "added " + ChatColor.RESET + " crate location");
+            this.player.sendRawMessage("- " + ChatColor.BOLD + "" + ChatColor.GREEN + "added" + ChatColor.RESET + " crate location");
         }
     }
 
@@ -113,7 +113,7 @@ public class Arena {
         Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
         Main.getPlugin().saveConfig();
 
-        this.player.sendRawMessage("- " + ChatColor.BOLD + "" + ChatColor.RED + "deleted " + ChatColor.RESET + " crate location");
+        this.player.sendRawMessage("- " + ChatColor.BOLD + "" + ChatColor.RED + "deleted" + ChatColor.RESET + " crate location");
     }
 
     public void showCrates(Boolean mode) {
@@ -121,7 +121,7 @@ public class Arena {
 
         for (Location crate : crateLocations) {
             if (mode) {
-                crate.getBlock().setType(Material.TRAPPED_CHEST);
+                crate.getBlock().setType(Material.CHEST);
             } else {
                 crate.getBlock().setType(Material.AIR);
             }
