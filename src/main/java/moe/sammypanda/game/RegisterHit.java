@@ -1,4 +1,4 @@
-package com.sammypanda.game;
+package moe.sammypanda.game;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
@@ -6,26 +6,25 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.sammypanda.Main;
+import moe.sammypanda.Main;
 
 public class RegisterHit {
     public void Player(EntityDamageByEntityEvent event) {
         Boolean isGamer = false; // is the player being hit a gamer?
         Boolean isHitByGamer = false; // is the player doing the hitting a gamer?
-        Boolean sameTeam = false;
 
-        String friendTeam = "a";
-        String enemyTeam = "b";
+        String friendTeam = null;
+        String enemyTeam = null;
 
         // if game not started don't continue
         if (Main.getPlugin().getConfig().getBoolean("game.ongoing") == false) {
-            Bukkit.broadcastMessage("game not ongoing, hit doesn't count");
+            Bukkit.getLogger().finest("Game not ongoing, hit doesn't count");
             return;
         }
 
         // if hit not by player don't continue
         if (event.getDamager().getType() != EntityType.PLAYER) {
-            Bukkit.broadcastMessage("not hit by player, hit doesn't count");
+            Bukkit.getLogger().finest("Hit by non-player entity, hit doesn't count");
             return;
         }
 
@@ -42,10 +41,6 @@ public class RegisterHit {
                     isHitByGamer = true;
                     enemyTeam = team;
                 }
-
-                if (friendTeam.equals(enemyTeam)) {
-                    sameTeam = true;
-                }
             }
         }
 
@@ -60,17 +55,19 @@ public class RegisterHit {
 
             theCabbage.setAmount(1); // amount that gets passed or dropped
 
-            if (sameTeam) {
+            if (friendTeam.equals(enemyTeam)) {
                 event.setCancelled(true); // cancel the damage
             }
 
-            if (theHitter.getInventory().containsAtLeast(theCabbage, 1) && sameTeam) {
+            if (theHitter.getInventory().containsAtLeast(theCabbage, 1) && friendTeam.equals(enemyTeam)) {
                 // remove cabbage slice from hitter cuz they have one and "passed" it to us
                 theHitter.getInventory().removeItem(theCabbage);
 
                 // give us their cabbage slice! :)
                 theGamer.getInventory().addItem(theCabbage);
-            } else if (theGamer.getInventory().containsAtLeast(theCabbage, 1) && !sameTeam) { // they are enemy!
+            } else if (theGamer.getInventory().containsAtLeast(theCabbage, 1) && !friendTeam.equals(enemyTeam)) { // they
+                                                                                                                  // are
+                                                                                                                  // enemy!
                 // remove cabbage slice from us cuz we have one and we were hit
                 theGamer.getInventory().removeItem(theCabbage);
 

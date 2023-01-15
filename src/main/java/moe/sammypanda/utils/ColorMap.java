@@ -1,4 +1,4 @@
-package com.sammypanda.utils;
+package moe.sammypanda.utils;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,13 +1,13 @@
-package com.sammypanda;
+package moe.sammypanda;
 
 import org.bukkit.Material;
 // import org.bukkit.event.HandlerList
 import org.bukkit.plugin.Plugin; // plugin type
 import org.bukkit.plugin.java.JavaPlugin; // essential for functionality
 
-import com.sammypanda.command.AdminCommand;
-import com.sammypanda.command.MainCommand;
-import com.sammypanda.listeners.PlayerListener;
+import moe.sammypanda.command.AdminCommand;
+import moe.sammypanda.command.MainCommand;
+import moe.sammypanda.listeners.PlayerListener;
 
 public class Main extends JavaPlugin {
 
@@ -21,8 +21,7 @@ public class Main extends JavaPlugin {
 		// Listeners
 		getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 		// register the PlayerListener event
-		// TODO: replace getServer() with
-		// Bukkit
+		// TODO: replace getServer() with Bukkit
 
 		// Initiating/Creating Config
 		this.saveDefaultConfig();

@@ -1,4 +1,4 @@
-package com.sammypanda.listeners;
+package moe.sammypanda.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -12,10 +12,10 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.sammypanda.Main;
-import com.sammypanda.command.AdminCommand;
-import com.sammypanda.game.RegisterHit;
-import com.sammypanda.game.Team;
+import moe.sammypanda.Main;
+import moe.sammypanda.command.AdminCommand;
+import moe.sammypanda.game.RegisterHit;
+import moe.sammypanda.game.Team;
 
 public class PlayerListener implements Listener {
     String currentArena;

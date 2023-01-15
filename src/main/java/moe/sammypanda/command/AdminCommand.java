@@ -1,4 +1,4 @@
-package com.sammypanda.command;
+package moe.sammypanda.command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,11 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.sammypanda.Main; // needed for getPlugin
+import moe.sammypanda.Main; // needed for getPlugin
 // local packages
-import com.sammypanda.game.Arena;
-import com.sammypanda.game.Team;
-import com.sammypanda.utils.ColorMap;
+import moe.sammypanda.game.Arena;
+import moe.sammypanda.game.Team;
+import moe.sammypanda.utils.ColorMap;
 
 public class AdminCommand {
     static Arena arena;

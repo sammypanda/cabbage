@@ -1,4 +1,4 @@
-package com.sammypanda.command;
+package moe.sammypanda.command;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,9 +11,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.sammypanda.Main;
+import moe.sammypanda.Main;
 // local packages
-import com.sammypanda.utils.ColorMap;
+import moe.sammypanda.utils.ColorMap;
 
 public class MainCommand implements CommandExecutor {
 

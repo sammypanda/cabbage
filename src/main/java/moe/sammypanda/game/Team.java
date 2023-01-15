@@ -1,4 +1,4 @@
-package com.sammypanda.game;
+package moe.sammypanda.game;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -18,7 +18,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import com.sammypanda.Main;
+import moe.sammypanda.Main;
 
 public class Team {
     String team;
