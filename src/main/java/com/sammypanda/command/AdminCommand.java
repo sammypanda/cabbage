@@ -1,39 +1,24 @@
-package main.java.command;
-import main.java.Main; // needed for getPlugin
+package com.sammypanda.command;
 
-import java.util.UUID;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.lang.Math;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Color;
-
 import org.bukkit.Material;
-
 import org.bukkit.block.Chest;
-
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.PlayerInventory;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-
-import org.bukkit.configuration.file.FileConfiguration;
-
-import org.bukkit.entity.Player;
-
-import org.bukkit.event.player.PlayerMoveEvent;
-
+import com.sammypanda.Main; // needed for getPlugin
 // local packages
-import main.java.game.Arena;
-import main.java.game.Team;
-import main.java.utils.ColorMap;
+import com.sammypanda.game.Arena;
+import com.sammypanda.game.Team;
+import com.sammypanda.utils.ColorMap;
 
 public class AdminCommand {
     static Arena arena;
@@ -50,18 +35,19 @@ public class AdminCommand {
         Main.getPlugin().getConfig().set("game.players", 0);
 
         for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
-            for (String strUUID : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
+            for (String strUUID : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players")
+                    .getKeys(false)) {
 
                 Player player = Bukkit.getPlayer(UUID.fromString(strUUID));
 
                 if (player != null) {
                     // clear the game items from the player (generically)
                     player.getInventory().clear();
-                    
+
                     // teleport player back to their origin position
                     player.teleport(
-                        Main.getPlugin().getConfig().getLocation("teams." + team + ".players." + strUUID + ".origin")
-                    );
+                            Main.getPlugin().getConfig()
+                                    .getLocation("teams." + team + ".players." + strUUID + ".origin"));
                 }
             }
 
@@ -92,45 +78,44 @@ public class AdminCommand {
         }
 
         if (!Main.getPlugin().getConfig().contains("arenas." + arena)) {
-            return "No '"+ arena +"' arena made :(";
+            return "No '" + arena + "' arena made :(";
         }
 
         Main.getPlugin().getConfig().set("game.ongoing", true);
         Main.getPlugin().getConfig().set("game.arena", arena);
         Main.getPlugin().saveConfig();
-        
-        for(String team : Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena + ".teams").getKeys(false)) {
+
+        for (String team : Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena + ".teams")
+                .getKeys(false)) {
 
             new Team(
-                team, 
-                Main.getPlugin().getConfig().getConfigurationSection("teams."+team+".players").getKeys(false), 
-                ColorMap.fromDye(ColorMap.toMaterial(team)),
-                Main.getPlugin().getConfig().getLocation(
-                    "arenas."+arena+".teams."+team+".spawn",
-                    new Location(
-                        Bukkit.getServer().getWorld("World"),
-                        252.500,
-                        -60,
-                        820.500,
-                        -136,
-                        34
-                    )
-                ),
-                cabbagePerPlayer,
-                arena
-            );
+                    team,
+                    Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false),
+                    ColorMap.fromDye(ColorMap.toMaterial(team)),
+                    Main.getPlugin().getConfig().getLocation(
+                            "arenas." + arena + ".teams." + team + ".spawn",
+                            new Location(
+                                    Bukkit.getServer().getWorld("World"),
+                                    252.500,
+                                    -60,
+                                    820.500,
+                                    -136,
+                                    34)),
+                    cabbagePerPlayer,
+                    arena);
         }
 
         // drop crates
         Random random = new Random();
         List<Location> crateLocations = Arena.getCrates(arena);
-        int teamCount = Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena + ".teams").getKeys(false).size();
+        int teamCount = Main.getPlugin().getConfig().getConfigurationSection("arenas." + arena + ".teams")
+                .getKeys(false).size();
         ItemStack theCabbage = Team.getCabbage();
 
         int playerCount = Main.getPlugin().getConfig().getInt("game.players");
         totalCabbages = playerCount * cabbagePerPlayer;
-        
-        for ( int i=0; i<teamCount; i++ ) { // (for each team)
+
+        for (int i = 0; i < teamCount; i++) { // (for each team)
             // assess list of crates
             int crateCount = crateLocations.size();
 
@@ -144,17 +129,18 @@ public class AdminCommand {
 
             // place it in the world
             chosenCrate.getBlock().setType(Material.CHEST);
-            
+
             // fill the crate with x cabbage slices
             Chest crate = (Chest) chosenCrate.getBlock().getState();
             Inventory crateContents = crate.getInventory();
             int cabbageCount;
-            
-            if (i==0 && teamCount > totalCabbages) {
+
+            if (i == 0 && teamCount > totalCabbages) {
                 cabbageCount = totalCabbages;
-                i = teamCount+1; // break out of loop
+                i = teamCount + 1; // break out of loop
             } else {
-                cabbageCount = (int) Math.round(Math.ceil(Double.valueOf(totalCabbages) / Double.valueOf((teamCount + 1))));
+                cabbageCount = (int) Math
+                        .round(Math.ceil(Double.valueOf(totalCabbages) / Double.valueOf((teamCount + 1))));
             }
 
             theCabbage.setAmount(cabbageCount);
@@ -178,12 +164,15 @@ public class AdminCommand {
             String arena = Main.getPlugin().getConfig().getString("game.arena");
             Location spawn = Main.getPlugin().getConfig().getLocation("arenas." + arena + ".teams." + color + ".spawn");
 
-            if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if is at spawn
-                if (event.getPlayer().getInventory().contains(Material.BONE_MEAL, totalCabbages)) { // change from 1 cabbage to win
+            if (event.getTo().distance(spawn) <= 1) { // if distance from spawn is less than or equal to 1 (block?) ~ if
+                                                      // is at spawn
+                if (event.getPlayer().getInventory().contains(Material.BONE_MEAL, totalCabbages)) { // change from 1
+                                                                                                    // cabbage to win
                     Bukkit.broadcastMessage(color + " won, they have built the ultimate cabbage!");
                     AdminCommand.forceFinish();
                 } else {
-                    Bukkit.broadcastMessage(color + " tried to build the ultimate cabbage, they failed with not enough cabbages");
+                    Bukkit.broadcastMessage(
+                            color + " tried to build the ultimate cabbage, they failed with not enough cabbages");
                 }
             }
         }

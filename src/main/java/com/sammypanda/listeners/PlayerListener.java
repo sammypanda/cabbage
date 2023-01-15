@@ -1,30 +1,21 @@
-package main.java.listeners;
-import main.java.Main; // needed for getPlugin
+package com.sammypanda.listeners;
 
-import main.java.game.Team;
-import main.java.game.Arena;
-import main.java.command.AdminCommand;
-
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
-
-import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import org.bukkit.entity.Item;
-
-// game package
-import main.java.game.RegisterHit;
+import com.sammypanda.Main;
+import com.sammypanda.command.AdminCommand;
+import com.sammypanda.game.RegisterHit;
+import com.sammypanda.game.Team;
 
 public class PlayerListener implements Listener {
     String currentArena;
@@ -32,7 +23,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerHit(EntityDamageByEntityEvent event) {
         RegisterHit registerhit = new RegisterHit();
-        
+
         registerhit.Player(event); // pass our event through to RegisterHit main function
     }
 
@@ -74,7 +65,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getAction().toString().startsWith("RIGHT")) {
-            
+
             if (event.getItem() != null) {
                 if (event.getItem().getType().toString().equals("OAK_DOOR")) {
                     event.setCancelled(true);

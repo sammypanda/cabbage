@@ -1,26 +1,20 @@
-package main.java.game;
-import main.java.Main; // needed for getPlugin
-import main.java.command.AdminCommand;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-
-import org.bukkit.Material;
-
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import org.bukkit.entity.Player;
-
-import org.bukkit.ChatColor;
-
-import org.bukkit.configuration.ConfigurationSection;
-
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
+package com.sammypanda.game;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import com.sammypanda.Main;
+import com.sammypanda.command.AdminCommand;
 
 public class Arena {
     String arena;
@@ -50,8 +44,9 @@ public class Arena {
         barrier.setItemMeta(barrierMeta);
         chest.setItemMeta(chestMeta);
         player.getInventory().setItem(8, barrier); // give the barrier in the last hotbar slot
-        player.getInventory().setItem(7, door); // give the door in the second last hotbar slot 
-        player.getInventory().setItem(0, chest); // give the chest to set locations for crates to spawn in first hotbar slot
+        player.getInventory().setItem(7, door); // give the door in the second last hotbar slot
+        player.getInventory().setItem(0, chest); // give the chest to set locations for crates to spawn in first hotbar
+                                                 // slot
 
         if (Main.getPlugin().getConfig().get("arenas." + arena) == null) {
             Main.getPlugin().getConfig().createSection("arenas." + arena); // create new arena if not already created
@@ -59,7 +54,7 @@ public class Arena {
 
             player.sendRawMessage("- created " + ChatColor.BOLD + arena + ".");
         }
-        
+
         player.sendRawMessage("- use" + ChatColor.MAGIC + " colour" + ChatColor.RESET + " wool to set team spawn");
     }
 
@@ -70,22 +65,25 @@ public class Arena {
     public void setSpawn(Block block, Location location) {
         BlockState state = block.getState();
         Material wool = state.getType();
-        String woolColor = wool.toString().replace("_WOOL","");
+        String woolColor = wool.toString().replace("_WOOL", "");
         Bukkit.broadcastMessage(woolColor);
 
         block.setType(Material.AIR); // disappear da block
 
-        Main.getPlugin().getConfig().set("arenas." + this.arena + ".teams." + woolColor.toLowerCase() + ".spawn", location);
+        Main.getPlugin().getConfig().set("arenas." + this.arena + ".teams." + woolColor.toLowerCase() + ".spawn",
+                location);
         Main.getPlugin().saveConfig();
     }
 
     public static List<Location> getCrates(String arena) {
         List<Location> locations = new ArrayList<Location>();
-        
+
         if (Main.getPlugin().getConfig().get("arenas." + arena + ".crates") == null) {
-            Main.getPlugin().getConfig().set("arenas." + arena + ".crates", new ArrayList<Location>()); // create empty crates list
+            Main.getPlugin().getConfig().set("arenas." + arena + ".crates", new ArrayList<Location>()); // create empty
+                                                                                                        // crates list
         } else {
-            List<Location> existingLocations = (List<Location>) Main.getPlugin().getConfig().getList("arenas." + arena + ".crates");
+            List<Location> existingLocations = (List<Location>) Main.getPlugin().getConfig()
+                    .getList("arenas." + arena + ".crates");
             locations.addAll(existingLocations); // pull in existing crates list for editing
         }
 
@@ -93,31 +91,34 @@ public class Arena {
     }
 
     public void addCrate(Location location) {
-        List<Location> locations = this.getCrates(this.arena);
+        List<Location> locations = Arena.getCrates(this.arena);
 
         if (!locations.contains(location)) {
             locations.add(location);
             Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
-            
+
             Main.getPlugin().saveConfig();
-            
-            this.player.sendRawMessage("+ " + ChatColor.BOLD + "" + ChatColor.GREEN + "added" + ChatColor.RESET + " crate location");
+
+            this.player.sendRawMessage(
+                    "+ " + ChatColor.BOLD + "" + ChatColor.GREEN + "added" + ChatColor.RESET + " crate location");
         }
     }
 
     public void deleteCrate(Location location) {
-        List<Location> locations = this.getCrates(this.arena);
+        List<Location> locations = Arena.getCrates(this.arena);
 
         locations.remove(location);
 
         Main.getPlugin().getConfig().set("arenas." + this.arena + ".crates", locations);
         Main.getPlugin().saveConfig();
 
-        this.player.sendRawMessage("- " + ChatColor.BOLD + "" + ChatColor.RED + "deleted" + ChatColor.RESET + " crate location");
+        this.player.sendRawMessage(
+                "- " + ChatColor.BOLD + "" + ChatColor.RED + "deleted" + ChatColor.RESET + " crate location");
     }
 
     public void showCrates(Boolean mode) {
-        List<Location> crateLocations = (List<Location>) Main.getPlugin().getConfig().getList("arenas." + this.arena + ".crates");
+        List<Location> crateLocations = (List<Location>) Main.getPlugin().getConfig()
+                .getList("arenas." + this.arena + ".crates");
 
         for (Location crate : crateLocations) {
             if (mode) {
@@ -132,7 +133,8 @@ public class Arena {
         this.player.getInventory().clear();
         this.showCrates(false);
         AdminCommand.arenaEditor(this.player, this.arena, true);
-        this.player.sendRawMessage(ChatColor.BOLD + "" + ChatColor.RED + "exited " + ChatColor.WHITE + this.arena + ChatColor.RED + " editor");
+        this.player.sendRawMessage(ChatColor.BOLD + "" + ChatColor.RED + "exited " + ChatColor.WHITE + this.arena
+                + ChatColor.RED + " editor");
     }
 
     public String getName() {

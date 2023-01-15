@@ -1,10 +1,11 @@
-package main.java.utils;
+package com.sammypanda.utils;
 
-import java.util.*;
-import org.bukkit.Bukkit;
-import org.bukkit.Material; // toDye()
-import org.bukkit.Color; // both from*() and to*()
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.ChatColor; // toChatColor()
+import org.bukkit.Color; // both from*() and to*()
+import org.bukkit.Material; // toDye()
 
 public class ColorMap {
     public static ChatColor toChatColor(Color color) {
@@ -27,7 +28,7 @@ public class ColorMap {
         map.put(Color.SILVER, ChatColor.GRAY);
         map.put(Color.TEAL, ChatColor.DARK_AQUA);
         map.put(Color.WHITE, ChatColor.WHITE);
-        map.put(Color.YELLOW, ChatColor.YELLOW);        
+        map.put(Color.YELLOW, ChatColor.YELLOW);
 
         return map.get(color);
     }
@@ -80,7 +81,7 @@ public class ColorMap {
         map.put(Material.YELLOW_DYE, Color.YELLOW);
 
         return map.get(dye);
-    }   
+    }
 
     public static Color fromChatColor(ChatColor chat_color) {
 

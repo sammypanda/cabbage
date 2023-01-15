@@ -1,21 +1,12 @@
-package main.java.game;
-import main.java.Main; // needed for getPlugin
-
-import java.util.UUID;
+package com.sammypanda.game;
 
 import org.bukkit.Bukkit;
-
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityEvent;
-
-import org.bukkit.inventory.ItemStack;
-
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.inventory.ItemStack;
 
-// game package
-import main.java.game.Team;
+import com.sammypanda.Main;
 
 public class RegisterHit {
     public void Player(EntityDamageByEntityEvent event) {
@@ -39,8 +30,9 @@ public class RegisterHit {
         }
 
         // search for player
-        for(String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
-            for (String player : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players").getKeys(false)) {
+        for (String team : Main.getPlugin().getConfig().getConfigurationSection("teams").getKeys(false)) {
+            for (String player : Main.getPlugin().getConfig().getConfigurationSection("teams." + team + ".players")
+                    .getKeys(false)) {
                 if (player.equals(event.getEntity().getUniqueId().toString())) {
                     isGamer = true;
                     friendTeam = team;
@@ -65,13 +57,13 @@ public class RegisterHit {
 
             // retrieve our premade 'cabbage slice' ItemStack
             ItemStack theCabbage = Team.getCabbage();
-            
+
             theCabbage.setAmount(1); // amount that gets passed or dropped
 
             if (sameTeam) {
                 event.setCancelled(true); // cancel the damage
             }
-            
+
             if (theHitter.getInventory().containsAtLeast(theCabbage, 1) && sameTeam) {
                 // remove cabbage slice from hitter cuz they have one and "passed" it to us
                 theHitter.getInventory().removeItem(theCabbage);
